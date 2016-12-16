@@ -9,10 +9,15 @@ namespace NetwProg
     {
         static public int MijnPoort;
 
+        //Neighbours <port,connection>
         static public Dictionary<int, Connection> Buren = new Dictionary<int, Connection>();
+        //distances <port,distance>
         static public Dictionary<int, int> distances = new Dictionary<int, int>();
-        static public Dictionary<int, int> Du = new Dictionary<int, int>();
+        //Estimated Distances <port,distance>
+        static public Dictionary<int, int> D = new Dictionary<int, int>();
+        //Preferred neighbours <v,neighbourport>
         static public Dictionary<int, int> Nbu = new Dictionary<int, int>();
+        //Neighbour distances to a port <[neighbourport,v],distance>
         static public Dictionary<int[], int> ndisu = new Dictionary<int[], int>();
 
         static void Main(string[] args)
@@ -52,26 +57,46 @@ namespace NetwProg
         }
         static void Recompute(int v)
         {
-            if (v == MijnPoort) { Du[v] = 0; Nbu[v] = MijnPoort; }
-            else { Nbu[v] = getBestNToV(v); }
-        }
-        static int getBestNToV(int v)
-        {
-            //Alle afstanden in ndisu die naar v gaan
-            var matches = ndisu.Where(kvp => secondPortEqualsV(kvp.Key, v));
-            //zet het minimum op eerste waarde
-            var min = matches.First();
-            //verkrijg het keyvaluepair met minimum afstand 
-            foreach (KeyValuePair<int[], int> kvp in matches)
+            if (v == MijnPoort) { D[v] = 0; Nbu[v] = MijnPoort; }
+            else
             {
+                var nbuPair = getBestToV(v);
+                //neighbour with lowest ndisu [w,v]
+                Nbu[v] = nbuPair.Key[0];
+                //Set the estimated distance to V  
+                D[v] = nbuPair.Value + 1;
+            }
+        }
+        //Return a keyvaluepair <[w,v],distance> of the neighbour with the best ndisu to v 
+        static KeyValuePair<int[],int> getBestToV(int v)
+        {
+            //all pairs in ndisu with v as the 2nd value in their key
+            var pairs = ndisu.Where(kvp => secondPortEqualsV(kvp.Key, v));
+            //set a default for minimum
+            var min = pairs.First();
+            foreach (KeyValuePair<int[], int> kvp in pairs)
+            {
+                //if the distance is smaller, that keyvaluepair becomes the new minimum
                 if (kvp.Value < min.Value) min = kvp;
             }
-            //return de port van de buur met de laagste afstand tot v 
-            return min.Key[0];
+            //return the keyvaluepair with the lowest distance to v 
+            return min;
         }
+
+        //Check if the 2nd value of the key equals v
         static bool secondPortEqualsV(int[] ndisuKey,int v)
         {
             return (ndisuKey[1] == v);
+        }
+        //After a change of distance value to V, send <mydist,V,D> to all connected ports so they can update their ndisu value for this port
+        static void SendDValue(int v,int d)
+        {
+
+        }
+        //When a new link is made, send all d values 
+        static void SendAllDValues()
+        {
+
         }
     }
 }
