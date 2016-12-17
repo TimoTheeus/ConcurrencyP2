@@ -47,11 +47,15 @@ namespace NetwProg
             {
                 while (true)
                 {
-                    string[] splitInput = Read.ReadLine().Split(' ');
+                    string input = Read.ReadLine();
+                    string[] splitInput = input.Split(' ');
                     switch (splitInput[0])
                     {
                         //Update ndis (neighbourport,v,distance)
                         case "UD": Program.updateNdis(int.Parse(splitInput[1]), int.Parse(splitInput[2]), int.Parse(splitInput[3]));
+                            break;
+                        //Else print it to console 
+                        default: Console.WriteLine(input);
                             break;
                     }
                 }
