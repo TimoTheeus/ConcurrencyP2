@@ -22,36 +22,38 @@ namespace NetwProg
 
         static void Main(string[] args)
         {
-            Console.Write("Op welke poort ben ik server? ");
-            MijnPoort = int.Parse(Console.ReadLine());
+            //Zet het netwerk op
+            MijnPoort = int.Parse(args[1]);
             new Server(MijnPoort);
-
-            Console.WriteLine("Typ [verbind poortnummer] om verbinding te maken, bijvoorbeeld: verbind 1100");
-            Console.WriteLine("Typ [poortnummer bericht] om een bericht te sturen, bijvoorbeeld: 1100 hoi hoi");
-
-            while (true)
+            for(int i =3; i < args.Length; i++)
             {
-                string input = Console.ReadLine();
-                if (input.StartsWith("verbind"))
+                int poort = int.Parse(args[i]);
+                if (Buren.ContainsKey(poort))
                 {
-                    int poort = int.Parse(input.Split()[1]);
-                    if (Buren.ContainsKey(poort))
-                        Console.WriteLine("Hier is al verbinding naar!");
-                    else
-                    {
-                        // Leg verbinding aan (als client)
-                        Buren.Add(poort, new Connection(poort));
-                    }
+                    Console.WriteLine("Hier is al verbinding naar!");
                 }
                 else
                 {
-                    // Stuur berichtje
-                    string[] delen = input.Split(new char[] { ' ' }, 2);
-                    int poort = int.Parse(delen[0]);
-                    if (!Buren.ContainsKey(poort))
-                        Console.WriteLine("Hier is al verbinding naar!");
-                    else
-                        Buren[poort].Write.WriteLine(MijnPoort + ": " + delen[1]);
+                    Buren.Add(poort, new Connection(poort));
+                }
+            }
+            //Handel invoer af
+            while (true)
+            {
+                string input = Console.ReadLine();
+                string[] splitInput = input.Split(' ');
+                switch (splitInput[0])
+                {
+                    case "R":
+                        break;
+                    case "B":
+                        break;
+                    case "C":
+                        break;
+                    case "D":
+                        break;
+                    default:
+                        break;
                 }
             }
         }
