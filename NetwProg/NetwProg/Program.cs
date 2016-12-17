@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Security.Cryptography;
 namespace NetwProg
 {
     class Program
     {
         static public int MijnPoort;
-
+        static object locker = new object();
         //Neighbours <port,connection>
         static public Dictionary<int, Connection> Buren = new Dictionary<int, Connection>();
         //distances <port,distance>
@@ -22,20 +22,29 @@ namespace NetwProg
 
         static void Main(string[] args)
         {
+            for (int i = 0; i < args.Length; i++)
+            {
+                Console.WriteLine(args[i]);
+            }
             //Zet het netwerk op
-            MijnPoort = int.Parse(args[1]);
+            MijnPoort = int.Parse(args[0]);
             new Server(MijnPoort);
-            for(int i =3; i < args.Length; i++)
+            for (int i = 1; i < args.Length; i++)
             {
                 int poort = int.Parse(args[i]);
-                if (Buren.ContainsKey(poort))
+
+                lock (locker)
                 {
-                    Console.WriteLine("Hier is al verbinding naar!");
+                    if (Buren.ContainsKey(poort))
+                    {
+                        Console.WriteLine("Hier is al verbinding naar!");
+                    }
+                    else
+                    {
+                            Buren.Add(poort, new Connection(poort));
+                    }
                 }
-                else
-                {
-                    Buren.Add(poort, new Connection(poort));
-                }
+
             }
             //Handel invoer af
             while (true)
