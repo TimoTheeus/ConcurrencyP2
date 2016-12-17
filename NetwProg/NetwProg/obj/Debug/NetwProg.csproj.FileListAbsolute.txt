@@ -5,3 +5,6 @@ C:\Users\Timo\Documents\GitHub\ConcurrencyP2\NetwProg\NetwProg\bin\Debug\NetwPro
 C:\Users\Timo\Documents\GitHub\ConcurrencyP2\NetwProg\NetwProg\obj\Debug\NetwProg.csprojResolveAssemblyReference.cache
 C:\Users\Timo\Documents\GitHub\ConcurrencyP2\NetwProg\NetwProg\obj\Debug\NetwProg.exe
 C:\Users\Timo\Documents\GitHub\ConcurrencyP2\NetwProg\NetwProg\obj\Debug\NetwProg.pdb
+C:\Users\Thomas\Documents\2016-2017\P2 - Concurrency\Opdracht2\ConcurrencyP2\NetwProg\NetwProg\bin\Debug\NetwProg.exe.config
+C:\Users\Thomas\Documents\2016-2017\P2 - Concurrency\Opdracht2\ConcurrencyP2\NetwProg\NetwProg\obj\Debug\NetwProg.exe
+C:\Users\Thomas\Documents\2016-2017\P2 - Concurrency\Opdracht2\ConcurrencyP2\NetwProg\NetwProg\obj\Debug\NetwProg.pdb
