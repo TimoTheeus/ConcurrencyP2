@@ -52,16 +52,22 @@ namespace NetwProg
                     switch (splitInput[0])
                     {
                         //Update ndis (neighbourport,v,distance)
-                        case "UD": Program.updateNdis(int.Parse(splitInput[1]), int.Parse(splitInput[2]), int.Parse(splitInput[3]));
+                        case "UD":
+                            {
+                                Console.WriteLine("updatedndis");
+                                Program.updateNdis(int.Parse(splitInput[1]), int.Parse(splitInput[2]), int.Parse(splitInput[3]));
+                            }
                             break;
                         //Else print it to console 
-                        default: Console.WriteLine(input);
+                        default:
+                            Console.WriteLine(input);
                             break;
                     }
+
                 }
-                    
             }
-            catch { Console.WriteLine("rip"); } // Verbinding is kennelijk verbroken
+            catch { Console.WriteLine("rip"); }// Verbinding is kennelijk verbroken
         }
     }
 }
+

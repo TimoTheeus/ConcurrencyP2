@@ -32,7 +32,11 @@ namespace NetwProg
             for (int i = 1; i < args.Length; i++)
             {
                 int port = int.Parse(args[i]);
-                MakeConnection(port);
+                //Alleen van grotere ports client worden
+                if (port > MijnPoort)
+                {
+                    MakeConnection(port);
+                }
             }
             //Handel invoer af
             while (true)
@@ -42,10 +46,14 @@ namespace NetwProg
                 switch (splitInput[0])
                 {
                     case "R":
+                        printDistances();
                         break;
                     case "B":
+                        printNdisu();
+                        Console.WriteLine("ndisu length is {0}",ndisu.Count);
                         break;
                     case "C":
+                        PrintNeighBours();
                         break;
                     case "D":
                         break;
@@ -99,38 +107,44 @@ namespace NetwProg
         {
             foreach (KeyValuePair<int, Connection> neighbour in Buren)
             {
-                sendUD(neighbour.Key, v, d);
+                if (neighbour.Key != v)
+                {
+                    Console.WriteLine("{0} sent {1} to {2}", MijnPoort, v, neighbour.Key);
+                    sendUD(neighbour.Key, v, d);
+                }
             }
         }
         //Send all distance values to a port, used when new link is made 
         static public void SendAllDValues(int port)
         {
-            foreach(KeyValuePair<int,int> distance in D)
+            Console.WriteLine("sent all {0} D values to {1}",D.Count,port);
+            foreach (KeyValuePair<int,int> distance in D)
             {
+                if(distance.Key!=port)
                 sendUD(port, distance.Key, distance.Value);
             }
+            //Inform the neighbours of the new connection
+            SendDValueToNeighbours(port, 1);
         }
         //Send an update distance to a port
         static void sendUD(int port,int v, int d)
         {
-            Buren[port].Write.WriteLine("UD {0} {1} {2}", MijnPoort, v, d);
+             Buren[port].Write.WriteLine("UD {0} {1} {2}", MijnPoort, v, d);
         }
-        static void MakeConnection (int port)
+        static void MakeConnection(int port)
         {
-            lock (locker)
+            if (Buren.ContainsKey(port))
             {
-                if (Buren.ContainsKey(port))
-                {
-                    Console.WriteLine("Hier is al verbinding naar!");
-                }
-                else
-                {
-                    Buren.Add(port, new Connection(port));
-                }
+                Console.WriteLine("Hier is al verbinding naar!");
+            }
+            else
+            {
+                Buren.Add(port, new Connection(port));
             }
             initialiseDistance(port);
             SendAllDValues(port);
         }
+       
         static public void initialiseDistance(int port)
         {
             if (D.ContainsKey(port))
@@ -141,15 +155,45 @@ namespace NetwProg
         }
         static public void updateNdis(int neighbourport, int v, int distance)
         {
-            //Make the key that belongs to the distance value of the neighbour to v and update it.
-            int[] key = new int[2];
-            key[0] = neighbourport; key[1] = v;
-            int oldDistance = ndisu[key];
-            //If the ndis is changed, do a recompute
-            if (oldDistance != distance)
+            
+                //Make the key that belongs to the distance value of the neighbour to v and update it.
+                Console.WriteLine("Updating ndis with {0} {1} {2}", neighbourport, v, distance);
+                int[] key = new int[2];
+                key[0] = neighbourport; key[1] = v;
+            //  int oldDistance = ndisu[key];
+            lock (locker)
             {
-                ndisu[key] = distance;
-                Recompute(v);
+                if (!ndisu.ContainsKey(key))
+                {
+                    ndisu.Add(key, distance);
+                }
+                //If the ndis is changed, do a recompute
+                else if (ndisu[key] != distance)
+                {
+                    ndisu[key] = distance;
+                    Recompute(v);
+                }
+            }
+        }
+        static void PrintNeighBours()
+        {
+            foreach (KeyValuePair<int, Connection> neighbour in Buren)
+            {
+                Console.WriteLine("een buur van mij is {0}", neighbour.Key);
+            }
+        }
+        static void printDistances()
+        {
+            foreach (KeyValuePair<int, int> distance in D)
+            {
+                Console.WriteLine("de distance naar {0} is {1}", distance.Key, distance.Value);
+            }
+        }
+        static void printNdisu()
+        {
+            foreach (KeyValuePair<int[], int> pair in ndisu)
+            {
+                Console.WriteLine("de distance van {0} naar {1} is {2}", pair.Key[0], pair.Key[1], pair.Value);
             }
         }
     }

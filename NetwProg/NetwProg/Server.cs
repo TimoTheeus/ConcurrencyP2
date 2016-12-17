@@ -37,16 +37,15 @@ namespace NetwProg
                 Console.WriteLine("Client maakt verbinding: " + zijnPoort);
 
                 // Zet de nieuwe verbinding in de verbindingslijst
-                lock (Program.locker)
+
+                if (!Program.Buren.ContainsKey(zijnPoort))
                 {
-                    if (!Program.Buren.ContainsKey(zijnPoort))
-                    {
-                        Program.Buren.Add(zijnPoort, new Connection(clientIn, clientOut));
-                        //Stuur alle distance values door naar de nieuwe connection
-                    }
+                    Program.Buren.Add(zijnPoort, new Connection(clientIn, clientOut));
+                    //Stuur alle distance values door naar de nieuwe connection
                 }
-                Program.SendAllDValues(zijnPoort);
                 Program.initialiseDistance(zijnPoort);
+                Program.SendAllDValues(zijnPoort);
+
             }
         }
     }
