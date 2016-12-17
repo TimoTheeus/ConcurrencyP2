@@ -46,7 +46,16 @@ namespace NetwProg
             try
             {
                 while (true)
-                    Console.WriteLine(Read.ReadLine());
+                {
+                    string[] splitInput = Read.ReadLine().Split(' ');
+                    switch (splitInput[0])
+                    {
+                        //Update ndis (neighbourport,v,distance)
+                        case "UD": Program.updateNdis(int.Parse(splitInput[1]), int.Parse(splitInput[2]), int.Parse(splitInput[3]));
+                            break;
+                    }
+                }
+                    
             }
             catch { } // Verbinding is kennelijk verbroken
         }

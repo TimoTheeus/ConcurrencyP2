@@ -63,8 +63,15 @@ namespace NetwProg
                 var nbuPair = getBestToV(v);
                 //neighbour with lowest ndisu [w,v]
                 Nbu[v] = nbuPair.Key[0];
-                //Set the estimated distance to V  
-                D[v] = nbuPair.Value + 1;
+                int oldDistance = D[v];
+                //Set the estimated distance to V, to neighbour distance + 1 
+                int newDistance = nbuPair.Value + 1;
+                //If the distance changed, send a <mydist,V,D> to all neighbours so they can update their ndis 
+                if (newDistance != oldDistance)
+                {
+                    D[v] = newDistance;
+                    SendDValue(v, newDistance);
+                }
             }
         }
         //Return a keyvaluepair <[w,v],distance> of the neighbour with the best ndisu to v 
@@ -89,14 +96,31 @@ namespace NetwProg
             return (ndisuKey[1] == v);
         }
         //After a change of distance value to V, send <mydist,V,D> to all connected ports so they can update their ndisu value for this port
-        static void SendDValue(int v,int d)
+        static void SendDValue(int v, int d)
+        {
+            foreach (KeyValuePair<int, Connection> neighbour in Buren)
+            {
+                Buren[neighbour.Key].Write.WriteLine("UD {0} {1} {2}",MijnPoort,v,d);
+            }
+        }
+        //When a new link is made, send all d values 
+        static public void SendAllDValues(int port)
         {
 
         }
-        //When a new link is made, send all d values 
-        static void SendAllDValues()
-        {
 
+        static public void updateNdis(int neighbourport, int v, int distance)
+        {
+            //Make the key that belongs to the distance value of the neighbour to v and update it.
+            int[] key = new int[2];
+            key[0] = neighbourport; key[1] = v;
+            int oldDistance = ndisu[key];
+            //If the ndis is changed, do a recompute
+            if (oldDistance != distance)
+            {
+                ndisu[key] = distance;
+                Recompute(v);
+            }
         }
     }
 }

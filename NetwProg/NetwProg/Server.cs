@@ -37,6 +37,9 @@ namespace NetwProg
 
                 // Zet de nieuwe verbinding in de verbindingslijst
                 Program.Buren.Add(zijnPoort, new Connection(clientIn, clientOut));
+
+                //Stuur alle distance values door naar de nieuwe connection
+                Program.SendAllDValues(zijnPoort);
             }
         }
     }
