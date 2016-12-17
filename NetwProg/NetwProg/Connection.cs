@@ -61,7 +61,7 @@ namespace NetwProg
                 }
                     
             }
-            catch { } // Verbinding is kennelijk verbroken
+            catch { Console.WriteLine("rip"); } // Verbinding is kennelijk verbroken
         }
     }
 }

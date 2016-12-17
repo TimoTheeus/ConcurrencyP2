@@ -8,7 +8,7 @@ namespace NetwProg
     class Program
     {
         static public int MijnPoort;
-        static object locker = new object();
+        static public object locker = new object();
         //Neighbours <port,connection>
         static public Dictionary<int, Connection> Buren = new Dictionary<int, Connection>();
         //distances <port,distance>
@@ -31,20 +31,8 @@ namespace NetwProg
             new Server(MijnPoort);
             for (int i = 1; i < args.Length; i++)
             {
-                int poort = int.Parse(args[i]);
-
-                lock (locker)
-                {
-                    if (Buren.ContainsKey(poort))
-                    {
-                        Console.WriteLine("Hier is al verbinding naar!");
-                    }
-                    else
-                    {
-                            Buren.Add(poort, new Connection(poort));
-                    }
-                }
-
+                int port = int.Parse(args[i]);
+                MakeConnection(port);
             }
             //Handel invoer af
             while (true)
@@ -81,7 +69,7 @@ namespace NetwProg
                 if (newDistance != oldDistance)
                 {
                     D[v] = newDistance;
-                    SendDValue(v, newDistance);
+                    SendDValueToNeighbours(v, newDistance);
                 }
             }
         }
@@ -107,19 +95,50 @@ namespace NetwProg
             return (ndisuKey[1] == v);
         }
         //After a change of distance value to V, send <mydist,V,D> to all connected ports so they can update their ndisu value for this port
-        static void SendDValue(int v, int d)
+        static void SendDValueToNeighbours(int v, int d)
         {
             foreach (KeyValuePair<int, Connection> neighbour in Buren)
             {
-                Buren[neighbour.Key].Write.WriteLine("UD {0} {1} {2}",MijnPoort,v,d);
+                sendUD(neighbour.Key, v, d);
             }
         }
-        //When a new link is made, send all d values 
+        //Send all distance values to a port, used when new link is made 
         static public void SendAllDValues(int port)
         {
-
+            foreach(KeyValuePair<int,int> distance in D)
+            {
+                sendUD(port, distance.Key, distance.Value);
+            }
         }
-
+        //Send an update distance to a port
+        static void sendUD(int port,int v, int d)
+        {
+            Buren[port].Write.WriteLine("UD {0} {1} {2}", MijnPoort, v, d);
+        }
+        static void MakeConnection (int port)
+        {
+            lock (locker)
+            {
+                if (Buren.ContainsKey(port))
+                {
+                    Console.WriteLine("Hier is al verbinding naar!");
+                }
+                else
+                {
+                    Buren.Add(port, new Connection(port));
+                }
+            }
+            initialiseDistance(port);
+            SendAllDValues(port);
+        }
+        static public void initialiseDistance(int port)
+        {
+            if (D.ContainsKey(port))
+            {
+                D[port] = 1;
+            }
+            else { D.Add(port, 1); }
+        }
         static public void updateNdis(int neighbourport, int v, int distance)
         {
             //Make the key that belongs to the distance value of the neighbour to v and update it.

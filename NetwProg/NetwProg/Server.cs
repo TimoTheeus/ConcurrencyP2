@@ -11,7 +11,6 @@ namespace NetwProg
 {
     class Server
     {
-        static readonly object locker = new object();
 
         public Server(int port)
         {
@@ -38,15 +37,16 @@ namespace NetwProg
                 Console.WriteLine("Client maakt verbinding: " + zijnPoort);
 
                 // Zet de nieuwe verbinding in de verbindingslijst
-                lock (locker)
+                lock (Program.locker)
                 {
                     if (!Program.Buren.ContainsKey(zijnPoort))
                     {
-                            Program.Buren.Add(zijnPoort, new Connection(clientIn, clientOut));
+                        Program.Buren.Add(zijnPoort, new Connection(clientIn, clientOut));
                         //Stuur alle distance values door naar de nieuwe connection
-                        Program.SendAllDValues(zijnPoort);
                     }
                 }
+                Program.SendAllDValues(zijnPoort);
+                Program.initialiseDistance(zijnPoort);
             }
         }
     }
