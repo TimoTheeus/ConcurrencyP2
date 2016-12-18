@@ -67,12 +67,29 @@ namespace NetwProg
             if (v == MijnPoort) { D[v] = 0; Nbu[v] = MijnPoort; }
             else
             {
-                var nbuPair = getBestToV(v);
                 //neighbour with lowest ndisu [w,v]
-                Nbu[v] = nbuPair.Key[0];
+                var nbuPair = getBestToV(v);
+                lock (locker)
+                {
+                    setNbuValue(v, nbuPair.Key[0]);
+                    setDValue(v, nbuPair.Value+1);
+                }
+            }
+        }
+        static void setNbuValue(int v, int preferredNeighbour)
+        {
+            if (Nbu.ContainsKey(v))
+                Nbu[v] = preferredNeighbour;
+            else Nbu.Add(v, preferredNeighbour);
+        }
+        static void setDValue(int v, int newDistance)
+        {
+            if (!D.ContainsKey(v))
+                D.Add(v, newDistance);
+            else
+            {
                 int oldDistance = D[v];
                 //Set the estimated distance to V, to neighbour distance + 1 
-                int newDistance = nbuPair.Value + 1;
                 //If the distance changed, send a <mydist,V,D> to all neighbours so they can update their ndis 
                 if (newDistance != oldDistance)
                 {
@@ -141,17 +158,31 @@ namespace NetwProg
             {
                 Buren.Add(port, new Connection(port));
             }
-            initialiseDistance(port);
-            SendAllDValues(port);
+            lock (locker)
+            {
+                initialiseDistance(port);
+                SendAllDValues(port);
+            }
         }
        
         static public void initialiseDistance(int port)
         {
+            int[] ndisukey = new int[2];
+            ndisukey[0] = port; ndisukey[1] = port;
+            initialiseNdisu(ndisukey);
             if (D.ContainsKey(port))
             {
                 D[port] = 1;
             }
             else { D.Add(port, 1); }
+        }
+        static void initialiseNdisu(int[] ndisukey)
+        {
+            if (ndisu.ContainsKey(ndisukey))
+            {
+                ndisu[ndisukey] = 0;
+            }
+            else ndisu.Add(ndisukey, 0);
         }
         static public void updateNdis(int neighbourport, int v, int distance)
         {
@@ -166,6 +197,7 @@ namespace NetwProg
                 if (!ndisu.ContainsKey(key))
                 {
                     ndisu.Add(key, distance);
+                    Recompute(v);
                 }
                 //If the ndis is changed, do a recompute
                 else if (ndisu[key] != distance)
