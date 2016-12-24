@@ -41,19 +41,23 @@ namespace NetwProg
             //Handel invoer af
             while (true)
             {
+
                 string input = Console.ReadLine();
                 string[] splitInput = input.Split(' ');
                 switch (splitInput[0])
                 {
                     case "R":
-                        printDistances();
+                        printRoutingTable();
+                        //printDistances();
                         break;
                     case "B":
-                        printNdisu();
-                        Console.WriteLine("ndisu length is {0}",ndisu.Count);
+                        sendMessage(splitInput);
+                        //printNdisu();
+                        //Console.WriteLine("ndisu length is {0}",ndisu.Count);
                         break;
                     case "C":
-                        PrintNeighBours();
+                        MakeNeighbour(splitInput);
+                        //PrintNeighBours();
                         break;
                     case "D":
                         break;
@@ -137,8 +141,10 @@ namespace NetwProg
             Console.WriteLine("sent all {0} D values to {1}",D.Count,port);
             foreach (KeyValuePair<int,int> distance in D)
             {
-                if(distance.Key!=port)
-                sendUD(port, distance.Key, distance.Value);
+                if (distance.Key != port)
+                {
+                    sendUD(port, distance.Key, distance.Value);
+                }
             }
             //Inform the neighbours of the new connection
             SendDValueToNeighbours(port, 1);
@@ -227,6 +233,58 @@ namespace NetwProg
             {
                 Console.WriteLine("de distance van {0} naar {1} is {2}", pair.Key[0], pair.Key[1], pair.Value);
             }
+        }
+
+        static void printRoutingTable()
+        {
+            Console.WriteLine("{0} 1 localhost", MijnPoort);
+
+            var list = D.Keys.ToList();
+            list.Sort();
+
+            foreach (var key in list)
+            {
+                int neighbour = Nbu[key];
+                if (D[key] == 1) neighbour = key;
+                Console.WriteLine("{0} {1} {2}", key, D[key], neighbour);
+                Console.WriteLine(key);
+            }
+        }
+
+        static void sendMessage(string[] sInput)
+        {
+            try
+            {
+                int portnr = int.Parse(sInput[1]);
+
+                if (D.ContainsKey(portnr))
+                {
+                    string[] temp = new string[sInput.Length - 2];
+                    for (int i = 0; i < temp.Length; i++) temp[i] = sInput[i + 2];
+                    string message = string.Join(" ", temp);
+
+                    //int temp1 = Nbu[MijnPoort];
+                    //Buren[portnr].Write.WriteLine(message);
+
+                    Console.WriteLine("Joepie Succes! , {0}", message);
+                }
+                else
+                {
+                    Console.WriteLine("Error: non existing port number {0}", portnr);
+                }
+            }
+            catch { Console.WriteLine("Error: {0} is not a valid port number", sInput[1]); }
+        }
+
+        static void MakeNeighbour(string[] input)
+        {
+            try
+            {
+                int portnr = int.Parse(input[1]);
+
+                MakeConnection(portnr);
+            }
+            catch { Console.WriteLine("Error: {0} is not a valid port number", input[1]); }
         }
     }
 }
