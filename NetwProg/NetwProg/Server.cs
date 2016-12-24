@@ -34,18 +34,18 @@ namespace NetwProg
                 // De server weet niet wat de poort is van de client die verbinding maakt, de client geeft dus als onderdeel van het protocol als eerst een bericht met zijn poort
                 int zijnPoort = int.Parse(clientIn.ReadLine().Split()[1]);
 
-                Console.WriteLine("Client maakt verbinding: " + zijnPoort);
+               // Console.WriteLine("Client maakt verbinding: " + zijnPoort);
 
                 // Zet de nieuwe verbinding in de verbindingslijst
-                if (!Program.Buren.ContainsKey(zijnPoort))
-                {
-                    Program.Buren.Add(zijnPoort, new Connection(clientIn, clientOut));
-                    //Stuur alle distance values door naar de nieuwe connection
-                }
                 lock (Program.locker)
                 {
-                    Program.initialiseDistance(zijnPoort);
-                    Program.SendAllDValues(zijnPoort);
+                    if (!Program.Buren.ContainsKey(zijnPoort))
+                    {
+                        Program.Buren.Add(zijnPoort, new Connection(clientIn, clientOut, zijnPoort));
+                        //Stuur alle distance values door naar de nieuwe connection
+                    }
+                        Program.initialiseDistance(zijnPoort);
+                        Program.SendAllDValues(zijnPoort);
                 }
             }
         }

@@ -5,6 +5,10 @@ using System.Text;
 using System.Security.Cryptography;
 namespace NetwProg
 {
+    //THIS CODE IS USED SO THAT THE CONTAINSKEY METHOD OF THE NDISU DICTIONARY WORKS CORRECTLY. I DID NOT WRITE THIS CODE MYSELF, EVEN THO THE Equals(..) METHOD
+    //SPEAKS FOR ITSELF.
+    //IT IS SOLELY USED FOR THE NDISU DICTIONARY SO THAT IT CAN COMPARE ITS KEYS
+    //THE SOURCE: http://stackoverflow.com/questions/14663168/an-integer-array-as-a-key-for-dictionary
     public class MyEqualityComparer : IEqualityComparer<int[]>
     {
         public bool Equals(int[] x, int[] y)
@@ -43,8 +47,6 @@ namespace NetwProg
 
         //Neighbours <port,connection>
         static public Dictionary<int, Connection> Buren = new Dictionary<int, Connection>();
-        //distances <port,distance>
-        static public Dictionary<int, int> distances = new Dictionary<int, int>();
         //Estimated Distances <port,distance>
         static public Dictionary<int, int> D = new Dictionary<int, int>();
         //Preferred neighbours <v,neighbourport>
@@ -56,17 +58,20 @@ namespace NetwProg
         {
             for (int i = 0; i < args.Length; i++)
             {
-                Console.WriteLine(args[i]);
+          //      Console.WriteLine(args[i]);
             }
             //Zet het netwerk op
             MijnPoort = int.Parse(args[0]);
+            //Initialiseer voor eigen port
             setDValue(MijnPoort, 0);
             setNbuValue(MijnPoort, MijnPoort);
             new Server(MijnPoort);
+
+            //Maak verbinding
             for (int i = 1; i < args.Length; i++)
             {
                 int port = int.Parse(args[i]);
-                // Become client of higher ports
+                // Wordt client van ports met hoger nummer
                 if (port > MijnPoort)
                 {
                     MakeConnection(port);
@@ -96,21 +101,12 @@ namespace NetwProg
 
                     // Make a port a direct neighbour
                     case "C":
-                        MakeNeighbour(splitInput);
+                        MakeConnection(int.Parse(splitInput[1])); 
                         break;
 
                     // Cut the connection with a port
                     case "D":
                         cutConnection(splitInput[1]);
-                        break;
-
-                    //Timo's printjes
-                    case "E": printNdisu();
-                        Console.WriteLine("ndisu length is {0}", ndisu.Count);
-                        break;
-                    case "F": printDistances();
-                        break;
-                    case "G": PrintNeighBours();
                         break;
                     default:
                         break;
@@ -125,14 +121,24 @@ namespace NetwProg
             {
                 //neighbour with lowest ndisu [w,v]
                 var nbuPair = getBestToV(v);
+                //Als er netwerk partitie op treed
+                if (nbuPair.Value + 1 >= 25)
+                {
+                    Console.WriteLine("Onbereikbaar: {0}", v);
+                    removeConnection(v);
+                    return;
+                }
+                //Verander Nbu en Distance 
                 lock (locker)
                 {
                     setNbuValue(v, nbuPair.Key[0]);
                     setDValue(v, nbuPair.Value+1);
                 }
+                Console.WriteLine("afstand naar {0} is nu {1} via {2}", v, nbuPair.Value + 1, nbuPair.Key[0]);
             }
         }
 
+        //Set Nbu value
         static void setNbuValue(int v, int preferredNeighbour)
         {
             if (Nbu.ContainsKey(v))
@@ -140,6 +146,7 @@ namespace NetwProg
             else Nbu.Add(v, preferredNeighbour);
         }
 
+        //Set distance value
         static public void setDValue(int v, int newDistance)
         {
             if (!D.ContainsKey(v))
@@ -192,12 +199,11 @@ namespace NetwProg
         {
             foreach (KeyValuePair<int, Connection> neighbour in Buren)
             {
-
                     //Console.WriteLine("{0} sent {1} to {2}", MijnPoort, v, neighbour.Key);
                     sendUD(neighbour.Key, v, d);
-                
             }
         }
+
         // Send all distance values to a port, used when new link is made 
         static public void SendAllDValues(int port)
         {
@@ -213,46 +219,45 @@ namespace NetwProg
         // Send an update distance to a port
         static void sendUD(int port,int v, int d)
         {
-            if (Buren[port].hasConnection)
-            {
                 Buren[port].Write.WriteLine("UD {0} {1} {2}", MijnPoort, v, d);
-            }
-            //else { Console.WriteLine("yo hol' up"); sendUD(port, v, d); }
         }
 
         // Make a connection to a port
         static void MakeConnection(int port)
         {
-            // Check if the port is already connected
-            if (Buren.ContainsKey(port))
-            {
-                Console.WriteLine("Hier is al verbinding naar!");
-            }
-            // If not add the port to the neighbours
-            else
-            {
-                Buren.Add(port, new Connection(port));
-            }
-            // Lock the locker-object and initialize the distances
             lock (locker)
             {
+                // Check if the port is already connected
+                if (Buren.ContainsKey(port))
+                {
+                    Console.WriteLine("Hier is al verbinding naar!");
+                }
+                // If not add the port to the neighbours
+
+                else
+                {
+                    Buren.Add(port, new Connection(port));
+                }
+                // Lock the locker-object and initialize the distances
+
                 initialiseDistance(port);
                 SendAllDValues(port);
-            }
-            Console.WriteLine("Verbonden: {0}", port);
 
+                Console.WriteLine("Verbonden: {0}", port);
+            }
         }
 
+        //Bij een net nieuw verbinding, zet de distance naar 1 en ndis van port naar zichzelf naar 0 
         static public void initialiseDistance(int port)
         {
             updateNdis(port, port, 0);
             setDValue(port, 1);
         }
+        //Update ndisu dictionary
         static public void updateNdis(int neighbourport, int v, int distance)
         {
             
             //Make the key that belongs to the distance value of the neighbour to v and update it.
-            //Console.WriteLine("Updating ndis with {0} {1} {2}", neighbourport, v, distance);
             int[] key = new int[2];
             key[0] = neighbourport; key[1] = v;
             //  int oldDistance = ndisu[key];
@@ -316,36 +321,36 @@ namespace NetwProg
             catch { Console.WriteLine("Poort {0} is niet bekend", splitMessage[0]); }
         }
 
-        // C - case
-        static void MakeNeighbour(string[] input)
-        {
-            //try
-            //{
-                int portnr = int.Parse(input[1]);
-                MakeConnection(portnr);
-            //}
-            //catch { Console.WriteLine("Error: {0} is not a valid port number", input[1]); }
-        }
 
         // D - case
         static void cutConnection(string inputPort)
         {
-            // try
-            // {
-            int portnr = int.Parse(inputPort);
-            printNdisu();
-            Buren[portnr].Write.WriteLine("DISCONNECT {0}", MijnPoort);
+            try
+            {
+                int portnr = int.Parse(inputPort);
+                Buren[portnr].Write.WriteLine("DISCONNECT {0}", MijnPoort);
+                removeConnection(portnr);
+                passOnAndRecomputeAll(portnr);
+                Console.WriteLine("Verbroken: {0}", portnr);
+            }
+            catch { Console.WriteLine("Poort {0} is niet bekend", inputPort); }
+        }
+        //Remove all traces of the connection
+        static public void removeConnection(int portnr)
+        {
             Buren.Remove(portnr);
             Nbu.Remove(portnr);
             //remove all occurences of 1102 from ndisu
             removeFromNdisu(portnr);
+        }
+        //Send a high d value to neighbours, and do a recompute for all ports in Nbu 
+        static public void passOnAndRecomputeAll(int portnr)
+        {
             SendDValueToNeighbours(portnr, 20);
             Recompute(portnr);
             RecomputeAll();
-            Console.WriteLine("Verbroken: {0}", portnr);
-            //  }
-            //catch { Console.WriteLine("Poort {0} is niet bekend", inputPort); }
         }
+        //Remove all values from ndisu where a given port is the first element of the key 
         static public void removeFromNdisu(int port)
         {
             List<int[]> temp = new List<int[]>();
@@ -361,6 +366,8 @@ namespace NetwProg
                 ndisu.Remove(key);
             }
         }
+
+        //Recompute all keys in Nbu
         static public void RecomputeAll()
         {
             List<int> temp = new List<int>();
@@ -371,30 +378,5 @@ namespace NetwProg
             foreach (int k in temp)
                 Recompute(k);
         }
-
-
-        //Timo's printjes
-        static void PrintNeighBours()
-        {
-            foreach (KeyValuePair<int, Connection> neighbour in Buren)
-            {
-                Console.WriteLine("een buur van mij is {0}", neighbour.Key);
-            }
-        }
-        static void printDistances()
-        {
-            foreach (KeyValuePair<int, int> distance in D)
-            {
-                Console.WriteLine("de distance naar {0} is {1}", distance.Key, distance.Value);
-            }
-        }
-        static void printNdisu()
-        {
-            foreach (KeyValuePair<int[], int> pair in ndisu)
-            {
-                Console.WriteLine("de distance van {0} naar {1} is {2}", pair.Key[0], pair.Key[1], pair.Value);
-            }
-        }
-
     }
 }

@@ -13,10 +13,12 @@ namespace NetwProg
     {
         public StreamReader Read;
         public StreamWriter Write;
+        public int clientPort;
         public bool hasConnection = false;
         // Connection heeft 2 constructoren: deze constructor wordt gebruikt als wij CLIENT worden bij een andere SERVER
         public Connection(int port)
         {
+            clientPort = port;
             TcpClient client = new TcpClient("localhost", port);
             Read = new StreamReader(client.GetStream());
             Write = new StreamWriter(client.GetStream());
@@ -31,8 +33,9 @@ namespace NetwProg
         }
 
         // Deze constructor wordt gebruikt als wij SERVER zijn en een CLIENT maakt met ons verbinding
-        public Connection(StreamReader read, StreamWriter write)
+        public Connection(StreamReader read, StreamWriter write, int zijnPoort)
         {
+            clientPort = zijnPoort;
             Read = read; Write = write;
 
             // Start het reader-loopje
@@ -63,12 +66,8 @@ namespace NetwProg
                         case "DISCONNECT":
                             {
                                 int portnr = int.Parse(splitInput[1]);
-                                Program.Buren.Remove(portnr);
-                                Program.Nbu.Remove(portnr);
-                                Program.removeFromNdisu(portnr);
-                                Program.SendDValueToNeighbours(portnr, 20);
-                                Program.Recompute(portnr);
-                                Program.RecomputeAll();
+                                Program.removeConnection(portnr);
+                                Program.passOnAndRecomputeAll(portnr);
                                 //TODO : Update distances
                             }
                             break;
@@ -93,7 +92,10 @@ namespace NetwProg
 
                 }
             }
-            catch { Console.WriteLine("rip"); }// Verbinding is kennelijk verbroken
+            catch {
+                Console.WriteLine("//rip");
+                
+            }// Verbinding is kennelijk verbroken
         }
     }
 }
