@@ -9,6 +9,7 @@ namespace NetwProg
     {
         static public int MijnPoort;
         static public object locker = new object();
+
         //Neighbours <port,connection>
         static public Dictionary<int, Connection> Buren = new Dictionary<int, Connection>();
         //distances <port,distance>
@@ -34,43 +35,59 @@ namespace NetwProg
             for (int i = 1; i < args.Length; i++)
             {
                 int port = int.Parse(args[i]);
-                //Alleen van grotere ports client worden
+                // Become client of higher ports
                 if (port > MijnPoort)
                 {
                     MakeConnection(port);
                 }
             }
             
-            //Handel invoer af
+            // Handle the input
             while (true)
             {
                 string input = Console.ReadLine();
                 string[] splitInput = input.Split(' ');
                 switch (splitInput[0])
                 {
+                    // Print the routing table
                     case "R":
                         printRoutingTable();
                         break;
+
+                    // Send a message
                     case "B":
-                        sendMessage(splitInput);
+                        //Split the string to get rid of the B letter
+                        string[] temp = new string[splitInput.Length - 1];
+                        for (int i = 0; i < temp.Length; i++) temp[i] = splitInput[i + 1];
+                        string message = string.Join(" ", temp);
+                        sendMessage(message);
                         break;
+
+                    // Make a port a direct neighbour
                     case "C":
                         MakeNeighbour(splitInput);
                         break;
+
+                    // Cut the connection with a port
                     case "D":
-                        PrintNeighBours();
+                        cutConnection(splitInput[1]);
                         break;
+
+                    //Timo's printjes
                     case "E": printNdisu();
                         Console.WriteLine("ndisu length is {0}", ndisu.Count);
                         break;
                     case "F": printDistances();
+                        break;
+                    case "G": PrintNeighBours();
                         break;
                     default:
                         break;
                 }
             }
         }
-        static void Recompute(int v)
+
+        static public void Recompute(int v)
         {
             if (v == MijnPoort) { setDValue(v, 0); }
             else
@@ -84,12 +101,14 @@ namespace NetwProg
                 }
             }
         }
+
         static void setNbuValue(int v, int preferredNeighbour)
         {
             if (Nbu.ContainsKey(v))
                 Nbu[v] = preferredNeighbour;
             else Nbu.Add(v, preferredNeighbour);
         }
+
         static void setDValue(int v, int newDistance)
         {
             if (!D.ContainsKey(v))
@@ -100,8 +119,8 @@ namespace NetwProg
             else
             {
                 int oldDistance = D[v];
-                //Set the estimated distance to V, to neighbour distance + 1 
-                //If the distance changed, send a <mydist,V,D> to all neighbours so they can update their ndis 
+                // Set the estimated distance to V, to neighbour distance + 1 
+                // If the distance changed, send a <mydist,V,D> to all neighbours so they can update their ndis 
                 if (newDistance != oldDistance)
                 {
                     D[v] = newDistance;
@@ -109,76 +128,86 @@ namespace NetwProg
                 }
             }
         }
-        //Return a keyvaluepair <[w,v],distance> of the neighbour with the best ndisu to v 
+
+        // Return a keyvaluepair <[w,v],distance> of the neighbour with the best ndisu to v 
         static KeyValuePair<int[],int> getBestToV(int v)
         {
-            //all pairs in ndisu with v as the 2nd value in their key
+            // All pairs in ndisu with v as the 2nd value in their key
             var pairs = ndisu.Where(kvp => secondPortEqualsV(kvp.Key, v));
-            //set a default for minimum
+            // Set a default for minimum
             var min = pairs.First();
             foreach (KeyValuePair<int[], int> kvp in pairs)
             {
-                //if the distance is smaller, that keyvaluepair becomes the new minimum
+                // If the distance is smaller, that keyvaluepair becomes the new minimum
                 if (kvp.Value < min.Value) min = kvp;
             }
-            //return the keyvaluepair with the lowest distance to v 
+            // Return the keyvaluepair with the lowest distance to v 
             return min;
         }
 
-        //Check if the 2nd value of the key equals v
+        // Check if the 2nd value of the key equals v
         static bool secondPortEqualsV(int[] ndisuKey,int v)
         {
             return (ndisuKey[1] == v);
         }
-        //After a change of distance value to V, send <mydist,V,D> to all connected ports so they can update their ndisu value for this port
+
+        // After a change of distance value to V, send <mydist,V,D> to all connected ports so they can update their ndisu value for this port
         static void SendDValueToNeighbours(int v, int d)
         {
             foreach (KeyValuePair<int, Connection> neighbour in Buren)
             {
                 if (neighbour.Key != v)
                 {
-                    Console.WriteLine("{0} sent {1} to {2}", MijnPoort, v, neighbour.Key);
+                    //Console.WriteLine("{0} sent {1} to {2}", MijnPoort, v, neighbour.Key);
                     sendUD(neighbour.Key, v, d);
                 }
             }
         }
-        //Send all distance values to a port, used when new link is made 
+        // Send all distance values to a port, used when new link is made 
         static public void SendAllDValues(int port)
         {
-            Console.WriteLine("sent all {0} D values to {1}",D.Count,port);
+            //Console.WriteLine("sent all {0} D values to {1}",D.Count,port);
             foreach (KeyValuePair<int,int> distance in D)
             {
                     sendUD(port, distance.Key, distance.Value);
             }
-            //Inform the neighbours of the new connection
+            // Inform the neighbours of the new connection
             SendDValueToNeighbours(port, 1);
         }
-        //Send an update distance to a port
+
+        // Send an update distance to a port
         static void sendUD(int port,int v, int d)
         {
             if (Buren[port].hasConnection)
             {
                 Buren[port].Write.WriteLine("UD {0} {1} {2}", MijnPoort, v, d);
             }
-            else { Console.WriteLine("yo hol' up"); sendUD(port, v, d); }
+            //else { Console.WriteLine("yo hol' up"); sendUD(port, v, d); }
         }
+
+        // Make a connection to a port
         static void MakeConnection(int port)
         {
+            // Check if the port is already connected
             if (Buren.ContainsKey(port))
             {
                 Console.WriteLine("Hier is al verbinding naar!");
             }
+            // If not add the port to the neighbours
             else
             {
                 Buren.Add(port, new Connection(port));
             }
+            // Lock the locker-object and initialize the distances
             lock (locker)
             {
                 initialiseDistance(port);
                 SendAllDValues(port);
             }
+            Console.WriteLine("Verbonden: {0}", port);
+
         }
-       
+
         static public void initialiseDistance(int port)
         {
             updateNdis(port, port, 0);
@@ -187,10 +216,10 @@ namespace NetwProg
         static public void updateNdis(int neighbourport, int v, int distance)
         {
             
-                //Make the key that belongs to the distance value of the neighbour to v and update it.
-                Console.WriteLine("Updating ndis with {0} {1} {2}", neighbourport, v, distance);
-                int[] key = new int[2];
-                key[0] = neighbourport; key[1] = v;
+            //Make the key that belongs to the distance value of the neighbour to v and update it.
+            //Console.WriteLine("Updating ndis with {0} {1} {2}", neighbourport, v, distance);
+            int[] key = new int[2];
+            key[0] = neighbourport; key[1] = v;
             //  int oldDistance = ndisu[key];
             lock (locker)
             {
@@ -207,6 +236,81 @@ namespace NetwProg
                 }
             }
         }
+
+        // R - case
+        static void printRoutingTable()
+        {
+            // Make a list to sort it by port number
+            var list = D.Keys.ToList();
+            list.Sort();
+
+            foreach (var key in list)
+            {
+                // If the distance is 0, it isn't a preferred neighbour, but a local host
+                // Print the port number distance(0) and localhost
+                if (D[key] == 0) Console.WriteLine("{0} {1} local", key, D[key]);
+                else
+                {
+                    // Find the preferred neighbour of the key
+                    int neighbour = Nbu[key];
+                    // Print the portnumber, distance and preferred neighbour
+                    Console.WriteLine("{0} {1} {2}", key, D[key], neighbour);
+                }
+            }
+        }
+
+        // B - case
+        static public void sendMessage(string message)
+        {
+            // Split the message for the port number
+            string[] splitMessage = message.Split(' ');
+            try
+            {
+                // Try to parse the string to an int
+                int portnr = int.Parse(splitMessage[0]);
+                
+                // Check the preferred neighbour of that port
+                int prefneighbour = Nbu[portnr];
+                // Send the preferred neighbour a message
+                Buren[prefneighbour].Write.WriteLine(message);
+
+                Console.WriteLine("Bericht voor {0} doorgestuurd naar {1}", portnr, prefneighbour);
+
+
+            }
+            catch { Console.WriteLine("Poort {0} is niet bekend", splitMessage[0]); }
+        }
+
+        // C - case
+        static void MakeNeighbour(string[] input)
+        {
+            //try
+            //{
+                int portnr = int.Parse(input[1]);
+                MakeConnection(portnr);
+            //}
+            //catch { Console.WriteLine("Error: {0} is not a valid port number", input[1]); }
+        }
+
+        // D - case
+        static void cutConnection(string inputPort)
+        {
+            try
+            {
+                int portnr = int.Parse(inputPort);
+                Buren[portnr].Write.WriteLine("DISCONNECT {0}", MijnPoort);
+
+                Buren.Remove(portnr);
+
+                //TODO : Update distances
+
+                Console.WriteLine("Verbroken: {0}", portnr);
+            }
+            catch { Console.WriteLine("Poort {0} is niet bekend", inputPort); }
+        }
+
+
+        //Timo's printjes
         static void PrintNeighBours()
         {
             foreach (KeyValuePair<int, Connection> neighbour in Buren)
@@ -229,47 +333,5 @@ namespace NetwProg
             }
         }
 
-        static void printRoutingTable()
-        {
-            Console.WriteLine("{0} 1 localhost", MijnPoort);
-
-            var list = D.Keys.ToList();
-            list.Sort();
-
-            foreach (var key in list)
-            {
-                int neighbour = Nbu[key];
-                neighbour = key;
-                Console.WriteLine("{0} {1} {2}", key, D[key], neighbour);
-               // Console.WriteLine(key);
-            }
-        }
-
-        static void sendMessage(string[] sInput)
-        {
-            Console.WriteLine(sInput[1]);
-            try
-            {
-                int portnr = int.Parse(sInput[1]);
-                string[] temp = new string[sInput.Length - 2];
-                for (int i = 0; i < temp.Length; i++) temp[i] = sInput[i + 2];
-                string message = string.Join(" ", temp);
-                Buren[portnr].Write.WriteLine(message);
-                Console.WriteLine("Joepie Succes! , {0}", message);
-
-            }
-            catch { Console.WriteLine("Error: {0} is not a valid port number", sInput[1]); }
-        }
-
-        static void MakeNeighbour(string[] input)
-        {
-            try
-            {
-                int portnr = int.Parse(input[1]);
-
-                MakeConnection(portnr);
-            }
-            catch { Console.WriteLine("Error: {0} is not a valid port number", input[1]); }
-        }
     }
 }

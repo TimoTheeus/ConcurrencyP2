@@ -56,13 +56,34 @@ namespace NetwProg
                         //Update ndis (neighbourport,v,distance)
                         case "UD":
                             {
-                                Console.WriteLine("updatedndis");
+                                //Console.WriteLine("updatedndis");
                                 Program.updateNdis(int.Parse(splitInput[1]), int.Parse(splitInput[2]), int.Parse(splitInput[3]));
+                            }
+                            break;
+                        case "DISCONNECT":
+                            {
+                                int portnr = int.Parse(splitInput[1]);
+                                Program.Buren.Remove(portnr);
+
+                                //TODO : Update distances
                             }
                             break;
                         //Else print it to console 
                         default:
-                            Console.WriteLine(input);
+                            // Try to parse the port number we want to send a message to and check if it's meant for this port
+                            if(int.Parse(splitInput[0]) == Program.MijnPoort)
+                            {
+                                // Split the input to get rid of the port number
+                                string[] temp = new string[splitInput.Length - 1];
+                                for (int i = 0; i < temp.Length; i++) temp[i] = splitInput[i + 1];
+                                string message = string.Join(" ", temp);
+                                // Write the received message
+                                Console.WriteLine(message);
+                            }
+                            else
+                            {
+                                Program.sendMessage(input);
+                            }
                             break;
                     }
 
