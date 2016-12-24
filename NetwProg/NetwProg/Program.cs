@@ -28,6 +28,8 @@ namespace NetwProg
             }
             //Zet het netwerk op
             MijnPoort = int.Parse(args[0]);
+            setDValue(MijnPoort, 0);
+            setNbuValue(MijnPoort, MijnPoort);
             new Server(MijnPoort);
             for (int i = 1; i < args.Length; i++)
             {
@@ -38,12 +40,10 @@ namespace NetwProg
                     MakeConnection(port);
                 }
             }
-            setDValue(MijnPoort, 0);
-            setNbuValue(MijnPoort, MijnPoort);
+            
             //Handel invoer af
             while (true)
             {
-
                 string input = Console.ReadLine();
                 string[] splitInput = input.Split(' ');
                 switch (splitInput[0])
@@ -93,7 +93,10 @@ namespace NetwProg
         static void setDValue(int v, int newDistance)
         {
             if (!D.ContainsKey(v))
+            {
                 D.Add(v, newDistance);
+                SendDValueToNeighbours(v, newDistance);
+            }
             else
             {
                 int oldDistance = D[v];
@@ -145,10 +148,7 @@ namespace NetwProg
             Console.WriteLine("sent all {0} D values to {1}",D.Count,port);
             foreach (KeyValuePair<int,int> distance in D)
             {
-                if (distance.Key != port)
-                {
                     sendUD(port, distance.Key, distance.Value);
-                }
             }
             //Inform the neighbours of the new connection
             SendDValueToNeighbours(port, 1);
@@ -156,7 +156,11 @@ namespace NetwProg
         //Send an update distance to a port
         static void sendUD(int port,int v, int d)
         {
-             Buren[port].Write.WriteLine("UD {0} {1} {2}", MijnPoort, v, d);
+            if (Buren[port].hasConnection)
+            {
+                Buren[port].Write.WriteLine("UD {0} {1} {2}", MijnPoort, v, d);
+            }
+            else { Console.WriteLine("yo hol' up"); sendUD(port, v, d); }
         }
         static void MakeConnection(int port)
         {
@@ -179,14 +183,6 @@ namespace NetwProg
         {
             updateNdis(port, port, 0);
             setDValue(port, 1);
-        }
-        static void initialiseNdisu(int[] ndisukey)
-        {
-            if (ndisu.ContainsKey(ndisukey))
-            {
-                ndisu[ndisukey] = 0;
-            }
-            else ndisu.Add(ndisukey, 0);
         }
         static public void updateNdis(int neighbourport, int v, int distance)
         {
@@ -243,9 +239,9 @@ namespace NetwProg
             foreach (var key in list)
             {
                 int neighbour = Nbu[key];
-                if (D[key] == 1) neighbour = key;
+                neighbour = key;
                 Console.WriteLine("{0} {1} {2}", key, D[key], neighbour);
-                Console.WriteLine(key);
+               // Console.WriteLine(key);
             }
         }
 

@@ -13,7 +13,7 @@ namespace NetwProg
     {
         public StreamReader Read;
         public StreamWriter Write;
-
+        public bool hasConnection = false;
         // Connection heeft 2 constructoren: deze constructor wordt gebruikt als wij CLIENT worden bij een andere SERVER
         public Connection(int port)
         {
@@ -27,6 +27,7 @@ namespace NetwProg
 
             // Start het reader-loopje
             new Thread(ReaderThread).Start();
+            hasConnection = true;
         }
 
         // Deze constructor wordt gebruikt als wij SERVER zijn en een CLIENT maakt met ons verbinding
@@ -36,6 +37,7 @@ namespace NetwProg
 
             // Start het reader-loopje
             new Thread(ReaderThread).Start();
+            hasConnection = true;
         }
 
         // LET OP: Nadat er verbinding is gelegd, kun je vergeten wie er client/server is (en dat kun je aan het Connection-object dus ook niet zien!)
