@@ -38,6 +38,8 @@ namespace NetwProg
                     MakeConnection(port);
                 }
             }
+            setDValue(MijnPoort, 0);
+            setNbuValue(MijnPoort, MijnPoort);
             //Handel invoer af
             while (true)
             {
@@ -48,18 +50,20 @@ namespace NetwProg
                 {
                     case "R":
                         printRoutingTable();
-                        //printDistances();
                         break;
                     case "B":
                         sendMessage(splitInput);
-                        //printNdisu();
-                        //Console.WriteLine("ndisu length is {0}",ndisu.Count);
                         break;
                     case "C":
                         MakeNeighbour(splitInput);
-                        //PrintNeighBours();
                         break;
                     case "D":
+                        PrintNeighBours();
+                        break;
+                    case "E": printNdisu();
+                        Console.WriteLine("ndisu length is {0}", ndisu.Count);
+                        break;
+                    case "F": printDistances();
                         break;
                     default:
                         break;
@@ -68,7 +72,7 @@ namespace NetwProg
         }
         static void Recompute(int v)
         {
-            if (v == MijnPoort) { D[v] = 0; Nbu[v] = MijnPoort; }
+            if (v == MijnPoort) { setDValue(v, 0); }
             else
             {
                 //neighbour with lowest ndisu [w,v]
@@ -173,14 +177,8 @@ namespace NetwProg
        
         static public void initialiseDistance(int port)
         {
-            int[] ndisukey = new int[2];
-            ndisukey[0] = port; ndisukey[1] = port;
-            initialiseNdisu(ndisukey);
-            if (D.ContainsKey(port))
-            {
-                D[port] = 1;
-            }
-            else { D.Add(port, 1); }
+            updateNdis(port, port, 0);
+            setDValue(port, 1);
         }
         static void initialiseNdisu(int[] ndisukey)
         {
@@ -253,25 +251,16 @@ namespace NetwProg
 
         static void sendMessage(string[] sInput)
         {
+            Console.WriteLine(sInput[1]);
             try
             {
                 int portnr = int.Parse(sInput[1]);
+                string[] temp = new string[sInput.Length - 2];
+                for (int i = 0; i < temp.Length; i++) temp[i] = sInput[i + 2];
+                string message = string.Join(" ", temp);
+                Buren[portnr].Write.WriteLine(message);
+                Console.WriteLine("Joepie Succes! , {0}", message);
 
-                if (D.ContainsKey(portnr))
-                {
-                    string[] temp = new string[sInput.Length - 2];
-                    for (int i = 0; i < temp.Length; i++) temp[i] = sInput[i + 2];
-                    string message = string.Join(" ", temp);
-
-                    //int temp1 = Nbu[MijnPoort];
-                    //Buren[portnr].Write.WriteLine(message);
-
-                    Console.WriteLine("Joepie Succes! , {0}", message);
-                }
-                else
-                {
-                    Console.WriteLine("Error: non existing port number {0}", portnr);
-                }
             }
             catch { Console.WriteLine("Error: {0} is not a valid port number", sInput[1]); }
         }
