@@ -64,7 +64,11 @@ namespace NetwProg
                             {
                                 int portnr = int.Parse(splitInput[1]);
                                 Program.Buren.Remove(portnr);
-
+                                Program.Nbu.Remove(portnr);
+                                Program.removeFromNdisu(portnr);
+                                Program.SendDValueToNeighbours(portnr, 20);
+                                Program.Recompute(portnr);
+                                Program.RecomputeAll();
                                 //TODO : Update distances
                             }
                             break;

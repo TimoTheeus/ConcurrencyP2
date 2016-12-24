@@ -1,0 +1,5606 @@
+Onderdeel;Corrects;Attempts;Punten;Max
+std-Opstarten;0;1;0;4
+std-Connect;0;0;0;1
+std-Disconnect;0;0;0;1
+std-Berichten;0;0;0;1
+std-BerichtNaVerandering;0;0;0;0,5
+std-NetwerkPartitie;0;0;0;1
+Opstarten;0;2;0;4
+Connect;0;0;0;1
+Disconnect;0;0;0;1
+Berichten;0;0;0;1
+BerichtNaVerandering;0;0;0;0,5
+NetwerkPartitie;0;0;0;1
+BovenLimiet;0;1;0;1
+Totaal;-;-;0;(van 18)
+
+Let op: deze berekening is niet het definitieve cijfer. Dit is alleen maar een automatisch gegenereerde score voor het testbare gedeelte, en het staat nog niet vast dat we dit bij de beoordeling gebruiken.
+
+------------------------------------
+
+Testcase;Status;Tijd;Omschrijving
+Standaard;Incorrect;14,52;Opstarten netwerk
+Random;Incorrect;17,53;Opstarten netwerk
+2xStandaard;Incorrect;7,12;Opstarten netwerk
+
+------------------------------------
+
+1;Standaard;Incorrect;14,52;Opstarten netwerk
+Test 1 - Standaard
+
+Fout bij opzetten netwerk - de routing-tabel is incorrect.
+De neighbor van 55500 naar 55503 is incorrect (3).
+De neighbor van 55500 naar 55504 is incorrect (4).
+De neighbor van 55500 naar 55505 is incorrect (5).
+De neighbor van 55501 naar 55503 is incorrect (3).
+De neighbor van 55501 naar 55504 is incorrect (4).
+De neighbor van 55501 naar 55505 is incorrect (5).
+De neighbor van 55502 naar 55505 is incorrect (5).
+De neighbor van 55503 naar 55500 is incorrect (0).
+De neighbor van 55503 naar 55501 is incorrect (1).
+De neighbor van 55503 naar 55504 is incorrect (4).
+De neighbor van 55504 naar 55500 is incorrect (0).
+De neighbor van 55504 naar 55501 is incorrect (1).
+De neighbor van 55504 naar 55503 is incorrect (3).
+De neighbor van 55505 naar 55500 is incorrect (0).
+De neighbor van 55505 naar 55501 is incorrect (1).
+De neighbor van 55505 naar 55502 is incorrect (2).
+
+Log
+start NetwProg.exe 55500 55501 55502
+start NetwProg.exe 55501 55500 55502
+start NetwProg.exe 55502 55500 55501 55503 55504
+start NetwProg.exe 55503 55502 55505
+start NetwProg.exe 55504 55502 55505
+start NetwProg.exe 55505 55503 55504
+55500 < 55500
+55500 < 55501
+55500 < 55502
+55502 < 55502
+55502 < 55500
+55502 < 55501
+55502 < 55503
+55502 < 55504
+55501 < 55501
+55501 < 55500
+55501 < 55502
+55504 < 55504
+55504 < 55502
+55503 < 55503
+55504 < 55505
+55503 < 55502
+55503 < 55505
+55505 < 55505
+55505 < 55503
+55505 < 55504
+55501 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55501 55501 0
+55501 < Updating ndis with 55500 55500 0
+55503 < Client maakt verbinding: 55502
+55500 < sent all 2 D values to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55500 0
+55501 < sent all 2 D values to 55500
+55500 < updatedndis
+55501 < updatedndis
+55500 < Updating ndis with 55501 55501 0
+55501 < Updating ndis with 55500 55501 1
+55500 < updatedndis
+55500 < Updating ndis with 55501 55500 1
+55502 < Updating ndis with 55503 55503 0
+55503 < Updating ndis with 55502 55502 0
+55503 < updatedndis
+55503 < Updating ndis with 55502 55502 0
+55502 < sent all 2 D values to 55503
+55503 < sent all 2 D values to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55503 55503 0
+55503 < updatedndis
+55502 < updatedndis
+55503 < Updating ndis with 55502 55503 1
+55502 < Updating ndis with 55503 55502 1
+55502 < Client maakt verbinding: 55501
+55501 < Updating ndis with 55502 55502 0
+55501 < 55501 sent 55502 to 55500
+55500 < updatedndis
+55501 < sent all 3 D values to 55502
+55500 < Updating ndis with 55501 55502 1
+55500 < 55500 sent 55502 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55502 2
+55501 < 55501 sent 55502 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55502 1
+55502 < updatedndis
+55503 < updatedndis
+55502 < Updating ndis with 55501 55501 0
+55503 < Updating ndis with 55502 55501 1
+55502 < Updating ndis with 55501 55501 0
+55503 < 55503 sent 55501 to 55502
+55502 < 55502 sent 55501 to 55503
+55502 < updatedndis
+55502 < Updating ndis with 55503 55501 2
+55502 < sent all 3 D values to 55501
+55502 < 55502 sent 55501 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55502 55501 1
+55501 < updatedndis
+55502 < updatedndis
+55501 < Updating ndis with 55502 55502 0
+55500 < updatedndis
+55501 < updatedndis
+55502 < Updating ndis with 55501 55500 1
+55500 < Updating ndis with 55501 55503 2
+55503 < updatedndis
+55501 < Updating ndis with 55502 55503 1
+55502 < 55502 sent 55500 to 55503
+55500 < 55500 sent 55503 to 55501
+55503 < Updating ndis with 55502 55500 2
+55501 < 55501 sent 55503 to 55500
+55503 < 55503 sent 55500 to 55502
+55502 < updatedndis
+55501 < 55501 sent 55503 to 55502
+55502 < Updating ndis with 55503 55500 3
+55502 < 55502 sent 55500 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55502 55501 1
+55501 < updatedndis
+55501 < Updating ndis with 55500 55503 3
+55501 < updatedndis
+55502 < updatedndis
+55501 < Updating ndis with 55502 55500 2
+55502 < Updating ndis with 55501 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55501 55503 2
+55505 < Client maakt verbinding: 55504
+55504 < Updating ndis with 55505 55505 0
+55505 < Updating ndis with 55504 55504 0
+55503 < Updating ndis with 55505 55505 0
+55503 < 55503 sent 55505 to 55502
+55502 < updatedndis
+55503 < sent all 5 D values to 55505
+55502 < Updating ndis with 55503 55505 1
+55503 < updatedndis
+55502 < 55502 sent 55505 to 55503
+55503 < Updating ndis with 55502 55505 2
+55501 < updatedndis
+55503 < 55503 sent 55505 to 55502
+55501 < Updating ndis with 55502 55505 2
+55502 < 55502 sent 55505 to 55501
+55501 < 55501 sent 55505 to 55500
+55500 < updatedndis
+55502 < updatedndis
+55500 < Updating ndis with 55501 55505 3
+55502 < Updating ndis with 55503 55505 1
+55501 < 55501 sent 55505 to 55502
+55500 < 55500 sent 55505 to 55501
+55502 < updatedndis
+55502 < Updating ndis with 55501 55505 3
+55501 < updatedndis
+55501 < Updating ndis with 55500 55505 4
+55505 < sent all 2 D values to 55504
+55504 < updatedndis
+55505 < Client maakt verbinding: 55503
+55504 < Updating ndis with 55505 55505 0
+55505 < Updating ndis with 55503 55503 0
+55505 < updatedndis
+55505 < Updating ndis with 55503 55503 0
+55505 < 55505 sent 55503 to 55504
+55503 < updatedndis
+55502 < updatedndis
+55503 < Updating ndis with 55505 55505 0
+55505 < sent all 3 D values to 55503
+55502 < Updating ndis with 55503 55504 2
+55503 < updatedndis
+55502 < 55502 sent 55504 to 55503
+55505 < 55505 sent 55503 to 55504
+55503 < Updating ndis with 55505 55504 1
+55501 < updatedndis
+55503 < 55503 sent 55504 to 55502
+55501 < Updating ndis with 55502 55504 3
+55501 < 55501 sent 55504 to 55500
+55502 < 55502 sent 55504 to 55501
+55500 < updatedndis
+55503 < 55503 sent 55504 to 55505
+55500 < Updating ndis with 55501 55504 4
+55501 < 55501 sent 55504 to 55502
+55500 < 55500 sent 55504 to 55501
+55502 < updatedndis
+55503 < updatedndis
+55502 < Updating ndis with 55501 55504 4
+55503 < Updating ndis with 55505 55503 1
+55503 < updatedndis
+55503 < Updating ndis with 55502 55504 3
+55501 < updatedndis
+55501 < Updating ndis with 55500 55504 5
+55505 < updatedndis
+55505 < Updating ndis with 55503 55502 1
+55505 < 55505 sent 55502 to 55504
+55503 < updatedndis
+55503 < Updating ndis with 55505 55502 2
+55505 < 55505 sent 55502 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55505 55501 3
+55505 < updatedndis
+55503 < updatedndis
+55505 < Updating ndis with 55503 55501 2
+55503 < Updating ndis with 55505 55500 4
+55505 < 55505 sent 55501 to 55504
+55505 < 55505 sent 55501 to 55503
+55505 < updatedndis
+55505 < Updating ndis with 55503 55500 3
+55505 < 55505 sent 55500 to 55504
+55505 < 55505 sent 55500 to 55503
+55505 < updatedndis
+55505 < Updating ndis with 55503 55505 1
+55505 < updatedndis
+55505 < Updating ndis with 55503 55504 2
+55504 < sent all 2 D values to 55505
+55504 < updatedndis
+55504 < Updating ndis with 55505 55504 1
+55504 < updatedndis
+55504 < Updating ndis with 55505 55503 1
+55505 < updatedndis
+55504 < 55504 sent 55503 to 55505
+55505 < Updating ndis with 55504 55504 0
+55505 < updatedndis
+55505 < Updating ndis with 55504 55505 1
+55505 < updatedndis
+55504 < updatedndis
+55505 < Updating ndis with 55504 55503 2
+55504 < Updating ndis with 55505 55503 1
+55504 < updatedndis
+55504 < Updating ndis with 55505 55502 2
+55505 < updatedndis
+55504 < 55504 sent 55502 to 55505
+55505 < Updating ndis with 55504 55502 3
+55505 < updatedndis
+55505 < Updating ndis with 55504 55501 4
+55505 < updatedndis
+55504 < updatedndis
+55505 < Updating ndis with 55504 55500 5
+55504 < Updating ndis with 55505 55501 3
+55504 < 55504 sent 55501 to 55505
+55504 < updatedndis
+55504 < Updating ndis with 55505 55500 4
+55504 < 55504 sent 55500 to 55505
+55502 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55502 55502 0
+55500 < 55500 sent 55502 to 55501
+55501 < updatedndis
+55502 < Updating ndis with 55500 55500 0
+55501 < Updating ndis with 55500 55502 1
+55502 < 55502 sent 55500 to 55503
+55500 < sent all 6 D values to 55502
+55500 < 55500 sent 55502 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55502 1
+55502 < updatedndis
+55503 < updatedndis
+55502 < Updating ndis with 55500 55500 0
+55503 < Updating ndis with 55502 55500 1
+55503 < 55503 sent 55500 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55503 55500 2
+55502 < 55502 sent 55500 to 55501
+55503 < 55503 sent 55500 to 55505
+55500 < updatedndis
+55502 < sent all 6 D values to 55500
+55500 < Updating ndis with 55502 55502 0
+55501 < updatedndis
+55500 < updatedndis
+55505 < updatedndis
+55500 < Updating ndis with 55502 55503 1
+55501 < Updating ndis with 55502 55500 1
+55505 < Updating ndis with 55503 55500 2
+55500 < 55500 sent 55503 to 55501
+55505 < 55505 sent 55500 to 55504
+55501 < updatedndis
+55501 < Updating ndis with 55500 55503 2
+55503 < updatedndis
+55504 < updatedndis
+55500 < 55500 sent 55503 to 55502
+55505 < 55505 sent 55500 to 55503
+55504 < Updating ndis with 55505 55500 3
+55503 < Updating ndis with 55505 55500 3
+55504 < 55504 sent 55500 to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55504 55500 4
+55500 < updatedndis
+55500 < Updating ndis with 55502 55501 1
+55501 < updatedndis
+55500 < updatedndis
+55502 < 55502 sent 55500 to 55503
+55501 < Updating ndis with 55500 55505 3
+55503 < updatedndis
+55500 < Updating ndis with 55502 55500 1
+55501 < updatedndis
+55503 < Updating ndis with 55502 55500 1
+55500 < updatedndis
+55502 < 55502 sent 55500 to 55501
+55501 < Updating ndis with 55500 55504 4
+55500 < Updating ndis with 55502 55505 2
+55501 < updatedndis
+55502 < updatedndis
+55500 < 55500 sent 55505 to 55501
+55501 < Updating ndis with 55502 55500 1
+55502 < Updating ndis with 55500 55501 1
+55502 < updatedndis
+55502 < Updating ndis with 55500 55502 1
+55500 < 55500 sent 55505 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 3
+55500 < updatedndis
+55502 < updatedndis
+55500 < Updating ndis with 55502 55504 3
+55502 < Updating ndis with 55500 55505 4
+55500 < 55500 sent 55504 to 55501
+55502 < updatedndis
+55502 < Updating ndis with 55500 55504 5
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 2
+55502 < updatedndis
+55502 < Updating ndis with 55500 55505 3
+55500 < 55500 sent 55504 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55504 4
+55504 < Client maakt verbinding: 55502
+55502 < Updating ndis with 55504 55504 0
+55502 < 55502 sent 55504 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55502 55504 1
+55502 < 55502 sent 55504 to 55501
+55500 < updatedndis
+55500 < Updating ndis with 55502 55504 1
+55501 < updatedndis
+55500 < 55500 sent 55504 to 55501
+55501 < Updating ndis with 55500 55504 2
+55502 < 55502 sent 55504 to 55500
+55501 < 55501 sent 55504 to 55500
+55502 < sent all 6 D values to 55504
+55500 < 55500 sent 55504 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55504 2
+55501 < 55501 sent 55504 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55501 55504 3
+55500 < updatedndis
+55500 < Updating ndis with 55501 55504 3
+55501 < updatedndis
+55501 < Updating ndis with 55502 55504 1
+55501 < 55501 sent 55504 to 55500
+55500 < updatedndis
+55501 < 55501 sent 55504 to 55502
+55500 < Updating ndis with 55501 55504 2
+55502 < 55502 sent 55504 to 55503
+55503 < updatedndis
+55501 < updatedndis
+55501 < Updating ndis with 55502 55504 1
+55502 < 55502 sent 55504 to 55501
+55503 < Updating ndis with 55502 55504 1
+55502 < 55502 sent 55504 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55502 55504 1
+55504 < Updating ndis with 55502 55502 0
+55504 < updatedndis
+55502 < updatedndis
+55504 < Updating ndis with 55502 55502 0
+55502 < Updating ndis with 55501 55504 2
+55504 < 55504 sent 55502 to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55504 55502 1
+55504 < sent all 6 D values to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55504 55504 0
+55502 < updatedndis
+55502 < Updating ndis with 55504 55505 1
+55504 < 55504 sent 55502 to 55505
+55502 < updatedndis
+55505 < updatedndis
+55502 < Updating ndis with 55504 55503 2
+55505 < Updating ndis with 55504 55502 1
+55502 < updatedndis
+55504 < updatedndis
+55502 < Updating ndis with 55504 55502 1
+55505 < updatedndis
+55504 < Updating ndis with 55502 55503 1
+55502 < updatedndis
+55504 < updatedndis
+55505 < Updating ndis with 55504 55501 2
+55502 < Updating ndis with 55504 55501 4
+55504 < Updating ndis with 55502 55501 1
+55505 < updatedndis
+55502 < updatedndis
+55504 < 55504 sent 55501 to 55505
+55502 < Updating ndis with 55504 55500 4
+55505 < Updating ndis with 55504 55500 2
+55502 < updatedndis
+55502 < Updating ndis with 55504 55501 2
+55502 < updatedndis
+55502 < Updating ndis with 55504 55500 2
+55504 < 55504 sent 55501 to 55502
+55504 < updatedndis
+55504 < Updating ndis with 55502 55500 1
+55504 < 55504 sent 55500 to 55505
+55504 < 55504 sent 55500 to 55502
+55504 < updatedndis
+55504 < Updating ndis with 55502 55505 2
+55504 < updatedndis
+55504 < Updating ndis with 55502 55504 1
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55500 < 55500 1 localhost
+55501 < 55501 1 localhost
+55503 < 55503 1 localhost
+55502 < 55502 1 localhost
+55504 < 55504 1 localhost
+55504 < 55500 2 55500
+55503 < 55500 2 55500
+55505 < 55505 1 localhost
+55504 < 55501 2 55501
+55502 < 55500 1 55500
+55505 < 55500 3 55500
+55504 < 55502 1 55502
+55505 < 55501 3 55501
+55502 < 55501 1 55501
+55505 < 55502 2 55502
+55504 < 55503 2 55503
+55503 < 55501 2 55501
+55501 < 55500 1 55500
+55502 < 55502 0 55502
+55505 < 55503 1 55503
+55503 < 55502 1 55502
+55504 < 55504 0 55504
+55501 < 55501 0 55501
+55502 < 55503 1 55503
+55500 < 55500 0 55500
+55505 < 55504 1 55504
+55503 < 55503 0 55503
+55504 < 55505 1 55505
+55501 < 55502 1 55502
+55502 < 55504 1 55504
+55500 < 55501 1 55501
+55505 < 55505 0 55505
+55503 < 55504 2 55504
+55501 < 55503 2 55503
+55502 < 55505 2 55505
+55500 < 55502 1 55502
+55503 < 55505 1 55505
+55501 < 55504 2 55504
+55500 < 55503 2 55503
+55501 < 55505 3 55505
+55500 < 55504 2 55504
+55500 < 55505 3 55505
+
+Process 55500:
+55500
+55501
+55502
+Updating ndis with 55501 55501 0
+sent all 2 D values to 55501
+updatedndis
+Updating ndis with 55501 55501 0
+updatedndis
+Updating ndis with 55501 55500 1
+updatedndis
+Updating ndis with 55501 55502 1
+55500 sent 55502 to 55501
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55503 2
+55500 sent 55503 to 55501
+updatedndis
+Updating ndis with 55501 55505 3
+55500 sent 55505 to 55501
+updatedndis
+Updating ndis with 55501 55504 4
+55500 sent 55504 to 55501
+Updating ndis with 55502 55502 0
+55500 sent 55502 to 55501
+sent all 6 D values to 55502
+55500 sent 55502 to 55501
+updatedndis
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55503 1
+55500 sent 55503 to 55501
+55500 sent 55503 to 55502
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55502 55505 2
+55500 sent 55505 to 55501
+55500 sent 55505 to 55502
+updatedndis
+Updating ndis with 55502 55504 3
+55500 sent 55504 to 55501
+55500 sent 55504 to 55502
+updatedndis
+Updating ndis with 55502 55504 1
+55500 sent 55504 to 55501
+55500 sent 55504 to 55502
+updatedndis
+Updating ndis with 55501 55504 3
+updatedndis
+Updating ndis with 55501 55504 2
+updatedndis
+Updating ndis with 55502 55504 1
+> R
+55500 1 localhost
+55500 0 55500
+55501 1 55501
+55502 1 55502
+55503 2 55503
+55504 2 55504
+55505 3 55505
+
+Process 55501:
+55501
+55500
+55502
+Client maakt verbinding: 55500
+Updating ndis with 55500 55500 0
+updatedndis
+Updating ndis with 55500 55500 0
+sent all 2 D values to 55500
+updatedndis
+Updating ndis with 55500 55501 1
+Updating ndis with 55502 55502 0
+55501 sent 55502 to 55500
+sent all 3 D values to 55502
+updatedndis
+Updating ndis with 55500 55502 2
+55501 sent 55502 to 55500
+updatedndis
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55503 1
+55501 sent 55503 to 55500
+55501 sent 55503 to 55502
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55500 55503 3
+updatedndis
+Updating ndis with 55502 55500 2
+updatedndis
+Updating ndis with 55502 55505 2
+55501 sent 55505 to 55500
+55501 sent 55505 to 55502
+updatedndis
+Updating ndis with 55500 55505 4
+updatedndis
+Updating ndis with 55502 55504 3
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+updatedndis
+Updating ndis with 55500 55504 5
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55500 55503 2
+updatedndis
+Updating ndis with 55500 55505 3
+updatedndis
+Updating ndis with 55500 55504 4
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55500 55504 2
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+updatedndis
+Updating ndis with 55502 55504 1
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+updatedndis
+Updating ndis with 55502 55504 1
+> R
+55501 1 localhost
+55500 1 55500
+55501 0 55501
+55502 1 55502
+55503 2 55503
+55504 2 55504
+55505 3 55505
+
+Process 55502:
+55502
+55500
+55501
+55503
+55504
+Updating ndis with 55503 55503 0
+sent all 2 D values to 55503
+updatedndis
+Updating ndis with 55503 55503 0
+updatedndis
+Updating ndis with 55503 55502 1
+Client maakt verbinding: 55501
+updatedndis
+Updating ndis with 55501 55501 0
+Updating ndis with 55501 55501 0
+55502 sent 55501 to 55503
+updatedndis
+Updating ndis with 55503 55501 2
+sent all 3 D values to 55501
+55502 sent 55501 to 55503
+updatedndis
+Updating ndis with 55501 55500 1
+55502 sent 55500 to 55503
+updatedndis
+Updating ndis with 55503 55500 3
+55502 sent 55500 to 55501
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55503 2
+updatedndis
+Updating ndis with 55503 55505 1
+55502 sent 55505 to 55503
+55502 sent 55505 to 55501
+updatedndis
+Updating ndis with 55503 55505 1
+updatedndis
+Updating ndis with 55501 55505 3
+updatedndis
+Updating ndis with 55503 55504 2
+55502 sent 55504 to 55503
+55502 sent 55504 to 55501
+updatedndis
+Updating ndis with 55501 55504 4
+Client maakt verbinding: 55500
+Updating ndis with 55500 55500 0
+55502 sent 55500 to 55503
+updatedndis
+Updating ndis with 55500 55500 0
+updatedndis
+Updating ndis with 55503 55500 2
+55502 sent 55500 to 55501
+sent all 6 D values to 55500
+55502 sent 55500 to 55503
+55502 sent 55500 to 55501
+updatedndis
+Updating ndis with 55500 55501 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55503 3
+updatedndis
+Updating ndis with 55500 55505 4
+updatedndis
+Updating ndis with 55500 55504 5
+updatedndis
+Updating ndis with 55500 55503 2
+updatedndis
+Updating ndis with 55500 55505 3
+updatedndis
+Updating ndis with 55500 55504 4
+Updating ndis with 55504 55504 0
+55502 sent 55504 to 55503
+55502 sent 55504 to 55501
+55502 sent 55504 to 55500
+sent all 6 D values to 55504
+updatedndis
+Updating ndis with 55500 55504 2
+updatedndis
+Updating ndis with 55501 55504 3
+55502 sent 55504 to 55503
+55502 sent 55504 to 55501
+55502 sent 55504 to 55500
+updatedndis
+Updating ndis with 55501 55504 2
+updatedndis
+Updating ndis with 55504 55504 0
+updatedndis
+Updating ndis with 55504 55505 1
+updatedndis
+Updating ndis with 55504 55503 2
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55501 4
+updatedndis
+Updating ndis with 55504 55500 4
+updatedndis
+Updating ndis with 55504 55501 2
+updatedndis
+Updating ndis with 55504 55500 2
+> R
+55502 1 localhost
+55500 1 55500
+55501 1 55501
+55502 0 55502
+55503 1 55503
+55504 1 55504
+55505 2 55505
+
+Process 55503:
+55503
+55502
+55505
+Client maakt verbinding: 55502
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55502 0
+sent all 2 D values to 55502
+updatedndis
+Updating ndis with 55502 55503 1
+updatedndis
+Updating ndis with 55502 55501 1
+55503 sent 55501 to 55502
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55500 2
+55503 sent 55500 to 55502
+Updating ndis with 55505 55505 0
+55503 sent 55505 to 55502
+sent all 5 D values to 55505
+updatedndis
+Updating ndis with 55502 55505 2
+55503 sent 55505 to 55502
+updatedndis
+Updating ndis with 55505 55505 0
+updatedndis
+Updating ndis with 55505 55504 1
+55503 sent 55504 to 55502
+55503 sent 55504 to 55505
+updatedndis
+Updating ndis with 55505 55503 1
+updatedndis
+Updating ndis with 55502 55504 3
+updatedndis
+Updating ndis with 55505 55502 2
+updatedndis
+Updating ndis with 55505 55501 3
+updatedndis
+Updating ndis with 55505 55500 4
+updatedndis
+Updating ndis with 55502 55500 1
+55503 sent 55500 to 55502
+55503 sent 55500 to 55505
+updatedndis
+Updating ndis with 55505 55500 3
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55502 55504 1
+updatedndis
+Updating ndis with 55502 55504 1
+> R
+55503 1 localhost
+55500 2 55500
+55501 2 55501
+55502 1 55502
+55503 0 55503
+55504 2 55504
+55505 1 55505
+
+Process 55504:
+55504
+55502
+55505
+Updating ndis with 55505 55505 0
+updatedndis
+Updating ndis with 55505 55505 0
+sent all 2 D values to 55505
+updatedndis
+Updating ndis with 55505 55504 1
+updatedndis
+Updating ndis with 55505 55503 1
+55504 sent 55503 to 55505
+updatedndis
+Updating ndis with 55505 55503 1
+updatedndis
+Updating ndis with 55505 55502 2
+55504 sent 55502 to 55505
+updatedndis
+Updating ndis with 55505 55501 3
+55504 sent 55501 to 55505
+updatedndis
+Updating ndis with 55505 55500 4
+55504 sent 55500 to 55505
+updatedndis
+Updating ndis with 55505 55500 3
+55504 sent 55500 to 55505
+Client maakt verbinding: 55502
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55502 0
+55504 sent 55502 to 55505
+sent all 6 D values to 55502
+55504 sent 55502 to 55505
+updatedndis
+Updating ndis with 55502 55503 1
+updatedndis
+Updating ndis with 55502 55501 1
+55504 sent 55501 to 55505
+55504 sent 55501 to 55502
+updatedndis
+Updating ndis with 55502 55500 1
+55504 sent 55500 to 55505
+55504 sent 55500 to 55502
+updatedndis
+Updating ndis with 55502 55505 2
+updatedndis
+Updating ndis with 55502 55504 1
+> R
+55504 1 localhost
+55500 2 55500
+55501 2 55501
+55502 1 55502
+55503 2 55503
+55504 0 55504
+55505 1 55505
+
+Process 55505:
+55505
+55503
+55504
+Client maakt verbinding: 55504
+Updating ndis with 55504 55504 0
+sent all 2 D values to 55504
+Client maakt verbinding: 55503
+Updating ndis with 55503 55503 0
+updatedndis
+Updating ndis with 55503 55503 0
+55505 sent 55503 to 55504
+sent all 3 D values to 55503
+55505 sent 55503 to 55504
+updatedndis
+Updating ndis with 55503 55502 1
+55505 sent 55502 to 55504
+55505 sent 55502 to 55503
+updatedndis
+Updating ndis with 55503 55501 2
+55505 sent 55501 to 55504
+55505 sent 55501 to 55503
+updatedndis
+Updating ndis with 55503 55500 3
+55505 sent 55500 to 55504
+55505 sent 55500 to 55503
+updatedndis
+Updating ndis with 55503 55505 1
+updatedndis
+Updating ndis with 55503 55504 2
+updatedndis
+Updating ndis with 55504 55504 0
+updatedndis
+Updating ndis with 55504 55505 1
+updatedndis
+Updating ndis with 55504 55503 2
+updatedndis
+Updating ndis with 55504 55502 3
+updatedndis
+Updating ndis with 55504 55501 4
+updatedndis
+Updating ndis with 55504 55500 5
+updatedndis
+Updating ndis with 55503 55500 2
+55505 sent 55500 to 55504
+55505 sent 55500 to 55503
+updatedndis
+Updating ndis with 55504 55500 4
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55501 2
+updatedndis
+Updating ndis with 55504 55500 2
+> R
+55505 1 localhost
+55500 3 55500
+55501 3 55501
+55502 2 55502
+55503 1 55503
+55504 1 55504
+55505 0 55505
+
+------------------------------------
+
+2;Random;Incorrect;17,53;Opstarten netwerk
+Test 2 - Random
+
+Fout bij opzetten netwerk - de routing-tabel is incorrect.
+De neighbor van 55500 naar 55504 is incorrect (4).
+De neighbor van 55500 naar 55505 is incorrect (5).
+De neighbor van 55500 naar 55508 is incorrect (8).
+De neighbor van 55501 naar 55503 is incorrect (3).
+De neighbor van 55501 naar 55507 is incorrect (7).
+De neighbor van 55501 naar 55508 is incorrect (8).
+De neighbor van 55502 naar 55503 is incorrect (3).
+De neighbor van 55502 naar 55505 is incorrect (5).
+De neighbor van 55502 naar 55506 is incorrect (6).
+De neighbor van 55502 naar 55507 is incorrect (7).
+De neighbor van 55502 naar 55508 is incorrect (8).
+De neighbor van 55503 naar 55501 is incorrect (1).
+De neighbor van 55503 naar 55502 is incorrect (2).
+De neighbor van 55503 naar 55507 is incorrect (7).
+De neighbor van 55504 naar 55500 is incorrect (0).
+De neighbor van 55504 naar 55505 is incorrect (5).
+De neighbor van 55504 naar 55507 is incorrect (7).
+De neighbor van 55504 naar 55508 is incorrect (8).
+De neighbor van 55505 naar 55500 is incorrect (0).
+De neighbor van 55505 naar 55502 is incorrect (2).
+De neighbor van 55505 naar 55504 is incorrect (4).
+De neighbor van 55505 naar 55507 is incorrect (7).
+De neighbor van 55505 naar 55508 is incorrect (8).
+De neighbor van 55506 naar 55502 is incorrect (2).
+De neighbor van 55506 naar 55508 is incorrect (8).
+De neighbor van 55507 naar 55501 is incorrect (1).
+De neighbor van 55507 naar 55502 is incorrect (2).
+De neighbor van 55507 naar 55503 is incorrect (3).
+De neighbor van 55507 naar 55504 is incorrect (4).
+De neighbor van 55507 naar 55505 is incorrect (5).
+De neighbor van 55507 naar 55508 is incorrect (8).
+De neighbor van 55508 naar 55500 is incorrect (0).
+De neighbor van 55508 naar 55501 is incorrect (1).
+De neighbor van 55508 naar 55502 is incorrect (2).
+De neighbor van 55508 naar 55504 is incorrect (4).
+De neighbor van 55508 naar 55505 is incorrect (5).
+De neighbor van 55508 naar 55506 is incorrect (6).
+De neighbor van 55508 naar 55507 is incorrect (7).
+
+Log
+start NetwProg.exe 55500 55501 55502 55503 55506 55507
+start NetwProg.exe 55501 55500 55502 55504 55505 55506
+start NetwProg.exe 55502 55500 55501 55504
+start NetwProg.exe 55503 55500 55504 55505 55506 55508
+start NetwProg.exe 55504 55501 55502 55503 55506
+start NetwProg.exe 55505 55501 55503 55506
+start NetwProg.exe 55506 55500 55501 55503 55504 55505 55507
+start NetwProg.exe 55507 55500 55506
+55500 < 55500
+55500 < 55501
+55500 < 55502
+55500 < 55503
+55500 < 55506
+55500 < 55507
+start NetwProg.exe 55508 55503
+55501 < 55501
+55501 < 55500
+55501 < 55502
+55501 < 55504
+55501 < 55505
+55501 < 55506
+55502 < 55502
+55502 < 55500
+55502 < 55501
+55502 < 55504
+55503 < 55503
+55503 < 55500
+55503 < 55504
+55503 < 55505
+55503 < 55506
+55503 < 55508
+55505 < 55505
+55505 < 55501
+55505 < 55503
+55505 < 55506
+55504 < 55504
+55504 < 55501
+55504 < 55502
+55504 < 55503
+55504 < 55506
+55506 < 55506
+55506 < 55500
+55506 < 55501
+55506 < 55503
+55506 < 55504
+55506 < 55505
+55506 < 55507
+55507 < 55507
+55507 < 55500
+55507 < 55506
+55508 < 55508
+55508 < 55503
+55501 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55501 55501 0
+55501 < Updating ndis with 55500 55500 0
+55500 < sent all 2 D values to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55500 0
+55501 < sent all 2 D values to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55501 0
+55500 < updatedndis
+55501 < updatedndis
+55500 < Updating ndis with 55501 55500 1
+55501 < Updating ndis with 55500 55501 1
+55502 < Client maakt verbinding: 55501
+55501 < Updating ndis with 55502 55502 0
+55501 < 55501 sent 55502 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55502 1
+55500 < 55500 sent 55502 to 55501
+55501 < sent all 3 D values to 55502
+55501 < 55501 sent 55502 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55502 1
+55501 < updatedndis
+55501 < Updating ndis with 55500 55502 2
+55502 < updatedndis
+55502 < Updating ndis with 55501 55501 0
+55502 < Updating ndis with 55501 55501 0
+55504 < Client maakt verbinding: 55502
+55504 < Updating ndis with 55502 55502 0
+55502 < 55502 sent 55501 to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55502 55501 1
+55502 < sent all 2 D values to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55502 55502 0
+55502 < 55502 sent 55501 to 55504
+55501 < updatedndis
+55501 < Updating ndis with 55502 55501 1
+55501 < updatedndis
+55500 < updatedndis
+55501 < Updating ndis with 55502 55504 1
+55502 < updatedndis
+55500 < Updating ndis with 55501 55504 2
+55501 < 55501 sent 55504 to 55500
+55500 < 55500 sent 55504 to 55501
+55502 < Updating ndis with 55504 55504 0
+55502 < 55502 sent 55504 to 55501
+55501 < 55501 sent 55504 to 55502
+55502 < sent all 3 D values to 55504
+55502 < Updating ndis with 55501 55500 1
+55501 < updatedndis
+55502 < 55502 sent 55504 to 55501
+55501 < Updating ndis with 55500 55504 3
+55501 < updatedndis
+55501 < Updating ndis with 55502 55504 1
+55501 < updatedndis
+55502 < 55502 sent 55500 to 55501
+55501 < Updating ndis with 55502 55500 2
+55502 < 55502 sent 55500 to 55504
+55504 < sent all 2 D values to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55501 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55501 55504 2
+55502 < updatedndis
+55502 < Updating ndis with 55504 55504 0
+55504 < 55504 sent 55501 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55504 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55504 55501 2
+55504 < updatedndis
+55502 < updatedndis
+55504 < Updating ndis with 55502 55501 1
+55504 < updatedndis
+55502 < Updating ndis with 55504 55500 3
+55504 < Updating ndis with 55502 55502 0
+55504 < updatedndis
+55504 < Updating ndis with 55502 55501 1
+55504 < updatedndis
+55504 < Updating ndis with 55502 55504 1
+55504 < updatedndis
+55504 < Updating ndis with 55502 55500 2
+55504 < 55504 sent 55500 to 55502
+55504 < Client maakt verbinding: 55503
+55504 < Updating ndis with 55503 55503 0
+55504 < 55504 sent 55503 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55504 55503 1
+55502 < 55502 sent 55503 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55502 55503 2
+55504 < sent all 5 D values to 55503
+55500 < updatedndis
+55501 < 55501 sent 55503 to 55500
+55502 < 55502 sent 55503 to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55502 55503 2
+55500 < Updating ndis with 55501 55503 3
+55504 < 55504 sent 55503 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55501 55503 3
+55501 < 55501 sent 55503 to 55502
+55500 < 55500 sent 55503 to 55501
+55502 < updatedndis
+55501 < updatedndis
+55502 < Updating ndis with 55504 55503 1
+55501 < Updating ndis with 55500 55503 4
+55503 < updatedndis
+55503 < Updating ndis with 55504 55504 0
+55503 < Updating ndis with 55504 55504 0
+55503 < sent all 2 D values to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55503 55503 0
+55504 < updatedndis
+55504 < Updating ndis with 55503 55504 1
+55503 < updatedndis
+55503 < Updating ndis with 55504 55502 1
+55503 < 55503 sent 55502 to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55503 55502 2
+55504 < updatedndis
+55504 < Updating ndis with 55503 55501 3
+55503 < updatedndis
+55503 < Updating ndis with 55504 55501 2
+55504 < updatedndis
+55503 < 55503 sent 55501 to 55504
+55504 < Updating ndis with 55503 55500 4
+55503 < updatedndis
+55503 < Updating ndis with 55504 55500 3
+55503 < 55503 sent 55500 to 55504
+55503 < updatedndis
+55503 < Updating ndis with 55504 55503 1
+55506 < Client maakt verbinding: 55505
+55505 < Updating ndis with 55506 55506 0
+55506 < Updating ndis with 55505 55505 0
+55505 < sent all 2 D values to 55506
+55506 < sent all 2 D values to 55505
+55506 < updatedndis
+55506 < Updating ndis with 55505 55505 0
+55505 < updatedndis
+55505 < Updating ndis with 55506 55506 0
+55505 < updatedndis
+55505 < Updating ndis with 55506 55505 1
+55506 < updatedndis
+55506 < Updating ndis with 55505 55506 1
+55506 < Client maakt verbinding: 55504
+55506 < Updating ndis with 55504 55504 0
+55504 < Updating ndis with 55506 55506 0
+55505 < updatedndis
+55502 < updatedndis
+55506 < 55506 sent 55504 to 55505
+55504 < 55504 sent 55506 to 55502
+55505 < Updating ndis with 55506 55504 1
+55504 < 55504 sent 55506 to 55503
+55506 < sent all 3 D values to 55504
+55506 < updatedndis
+55505 < 55505 sent 55504 to 55506
+55506 < Updating ndis with 55504 55504 0
+55503 < updatedndis
+55504 < sent all 6 D values to 55506
+55506 < 55506 sent 55504 to 55505
+55503 < Updating ndis with 55504 55506 1
+55504 < 55504 sent 55506 to 55502
+55503 < 55503 sent 55506 to 55504
+55503 < updatedndis
+55505 < updatedndis
+55506 < updatedndis
+55504 < 55504 sent 55506 to 55503
+55503 < Updating ndis with 55504 55506 1
+55506 < Updating ndis with 55504 55502 1
+55505 < Updating ndis with 55506 55504 1
+55506 < 55506 sent 55502 to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55506 55502 2
+55505 < 55505 sent 55502 to 55506
+55504 < updatedndis
+55506 < 55506 sent 55502 to 55504
+55504 < Updating ndis with 55506 55506 0
+55504 < updatedndis
+55504 < Updating ndis with 55506 55505 1
+55504 < 55504 sent 55505 to 55502
+55505 < updatedndis
+55506 < updatedndis
+55501 < updatedndis
+55506 < Updating ndis with 55504 55501 2
+55501 < Updating ndis with 55502 55506 2
+55506 < 55506 sent 55501 to 55505
+55504 < 55504 sent 55505 to 55503
+55505 < Updating ndis with 55506 55501 3
+55501 < 55501 sent 55506 to 55500
+55505 < 55505 sent 55501 to 55506
+55504 < 55504 sent 55505 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55505 55504 2
+55506 < 55506 sent 55501 to 55504
+55504 < updatedndis
+55505 < updatedndis
+55504 < Updating ndis with 55506 55504 1
+55505 < Updating ndis with 55506 55500 4
+55504 < updatedndis
+55505 < 55505 sent 55500 to 55506
+55506 < updatedndis
+55504 < Updating ndis with 55506 55502 2
+55500 < updatedndis
+55506 < Updating ndis with 55504 55500 3
+55501 < 55501 sent 55506 to 55502
+55504 < updatedndis
+55500 < Updating ndis with 55501 55506 3
+55506 < 55506 sent 55500 to 55505
+55504 < Updating ndis with 55503 55506 2
+55505 < updatedndis
+55500 < 55500 sent 55506 to 55501
+55503 < updatedndis
+55505 < Updating ndis with 55506 55503 2
+55505 < 55505 sent 55503 to 55506
+55501 < updatedndis
+55503 < Updating ndis with 55504 55505 2
+55506 < 55506 sent 55500 to 55504
+55501 < Updating ndis with 55502 55505 3
+55503 < 55503 sent 55505 to 55504
+55501 < 55501 sent 55505 to 55500
+55504 < updatedndis
+55506 < updatedndis
+55506 < Updating ndis with 55504 55503 1
+55504 < Updating ndis with 55502 55506 2
+55506 < 55506 sent 55503 to 55505
+55500 < updatedndis
+55504 < updatedndis
+55501 < 55501 sent 55505 to 55502
+55500 < Updating ndis with 55501 55505 4
+55504 < Updating ndis with 55506 55501 3
+55506 < 55506 sent 55503 to 55504
+55500 < 55500 sent 55505 to 55501
+55504 < updatedndis
+55502 < Updating ndis with 55504 55506 1
+55504 < Updating ndis with 55503 55505 3
+55501 < updatedndis
+55501 < Updating ndis with 55500 55506 4
+55506 < updatedndis
+55502 < 55502 sent 55506 to 55501
+55504 < updatedndis
+55501 < updatedndis
+55506 < Updating ndis with 55504 55506 1
+55504 < Updating ndis with 55506 55500 4
+55501 < Updating ndis with 55500 55505 5
+55506 < updatedndis
+55502 < 55502 sent 55506 to 55504
+55504 < updatedndis
+55506 < Updating ndis with 55504 55505 2
+55504 < Updating ndis with 55506 55503 2
+55506 < updatedndis
+55504 < updatedndis
+55506 < Updating ndis with 55505 55502 3
+55502 < updatedndis
+55504 < Updating ndis with 55502 55505 3
+55506 < updatedndis
+55502 < Updating ndis with 55504 55506 1
+55506 < Updating ndis with 55505 55501 4
+55502 < updatedndis
+55506 < updatedndis
+55502 < Updating ndis with 55504 55505 2
+55506 < Updating ndis with 55505 55500 5
+55506 < updatedndis
+55502 < 55502 sent 55505 to 55501
+55506 < Updating ndis with 55505 55503 3
+55502 < 55502 sent 55505 to 55504
+55502 < updatedndis
+55502 < Updating ndis with 55501 55506 3
+55502 < updatedndis
+55502 < Updating ndis with 55501 55505 4
+55507 < Client maakt verbinding: 55506
+55506 < Updating ndis with 55507 55507 0
+55506 < 55506 sent 55507 to 55505
+55504 < updatedndis
+55505 < updatedndis
+55504 < Updating ndis with 55506 55507 1
+55505 < Updating ndis with 55506 55507 1
+55506 < 55506 sent 55507 to 55504
+55504 < 55504 sent 55507 to 55502
+55505 < 55505 sent 55507 to 55506
+55504 < 55504 sent 55507 to 55503
+55502 < updatedndis
+55506 < updatedndis
+55503 < updatedndis
+55502 < Updating ndis with 55504 55507 2
+55506 < Updating ndis with 55505 55507 2
+55503 < Updating ndis with 55504 55507 2
+55506 < updatedndis
+55504 < 55504 sent 55507 to 55506
+55506 < Updating ndis with 55504 55507 2
+55503 < 55503 sent 55507 to 55504
+55506 < sent all 8 D values to 55507
+55502 < 55502 sent 55507 to 55501
+55506 < 55506 sent 55507 to 55505
+55504 < updatedndis
+55504 < Updating ndis with 55503 55507 3
+55502 < 55502 sent 55507 to 55504
+55504 < updatedndis
+55501 < updatedndis
+55504 < Updating ndis with 55502 55507 3
+55501 < Updating ndis with 55502 55507 3
+55501 < 55501 sent 55507 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55507 4
+55501 < 55501 sent 55507 to 55502
+55502 < updatedndis
+55500 < 55500 sent 55507 to 55501
+55502 < Updating ndis with 55501 55507 4
+55505 < updatedndis
+55501 < updatedndis
+55506 < 55506 sent 55507 to 55504
+55505 < Updating ndis with 55506 55507 1
+55501 < Updating ndis with 55500 55507 5
+55504 < updatedndis
+55504 < Updating ndis with 55506 55507 1
+55507 < updatedndis
+55507 < Updating ndis with 55506 55506 0
+55507 < Updating ndis with 55506 55506 0
+55507 < sent all 2 D values to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55507 55507 0
+55507 < updatedndis
+55506 < updatedndis
+55507 < Updating ndis with 55506 55505 1
+55507 < 55507 sent 55505 to 55506
+55506 < Updating ndis with 55507 55506 1
+55506 < updatedndis
+55506 < Updating ndis with 55507 55505 2
+55506 < updatedndis
+55507 < updatedndis
+55506 < Updating ndis with 55507 55504 2
+55507 < Updating ndis with 55506 55504 1
+55506 < updatedndis
+55507 < 55507 sent 55504 to 55506
+55506 < Updating ndis with 55507 55502 3
+55506 < updatedndis
+55507 < updatedndis
+55506 < Updating ndis with 55507 55501 4
+55507 < Updating ndis with 55506 55502 2
+55506 < updatedndis
+55506 < Updating ndis with 55507 55500 5
+55507 < 55507 sent 55502 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55507 55503 3
+55507 < updatedndis
+55507 < Updating ndis with 55506 55501 3
+55507 < 55507 sent 55501 to 55506
+55507 < updatedndis
+55507 < Updating ndis with 55506 55500 4
+55507 < 55507 sent 55500 to 55506
+55507 < updatedndis
+55507 < Updating ndis with 55506 55503 2
+55507 < 55507 sent 55503 to 55506
+55507 < updatedndis
+55507 < Updating ndis with 55506 55507 1
+55502 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55502 55502 0
+55500 < 55500 sent 55502 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55502 1
+55502 < updatedndis
+55500 < sent all 8 D values to 55502
+55502 < Updating ndis with 55500 55500 0
+55502 < 55502 sent 55500 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55502 55500 1
+55504 < updatedndis
+55502 < 55502 sent 55500 to 55504
+55502 < updatedndis
+55501 < updatedndis
+55500 < 55500 sent 55502 to 55501
+55504 < Updating ndis with 55502 55500 1
+55501 < Updating ndis with 55500 55502 1
+55502 < Updating ndis with 55504 55500 2
+55504 < 55504 sent 55500 to 55502
+55504 < 55504 sent 55500 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55504 55500 2
+55503 < 55503 sent 55500 to 55504
+55504 < 55504 sent 55500 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55504 55500 2
+55504 < updatedndis
+55506 < 55506 sent 55500 to 55505
+55506 < 55506 sent 55500 to 55504
+55504 < Updating ndis with 55503 55500 3
+55505 < updatedndis
+55506 < 55506 sent 55500 to 55507
+55505 < Updating ndis with 55506 55500 3
+55505 < 55505 sent 55500 to 55506
+55504 < updatedndis
+55507 < updatedndis
+55506 < updatedndis
+55507 < Updating ndis with 55506 55500 3
+55506 < Updating ndis with 55507 55500 4
+55507 < 55507 sent 55500 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55505 55500 4
+55504 < Updating ndis with 55506 55500 3
+55502 < updatedndis
+55504 < Client maakt verbinding: 55501
+55502 < Updating ndis with 55500 55501 1
+55502 < updatedndis
+55502 < Updating ndis with 55500 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55500 55504 3
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 4
+55502 < Updating ndis with 55500 55500 0
+55502 < sent all 8 D values to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55502 55502 0
+55502 < 55502 sent 55500 to 55501
+55500 < updatedndis
+55500 < Updating ndis with 55502 55501 1
+55500 < updatedndis
+55501 < updatedndis
+55500 < Updating ndis with 55502 55504 1
+55500 < 55500 sent 55504 to 55501
+55501 < Updating ndis with 55500 55504 2
+55501 < updatedndis
+55501 < Updating ndis with 55500 55503 3
+55501 < updatedndis
+55501 < Updating ndis with 55500 55506 3
+55501 < updatedndis
+55500 < 55500 sent 55504 to 55502
+55501 < Updating ndis with 55500 55505 4
+55501 < updatedndis
+55501 < Updating ndis with 55500 55507 4
+55500 < updatedndis
+55500 < Updating ndis with 55502 55500 1
+55500 < updatedndis
+55500 < Updating ndis with 55502 55503 2
+55500 < 55500 sent 55503 to 55501
+55501 < updatedndis
+55502 < 55502 sent 55500 to 55504
+55501 < Updating ndis with 55502 55500 1
+55500 < 55500 sent 55503 to 55502
+55500 < updatedndis
+55504 < updatedndis
+55500 < Updating ndis with 55502 55506 2
+55504 < Updating ndis with 55502 55500 1
+55500 < 55500 sent 55506 to 55501
+55500 < 55500 sent 55506 to 55502
+55500 < updatedndis
+55500 < Updating ndis with 55502 55505 3
+55500 < 55500 sent 55505 to 55501
+55500 < 55500 sent 55505 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55506 4
+55500 < updatedndis
+55502 < updatedndis
+55500 < Updating ndis with 55502 55507 3
+55502 < Updating ndis with 55500 55505 5
+55500 < 55500 sent 55507 to 55501
+55502 < updatedndis
+55502 < Updating ndis with 55500 55507 5
+55500 < 55500 sent 55507 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55504 2
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 3
+55502 < updatedndis
+55501 < Updating ndis with 55504 55504 0
+55502 < Updating ndis with 55500 55506 3
+55502 < updatedndis
+55502 < Updating ndis with 55500 55505 4
+55501 < 55501 sent 55504 to 55500
+55502 < updatedndis
+55500 < updatedndis
+55501 < 55501 sent 55504 to 55502
+55502 < Updating ndis with 55500 55507 4
+55500 < Updating ndis with 55501 55504 1
+55501 < sent all 8 D values to 55504
+55502 < updatedndis
+55502 < Updating ndis with 55501 55504 1
+55501 < 55501 sent 55504 to 55500
+55504 < updatedndis
+55504 < Updating ndis with 55501 55501 0
+55504 < 55504 sent 55501 to 55502
+55504 < 55504 sent 55501 to 55503
+55504 < 55504 sent 55501 to 55506
+55500 < updatedndis
+55504 < updatedndis
+55504 < Updating ndis with 55501 55500 1
+55504 < updatedndis
+55504 < Updating ndis with 55501 55502 1
+55504 < updatedndis
+55504 < Updating ndis with 55501 55504 1
+55502 < updatedndis
+55502 < Updating ndis with 55504 55501 1
+55503 < updatedndis
+55506 < updatedndis
+55503 < Updating ndis with 55504 55501 1
+55500 < Updating ndis with 55501 55504 1
+55506 < Updating ndis with 55504 55501 1
+55506 < 55506 sent 55501 to 55505
+55505 < updatedndis
+55504 < updatedndis
+55504 < Updating ndis with 55503 55501 2
+55505 < Updating ndis with 55506 55501 2
+55503 < 55503 sent 55501 to 55504
+55505 < 55505 sent 55501 to 55506
+55506 < 55506 sent 55501 to 55504
+55507 < updatedndis
+55504 < updatedndis
+55507 < Updating ndis with 55506 55501 2
+55504 < Updating ndis with 55506 55501 2
+55507 < 55507 sent 55501 to 55506
+55506 < 55506 sent 55501 to 55507
+55504 < updatedndis
+55501 < 55501 sent 55504 to 55502
+55504 < Updating ndis with 55501 55503 3
+55506 < updatedndis
+55502 < updatedndis
+55504 < updatedndis
+55502 < Updating ndis with 55501 55504 1
+55506 < Updating ndis with 55505 55501 3
+55504 < Updating ndis with 55501 55506 3
+55506 < updatedndis
+55504 < updatedndis
+55506 < Updating ndis with 55507 55501 3
+55504 < Updating ndis with 55501 55505 4
+55501 < updatedndis
+55504 < updatedndis
+55504 < Updating ndis with 55501 55507 4
+55501 < Updating ndis with 55504 55504 0
+55501 < updatedndis
+55504 < Updating ndis with 55501 55501 0
+55501 < Updating ndis with 55504 55502 1
+55501 < updatedndis
+55501 < Updating ndis with 55504 55501 1
+55504 < sent all 8 D values to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55504 55500 2
+55501 < updatedndis
+55501 < Updating ndis with 55504 55503 1
+55501 < 55501 sent 55503 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55503 2
+55502 < updatedndis
+55501 < 55501 sent 55503 to 55502
+55502 < Updating ndis with 55501 55503 2
+55504 < updatedndis
+55504 < Updating ndis with 55501 55503 2
+55501 < 55501 sent 55503 to 55504
+55501 < updatedndis
+55501 < Updating ndis with 55504 55506 1
+55501 < 55501 sent 55506 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55506 2
+55501 < 55501 sent 55506 to 55502
+55502 < updatedndis
+55501 < 55501 sent 55506 to 55504
+55502 < Updating ndis with 55501 55506 2
+55501 < updatedndis
+55501 < Updating ndis with 55504 55505 2
+55501 < 55501 sent 55505 to 55500
+55502 < updatedndis
+55504 < 55504 sent 55501 to 55502
+55503 < updatedndis
+55502 < Updating ndis with 55501 55505 3
+55500 < updatedndis
+55502 < updatedndis
+55501 < 55501 sent 55505 to 55502
+55500 < Updating ndis with 55501 55505 3
+55503 < Updating ndis with 55504 55501 1
+55502 < Updating ndis with 55501 55507 3
+55500 < updatedndis
+55504 < 55504 sent 55501 to 55503
+55502 < updatedndis
+55501 < 55501 sent 55505 to 55504
+55500 < Updating ndis with 55501 55507 3
+55502 < Updating ndis with 55504 55501 1
+55501 < updatedndis
+55501 < Updating ndis with 55504 55507 2
+55501 < 55501 sent 55507 to 55500
+55504 < 55504 sent 55501 to 55506
+55501 < 55501 sent 55507 to 55502
+55506 < updatedndis
+55506 < Updating ndis with 55504 55501 1
+55501 < 55501 sent 55507 to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55501 55506 2
+55504 < updatedndis
+55504 < Updating ndis with 55501 55505 3
+55504 < updatedndis
+55504 < Updating ndis with 55501 55507 3
+55505 < Client maakt verbinding: 55503
+55503 < Updating ndis with 55505 55505 0
+55503 < 55503 sent 55505 to 55504
+55504 < updatedndis
+55503 < sent all 8 D values to 55505
+55504 < Updating ndis with 55503 55505 1
+55503 < 55503 sent 55505 to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55503 55505 1
+55505 < Updating ndis with 55503 55503 0
+55505 < updatedndis
+55505 < 55505 sent 55503 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55505 55503 1
+55503 < updatedndis
+55505 < Updating ndis with 55503 55503 0
+55503 < Updating ndis with 55505 55505 0
+55505 < sent all 8 D values to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55505 55506 1
+55503 < updatedndis
+55503 < Updating ndis with 55505 55504 2
+55505 < 55505 sent 55503 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55505 55503 1
+55503 < updatedndis
+55503 < Updating ndis with 55505 55502 3
+55503 < updatedndis
+55503 < Updating ndis with 55505 55501 3
+55503 < updatedndis
+55503 < Updating ndis with 55505 55500 4
+55503 < updatedndis
+55503 < Updating ndis with 55505 55503 1
+55505 < updatedndis
+55503 < updatedndis
+55503 < Updating ndis with 55505 55507 2
+55505 < Updating ndis with 55503 55504 1
+55505 < updatedndis
+55505 < Updating ndis with 55503 55502 2
+55505 < updatedndis
+55505 < Updating ndis with 55503 55501 2
+55505 < updatedndis
+55505 < Updating ndis with 55503 55500 3
+55505 < updatedndis
+55505 < Updating ndis with 55503 55506 2
+55505 < updatedndis
+55505 < Updating ndis with 55503 55505 1
+55505 < updatedndis
+55505 < Updating ndis with 55503 55507 3
+55503 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55503 55503 0
+55500 < 55500 sent 55503 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55503 1
+55500 < 55500 sent 55503 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 1
+55500 < sent all 8 D values to 55503
+55503 < Updating ndis with 55500 55500 0
+55503 < 55503 sent 55500 to 55504
+55500 < 55500 sent 55503 to 55501
+55504 < updatedndis
+55500 < 55500 sent 55503 to 55502
+55501 < updatedndis
+55504 < Updating ndis with 55503 55500 1
+55501 < Updating ndis with 55500 55503 1
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 1
+55503 < 55503 sent 55500 to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55503 55500 1
+55505 < 55505 sent 55500 to 55506
+55505 < 55505 sent 55500 to 55503
+55506 < updatedndis
+55506 < Updating ndis with 55505 55500 2
+55503 < updatedndis
+55503 < Updating ndis with 55505 55500 2
+55503 < sent all 8 D values to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55503 55503 0
+55500 < updatedndis
+55500 < Updating ndis with 55503 55504 1
+55500 < updatedndis
+55500 < Updating ndis with 55503 55502 2
+55500 < updatedndis
+55500 < Updating ndis with 55503 55501 2
+55501 < updatedndis
+55501 < Updating ndis with 55500 55505 2
+55500 < updatedndis
+55500 < Updating ndis with 55503 55500 1
+55502 < updatedndis
+55500 < updatedndis
+55502 < Updating ndis with 55500 55505 2
+55500 < Updating ndis with 55503 55506 2
+55500 < updatedndis
+55500 < Updating ndis with 55503 55505 1
+55500 < 55500 sent 55505 to 55501
+55503 < 55503 sent 55500 to 55504
+55500 < 55500 sent 55505 to 55502
+55503 < 55503 sent 55500 to 55505
+55504 < updatedndis
+55500 < 55500 sent 55505 to 55503
+55504 < Updating ndis with 55503 55500 1
+55505 < updatedndis
+55505 < Updating ndis with 55503 55500 1
+55500 < updatedndis
+55500 < Updating ndis with 55503 55507 3
+55503 < updatedndis
+55503 < Updating ndis with 55500 55500 0
+55503 < updatedndis
+55503 < Updating ndis with 55500 55501 1
+55503 < updatedndis
+55503 < Updating ndis with 55500 55502 1
+55503 < updatedndis
+55503 < Updating ndis with 55500 55504 2
+55503 < updatedndis
+55503 < Updating ndis with 55500 55503 1
+55503 < updatedndis
+55503 < Updating ndis with 55500 55506 3
+55503 < updatedndis
+55503 < Updating ndis with 55500 55505 4
+55503 < updatedndis
+55503 < Updating ndis with 55500 55507 4
+55503 < updatedndis
+55503 < Updating ndis with 55500 55505 2
+55505 < Client maakt verbinding: 55501
+55501 < Updating ndis with 55505 55505 0
+55501 < 55501 sent 55505 to 55500
+55505 < Updating ndis with 55501 55501 0
+55500 < updatedndis
+55502 < updatedndis
+55505 < 55505 sent 55501 to 55506
+55500 < Updating ndis with 55501 55505 1
+55506 < updatedndis
+55503 < updatedndis
+55501 < 55501 sent 55505 to 55502
+55503 < Updating ndis with 55505 55501 1
+55506 < Updating ndis with 55505 55501 1
+55502 < Updating ndis with 55501 55505 1
+55501 < updatedndis
+55505 < 55505 sent 55501 to 55503
+55501 < Updating ndis with 55505 55505 0
+55505 < sent all 8 D values to 55501
+55502 < 55502 sent 55505 to 55501
+55505 < 55505 sent 55501 to 55506
+55502 < 55502 sent 55505 to 55504
+55505 < 55505 sent 55501 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55505 55501 1
+55502 < 55502 sent 55505 to 55500
+55506 < updatedndis
+55504 < updatedndis
+55501 < updatedndis
+55506 < Updating ndis with 55505 55501 1
+55500 < updatedndis
+55504 < Updating ndis with 55502 55505 2
+55500 < Updating ndis with 55502 55505 2
+55501 < Updating ndis with 55502 55505 2
+55501 < 55501 sent 55505 to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55501 55505 1
+55501 < sent all 8 D values to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55501 55501 0
+55505 < updatedndis
+55503 < updatedndis
+55506 < updatedndis
+55505 < Updating ndis with 55501 55500 1
+55503 < Updating ndis with 55505 55502 2
+55506 < Updating ndis with 55505 55502 2
+55505 < updatedndis
+55501 < 55501 sent 55505 to 55500
+55500 < updatedndis
+55505 < Updating ndis with 55501 55502 1
+55502 < updatedndis
+55505 < 55505 sent 55502 to 55506
+55500 < Updating ndis with 55501 55505 1
+55502 < Updating ndis with 55501 55505 1
+55501 < 55501 sent 55505 to 55502
+55504 < updatedndis
+55505 < 55505 sent 55502 to 55503
+55504 < Updating ndis with 55501 55505 1
+55501 < 55501 sent 55505 to 55504
+55505 < 55505 sent 55502 to 55501
+55505 < updatedndis
+55501 < updatedndis
+55505 < Updating ndis with 55501 55504 1
+55501 < Updating ndis with 55505 55506 1
+55505 < updatedndis
+55505 < Updating ndis with 55501 55503 2
+55501 < updatedndis
+55505 < updatedndis
+55501 < Updating ndis with 55505 55504 2
+55501 < updatedndis
+55505 < Updating ndis with 55501 55506 2
+55501 < Updating ndis with 55505 55502 3
+55505 < updatedndis
+55501 < updatedndis
+55505 < Updating ndis with 55501 55505 1
+55501 < Updating ndis with 55505 55501 1
+55505 < updatedndis
+55501 < updatedndis
+55505 < Updating ndis with 55501 55507 3
+55501 < Updating ndis with 55505 55500 2
+55501 < updatedndis
+55501 < Updating ndis with 55505 55503 1
+55501 < updatedndis
+55501 < Updating ndis with 55505 55507 2
+55501 < updatedndis
+55501 < Updating ndis with 55505 55502 2
+55506 < Client maakt verbinding: 55503
+55503 < Updating ndis with 55506 55506 0
+55506 < Updating ndis with 55503 55503 0
+55503 < 55503 sent 55506 to 55504
+55505 < updatedndis
+55506 < 55506 sent 55503 to 55505
+55504 < updatedndis
+55504 < Updating ndis with 55503 55506 1
+55505 < Updating ndis with 55506 55503 1
+55504 < updatedndis
+55505 < updatedndis
+55504 < Updating ndis with 55506 55503 1
+55503 < 55503 sent 55506 to 55505
+55505 < Updating ndis with 55503 55506 1
+55506 < 55506 sent 55503 to 55504
+55507 < updatedndis
+55503 < 55503 sent 55506 to 55500
+55500 < updatedndis
+55501 < updatedndis
+55507 < Updating ndis with 55506 55503 1
+55506 < 55506 sent 55503 to 55507
+55501 < Updating ndis with 55500 55506 2
+55507 < 55507 sent 55503 to 55506
+55503 < sent all 8 D values to 55506
+55502 < updatedndis
+55502 < Updating ndis with 55500 55506 2
+55503 < updatedndis
+55503 < Updating ndis with 55500 55506 2
+55506 < sent all 8 D values to 55503
+55500 < Updating ndis with 55503 55506 1
+55503 < updatedndis
+55506 < updatedndis
+55503 < Updating ndis with 55506 55506 0
+55506 < Updating ndis with 55507 55503 2
+55500 < 55500 sent 55506 to 55501
+55506 < updatedndis
+55500 < 55500 sent 55506 to 55502
+55500 < 55500 sent 55506 to 55503
+55506 < Updating ndis with 55503 55503 0
+55503 < 55503 sent 55506 to 55504
+55506 < 55506 sent 55503 to 55505
+55505 < updatedndis
+55506 < 55506 sent 55503 to 55504
+55505 < Updating ndis with 55506 55503 1
+55504 < updatedndis
+55507 < updatedndis
+55504 < updatedndis
+55507 < Updating ndis with 55506 55503 1
+55506 < 55506 sent 55503 to 55507
+55504 < Updating ndis with 55506 55503 1
+55503 < 55503 sent 55506 to 55505
+55505 < updatedndis
+55504 < Updating ndis with 55503 55506 1
+55505 < Updating ndis with 55503 55506 1
+55506 < updatedndis
+55500 < updatedndis
+55500 < Updating ndis with 55503 55506 1
+55503 < 55503 sent 55506 to 55500
+55506 < Updating ndis with 55503 55504 1
+55506 < updatedndis
+55503 < updatedndis
+55507 < updatedndis
+55506 < Updating ndis with 55503 55502 2
+55505 < updatedndis
+55504 < updatedndis
+55503 < Updating ndis with 55506 55505 1
+55507 < Updating ndis with 55506 55500 2
+55506 < updatedndis
+55505 < Updating ndis with 55506 55500 2
+55504 < Updating ndis with 55506 55500 2
+55503 < updatedndis
+55507 < 55507 sent 55500 to 55506
+55506 < Updating ndis with 55503 55501 2
+55503 < Updating ndis with 55506 55504 1
+55504 < updatedndis
+55506 < updatedndis
+55505 < updatedndis
+55503 < updatedndis
+55500 < updatedndis
+55504 < Updating ndis with 55503 55507 2
+55506 < Updating ndis with 55503 55500 1
+55505 < Updating ndis with 55503 55507 2
+55501 < updatedndis
+55500 < Updating ndis with 55503 55507 2
+55503 < Updating ndis with 55506 55502 2
+55502 < updatedndis
+55506 < 55506 sent 55500 to 55505
+55501 < Updating ndis with 55500 55507 3
+55500 < 55500 sent 55507 to 55501
+55503 < updatedndis
+55502 < Updating ndis with 55500 55507 3
+55503 < Updating ndis with 55506 55501 2
+55506 < 55506 sent 55500 to 55504
+55500 < 55500 sent 55507 to 55502
+55503 < updatedndis
+55503 < Updating ndis with 55506 55500 3
+55506 < 55506 sent 55500 to 55507
+55503 < updatedndis
+55500 < 55500 sent 55507 to 55503
+55506 < 55506 sent 55500 to 55503
+55503 < Updating ndis with 55506 55503 1
+55503 < updatedndis
+55503 < Updating ndis with 55506 55507 1
+55506 < updatedndis
+55506 < Updating ndis with 55507 55500 3
+55503 < 55503 sent 55507 to 55504
+55506 < updatedndis
+55506 < Updating ndis with 55503 55506 1
+55506 < updatedndis
+55506 < Updating ndis with 55503 55505 1
+55506 < updatedndis
+55503 < 55503 sent 55507 to 55505
+55506 < Updating ndis with 55503 55507 3
+55506 < updatedndis
+55506 < Updating ndis with 55503 55507 2
+55503 < 55503 sent 55507 to 55500
+55503 < 55503 sent 55507 to 55506
+55503 < updatedndis
+55503 < Updating ndis with 55506 55500 2
+55503 < updatedndis
+55503 < Updating ndis with 55500 55507 3
+55506 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55506 55506 0
+55500 < 55500 sent 55506 to 55501
+55501 < updatedndis
+55502 < updatedndis
+55501 < Updating ndis with 55500 55506 1
+55502 < Updating ndis with 55500 55506 1
+55500 < 55500 sent 55506 to 55502
+55503 < updatedndis
+55503 < Updating ndis with 55500 55506 1
+55500 < 55500 sent 55506 to 55503
+55506 < Updating ndis with 55500 55500 0
+55506 < 55506 sent 55500 to 55505
+55500 < sent all 8 D values to 55506
+55506 < updatedndis
+55505 < updatedndis
+55506 < Updating ndis with 55500 55500 0
+55505 < Updating ndis with 55506 55500 1
+55506 < 55506 sent 55500 to 55504
+55500 < 55500 sent 55506 to 55501
+55503 < updatedndis
+55500 < 55500 sent 55506 to 55502
+55503 < Updating ndis with 55500 55506 1
+55501 < updatedndis
+55501 < Updating ndis with 55500 55506 1
+55500 < 55500 sent 55506 to 55503
+55502 < updatedndis
+55502 < Updating ndis with 55500 55506 1
+55504 < updatedndis
+55506 < 55506 sent 55500 to 55507
+55504 < Updating ndis with 55506 55500 1
+55507 < updatedndis
+55507 < Updating ndis with 55506 55500 1
+55506 < 55506 sent 55500 to 55503
+55507 < 55507 sent 55500 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55507 55500 2
+55506 < sent all 8 D values to 55500
+55503 < updatedndis
+55503 < Updating ndis with 55506 55500 1
+55500 < updatedndis
+55500 < Updating ndis with 55506 55506 0
+55500 < updatedndis
+55506 < 55506 sent 55500 to 55505
+55500 < Updating ndis with 55506 55505 1
+55500 < updatedndis
+55501 < updatedndis
+55500 < Updating ndis with 55506 55504 1
+55500 < updatedndis
+55501 < Updating ndis with 55500 55507 2
+55500 < Updating ndis with 55506 55502 2
+55502 < updatedndis
+55503 < updatedndis
+55500 < updatedndis
+55502 < Updating ndis with 55500 55507 2
+55506 < 55506 sent 55500 to 55504
+55500 < Updating ndis with 55506 55501 2
+55503 < Updating ndis with 55500 55507 2
+55500 < updatedndis
+55505 < updatedndis
+55505 < Updating ndis with 55506 55500 1
+55500 < Updating ndis with 55506 55500 1
+55500 < updatedndis
+55500 < Updating ndis with 55506 55503 1
+55500 < updatedndis
+55506 < 55506 sent 55500 to 55507
+55504 < updatedndis
+55507 < updatedndis
+55500 < Updating ndis with 55506 55507 1
+55504 < Updating ndis with 55506 55500 1
+55507 < Updating ndis with 55506 55500 1
+55500 < 55500 sent 55507 to 55501
+55503 < updatedndis
+55506 < 55506 sent 55500 to 55503
+55503 < Updating ndis with 55506 55500 1
+55500 < 55500 sent 55507 to 55502
+55500 < 55500 sent 55507 to 55503
+55506 < updatedndis
+55500 < 55500 sent 55507 to 55506
+55506 < Updating ndis with 55500 55501 1
+55506 < updatedndis
+55506 < Updating ndis with 55500 55502 1
+55506 < updatedndis
+55506 < Updating ndis with 55500 55504 2
+55506 < updatedndis
+55506 < Updating ndis with 55500 55503 1
+55506 < updatedndis
+55506 < Updating ndis with 55500 55506 1
+55506 < updatedndis
+55506 < Updating ndis with 55500 55505 2
+55506 < updatedndis
+55506 < Updating ndis with 55500 55507 3
+55506 < updatedndis
+55506 < Updating ndis with 55500 55507 2
+55506 < Client maakt verbinding: 55501
+55501 < Updating ndis with 55506 55506 0
+55501 < 55501 sent 55506 to 55500
+55500 < updatedndis
+55502 < updatedndis
+55500 < Updating ndis with 55501 55506 1
+55504 < updatedndis
+55502 < Updating ndis with 55501 55506 1
+55501 < 55501 sent 55506 to 55502
+55505 < updatedndis
+55506 < Updating ndis with 55501 55501 0
+55504 < Updating ndis with 55501 55506 1
+55505 < Updating ndis with 55501 55506 1
+55500 < updatedndis
+55506 < 55506 sent 55501 to 55505
+55502 < updatedndis
+55505 < updatedndis
+55500 < Updating ndis with 55501 55506 1
+55501 < 55501 sent 55506 to 55504
+55504 < updatedndis
+55502 < Updating ndis with 55501 55506 1
+55505 < Updating ndis with 55506 55501 1
+55506 < updatedndis
+55504 < Updating ndis with 55501 55506 1
+55506 < Updating ndis with 55501 55501 0
+55505 < updatedndis
+55504 < updatedndis
+55506 < 55506 sent 55501 to 55504
+55504 < Updating ndis with 55506 55501 1
+55507 < updatedndis
+55501 < 55501 sent 55506 to 55505
+55505 < Updating ndis with 55501 55506 1
+55507 < Updating ndis with 55506 55501 1
+55506 < 55506 sent 55501 to 55507
+55503 < updatedndis
+55507 < 55507 sent 55501 to 55506
+55500 < updatedndis
+55501 < sent all 8 D values to 55506
+55503 < Updating ndis with 55506 55501 1
+55500 < Updating ndis with 55506 55501 1
+55501 < 55501 sent 55506 to 55500
+55506 < 55506 sent 55501 to 55503
+55501 < 55501 sent 55506 to 55502
+55506 < updatedndis
+55505 < updatedndis
+55506 < Updating ndis with 55507 55501 2
+55505 < Updating ndis with 55506 55501 1
+55506 < 55506 sent 55501 to 55500
+55507 < updatedndis
+55501 < 55501 sent 55506 to 55504
+55507 < Updating ndis with 55506 55501 1
+55503 < updatedndis
+55506 < sent all 8 D values to 55501
+55503 < Updating ndis with 55506 55501 1
+55501 < 55501 sent 55506 to 55505
+55506 < 55506 sent 55501 to 55505
+55504 < updatedndis
+55504 < Updating ndis with 55506 55501 1
+55500 < updatedndis
+55501 < updatedndis
+55506 < 55506 sent 55501 to 55504
+55500 < Updating ndis with 55506 55501 1
+55501 < Updating ndis with 55506 55506 0
+55501 < updatedndis
+55501 < Updating ndis with 55506 55505 1
+55502 < updatedndis
+55501 < updatedndis
+55505 < updatedndis
+55502 < Updating ndis with 55501 55507 2
+55501 < Updating ndis with 55506 55504 1
+55500 < updatedndis
+55505 < Updating ndis with 55501 55507 2
+55504 < updatedndis
+55501 < updatedndis
+55506 < 55506 sent 55501 to 55507
+55500 < Updating ndis with 55501 55507 2
+55504 < Updating ndis with 55501 55507 2
+55501 < Updating ndis with 55506 55502 2
+55506 < 55506 sent 55501 to 55503
+55501 < updatedndis
+55501 < Updating ndis with 55506 55501 1
+55501 < updatedndis
+55501 < Updating ndis with 55506 55500 1
+55506 < 55506 sent 55501 to 55500
+55501 < updatedndis
+55501 < Updating ndis with 55506 55503 1
+55501 < updatedndis
+55501 < Updating ndis with 55506 55507 1
+55506 < updatedndis
+55501 < 55501 sent 55507 to 55500
+55506 < Updating ndis with 55501 55500 1
+55506 < updatedndis
+55506 < Updating ndis with 55501 55502 1
+55506 < updatedndis
+55501 < 55501 sent 55507 to 55502
+55506 < Updating ndis with 55501 55504 1
+55506 < updatedndis
+55506 < Updating ndis with 55501 55503 2
+55506 < updatedndis
+55501 < 55501 sent 55507 to 55504
+55506 < Updating ndis with 55501 55506 1
+55506 < updatedndis
+55506 < Updating ndis with 55501 55505 1
+55501 < 55501 sent 55507 to 55505
+55506 < updatedndis
+55506 < Updating ndis with 55501 55507 3
+55501 < 55501 sent 55507 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55501 55507 2
+55508 < Client maakt verbinding: 55503
+55503 < Updating ndis with 55508 55508 0
+55503 < 55503 sent 55508 to 55504
+55504 < updatedndis
+55504 < Updating ndis with 55503 55508 1
+55504 < 55504 sent 55508 to 55502
+55503 < 55503 sent 55508 to 55505
+55505 < updatedndis
+55504 < 55504 sent 55508 to 55503
+55500 < updatedndis
+55503 < 55503 sent 55508 to 55500
+55506 < updatedndis
+55505 < Updating ndis with 55503 55508 1
+55500 < Updating ndis with 55503 55508 1
+55501 < updatedndis
+55500 < 55500 sent 55508 to 55501
+55506 < Updating ndis with 55503 55508 1
+55505 < 55505 sent 55508 to 55506
+55501 < Updating ndis with 55500 55508 2
+55503 < 55503 sent 55508 to 55506
+55506 < 55506 sent 55508 to 55505
+55502 < updatedndis
+55501 < 55501 sent 55508 to 55500
+55500 < 55500 sent 55508 to 55502
+55505 < 55505 sent 55508 to 55503
+55504 < 55504 sent 55508 to 55506
+55503 < sent all 9 D values to 55508
+55506 < 55506 sent 55508 to 55504
+55503 < 55503 sent 55508 to 55504
+55501 < updatedndis
+55500 < 55500 sent 55508 to 55503
+55501 < Updating ndis with 55504 55508 2
+55506 < 55506 sent 55508 to 55507
+55505 < 55505 sent 55508 to 55501
+55503 < 55503 sent 55508 to 55505
+55504 < 55504 sent 55508 to 55501
+55500 < 55500 sent 55508 to 55506
+55506 < 55506 sent 55508 to 55503
+55505 < updatedndis
+55503 < 55503 sent 55508 to 55500
+55505 < Updating ndis with 55503 55508 1
+55502 < Updating ndis with 55500 55508 2
+55501 < 55501 sent 55508 to 55502
+55506 < 55506 sent 55508 to 55500
+55500 < updatedndis
+55503 < 55503 sent 55508 to 55506
+55504 < updatedndis
+55500 < Updating ndis with 55503 55508 1
+55501 < 55501 sent 55508 to 55504
+55502 < 55502 sent 55508 to 55501
+55506 < 55506 sent 55508 to 55501
+55504 < Updating ndis with 55503 55508 1
+55503 < updatedndis
+55502 < updatedndis
+55503 < Updating ndis with 55504 55508 2
+55501 < 55501 sent 55508 to 55505
+55506 < updatedndis
+55502 < Updating ndis with 55504 55508 2
+55506 < Updating ndis with 55503 55508 1
+55500 < updatedndis
+55502 < 55502 sent 55508 to 55504
+55503 < updatedndis
+55500 < Updating ndis with 55501 55508 3
+55506 < updatedndis
+55501 < 55501 sent 55508 to 55506
+55505 < updatedndis
+55504 < updatedndis
+55503 < Updating ndis with 55505 55508 2
+55506 < Updating ndis with 55504 55508 2
+55505 < Updating ndis with 55506 55508 2
+55503 < updatedndis
+55504 < Updating ndis with 55506 55508 2
+55502 < 55502 sent 55508 to 55500
+55506 < updatedndis
+55501 < updatedndis
+55503 < Updating ndis with 55500 55508 2
+55500 < updatedndis
+55507 < updatedndis
+55506 < Updating ndis with 55505 55508 2
+55501 < Updating ndis with 55505 55508 2
+55503 < updatedndis
+55507 < Updating ndis with 55506 55508 2
+55500 < Updating ndis with 55506 55508 2
+55506 < updatedndis
+55501 < updatedndis
+55505 < updatedndis
+55502 < updatedndis
+55503 < Updating ndis with 55506 55508 2
+55507 < 55507 sent 55508 to 55506
+55506 < Updating ndis with 55500 55508 2
+55501 < Updating ndis with 55506 55508 2
+55505 < Updating ndis with 55501 55508 3
+55504 < updatedndis
+55502 < Updating ndis with 55501 55508 3
+55506 < updatedndis
+55501 < updatedndis
+55504 < Updating ndis with 55501 55508 3
+55500 < updatedndis
+55506 < Updating ndis with 55501 55508 3
+55501 < Updating ndis with 55502 55508 3
+55504 < updatedndis
+55500 < Updating ndis with 55502 55508 3
+55506 < updatedndis
+55504 < Updating ndis with 55502 55508 3
+55506 < Updating ndis with 55507 55508 3
+55508 < updatedndis
+55508 < Updating ndis with 55503 55503 0
+55508 < Updating ndis with 55503 55503 0
+55508 < sent all 2 D values to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55508 55508 0
+55508 < updatedndis
+55503 < updatedndis
+55503 < Updating ndis with 55508 55503 1
+55508 < Updating ndis with 55503 55504 1
+55508 < 55508 sent 55504 to 55503
+55503 < updatedndis
+55508 < updatedndis
+55503 < Updating ndis with 55508 55504 2
+55508 < Updating ndis with 55503 55502 2
+55503 < updatedndis
+55503 < Updating ndis with 55508 55502 3
+55508 < 55508 sent 55502 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55508 55501 3
+55503 < updatedndis
+55503 < Updating ndis with 55508 55500 2
+55508 < updatedndis
+55503 < updatedndis
+55508 < Updating ndis with 55503 55501 2
+55503 < Updating ndis with 55508 55506 2
+55508 < 55508 sent 55501 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55508 55505 2
+55503 < updatedndis
+55503 < Updating ndis with 55508 55507 3
+55508 < updatedndis
+55508 < Updating ndis with 55503 55500 1
+55508 < 55508 sent 55500 to 55503
+55508 < updatedndis
+55508 < Updating ndis with 55503 55506 1
+55508 < 55508 sent 55506 to 55503
+55508 < updatedndis
+55508 < Updating ndis with 55503 55505 1
+55508 < 55508 sent 55505 to 55503
+55508 < updatedndis
+55508 < Updating ndis with 55503 55507 2
+55508 < 55508 sent 55507 to 55503
+55508 < updatedndis
+55508 < Updating ndis with 55503 55508 1
+55507 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55507 55507 0
+55500 < 55500 sent 55507 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55507 1
+55500 < 55500 sent 55507 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55507 1
+55502 < 55502 sent 55507 to 55501
+55502 < 55502 sent 55507 to 55504
+55502 < 55502 sent 55507 to 55500
+55501 < updatedndis
+55501 < Updating ndis with 55502 55507 2
+55504 < updatedndis
+55500 < updatedndis
+55504 < Updating ndis with 55502 55507 2
+55500 < Updating ndis with 55502 55507 2
+55500 < 55500 sent 55507 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55500 55507 1
+55500 < 55500 sent 55507 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55500 55507 1
+55500 < sent all 9 D values to 55507
+55500 < 55500 sent 55507 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55507 1
+55500 < 55500 sent 55507 to 55502
+55500 < 55500 sent 55507 to 55503
+55503 < updatedndis
+55502 < updatedndis
+55503 < Updating ndis with 55500 55507 1
+55502 < Updating ndis with 55500 55507 1
+55506 < updatedndis
+55500 < 55500 sent 55507 to 55506
+55506 < Updating ndis with 55500 55507 1
+55507 < updatedndis
+55507 < Updating ndis with 55500 55500 0
+55507 < 55507 sent 55500 to 55506
+55507 < updatedndis
+55507 < Updating ndis with 55500 55501 1
+55507 < updatedndis
+55507 < Updating ndis with 55500 55502 1
+55507 < 55507 sent 55502 to 55506
+55506 < updatedndis
+55507 < updatedndis
+55506 < Updating ndis with 55507 55500 1
+55507 < Updating ndis with 55500 55504 2
+55507 < updatedndis
+55507 < Updating ndis with 55500 55503 1
+55507 < updatedndis
+55507 < Updating ndis with 55500 55506 1
+55507 < updatedndis
+55507 < Updating ndis with 55500 55505 2
+55507 < updatedndis
+55507 < Updating ndis with 55500 55507 1
+55507 < updatedndis
+55507 < Updating ndis with 55500 55508 2
+55506 < updatedndis
+55506 < Updating ndis with 55507 55502 2
+55507 < Updating ndis with 55500 55500 0
+55507 < sent all 9 D values to 55500
+55507 < 55507 sent 55500 to 55506
+55500 < updatedndis
+55500 < Updating ndis with 55507 55507 0
+55500 < updatedndis
+55500 < Updating ndis with 55507 55506 1
+55500 < updatedndis
+55500 < Updating ndis with 55507 55505 2
+55500 < updatedndis
+55500 < Updating ndis with 55507 55504 2
+55500 < updatedndis
+55500 < Updating ndis with 55507 55502 2
+55500 < updatedndis
+55500 < Updating ndis with 55507 55501 2
+55500 < updatedndis
+55500 < Updating ndis with 55507 55500 1
+55500 < updatedndis
+55500 < Updating ndis with 55507 55503 2
+55500 < updatedndis
+55500 < Updating ndis with 55507 55508 3
+55506 < updatedndis
+55506 < Updating ndis with 55507 55500 1
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55500 < 55500 1 localhost
+55500 < 55500 0 55500
+55500 < 55501 1 55501
+55501 < 55501 1 localhost
+55500 < 55502 1 55502
+55500 < 55503 1 55503
+55500 < 55504 2 55504
+55500 < 55505 2 55505
+55501 < 55500 1 55500
+55500 < 55506 1 55506
+55500 < 55507 1 55507
+55501 < 55501 0 55501
+55500 < 55508 2 55508
+55501 < 55502 1 55502
+55502 < 55502 1 localhost
+55501 < 55503 2 55503
+55502 < 55500 1 55500
+55501 < 55504 1 55504
+55502 < 55501 1 55501
+55501 < 55505 1 55505
+55501 < 55506 1 55506
+55502 < 55502 0 55502
+55501 < 55507 2 55507
+55502 < 55503 2 55503
+55501 < 55508 3 55508
+55502 < 55504 1 55504
+55502 < 55505 2 55505
+55502 < 55506 2 55506
+55502 < 55507 2 55507
+55502 < 55508 3 55508
+55504 < 55504 1 localhost
+55505 < 55505 1 localhost
+55504 < 55500 2 55500
+55504 < 55501 1 55501
+55504 < 55502 1 55502
+55503 < 55503 1 localhost
+55505 < 55500 2 55500
+55503 < 55500 1 55500
+55504 < 55503 1 55503
+55504 < 55504 0 55504
+55504 < 55505 2 55505
+55505 < 55501 1 55501
+55503 < 55501 2 55501
+55504 < 55506 1 55506
+55505 < 55502 2 55502
+55503 < 55502 2 55502
+55504 < 55507 2 55507
+55505 < 55503 1 55503
+55503 < 55503 0 55503
+55505 < 55504 2 55504
+55503 < 55504 1 55504
+55505 < 55505 0 55505
+55503 < 55505 1 55505
+55505 < 55506 1 55506
+55503 < 55506 1 55506
+55505 < 55507 2 55507
+55505 < 55508 2 55508
+55503 < 55507 2 55507
+55503 < 55508 1 55508
+55507 < 55507 1 localhost
+55507 < 55500 1 55500
+55508 < 55508 1 localhost
+55507 < 55501 2 55501
+55507 < 55502 2 55502
+55508 < 55500 2 55500
+55507 < 55503 2 55503
+55508 < 55501 3 55501
+55504 < 55508 2 55508
+55507 < 55504 2 55504
+55508 < 55502 3 55502
+55506 < 55506 1 localhost
+55507 < 55505 2 55505
+55508 < 55503 1 55503
+55507 < 55506 1 55506
+55508 < 55504 2 55504
+55506 < 55500 1 55500
+55507 < 55507 0 55507
+55506 < 55501 1 55501
+55508 < 55505 2 55505
+55507 < 55508 3 55508
+55506 < 55502 2 55502
+55508 < 55506 2 55506
+55506 < 55503 1 55503
+55508 < 55507 3 55507
+55506 < 55504 1 55504
+55508 < 55508 0 55508
+55506 < 55505 1 55505
+55506 < 55506 0 55506
+55506 < 55507 1 55507
+55506 < 55508 2 55508
+
+Process 55500:
+55500
+55501
+55502
+55503
+55506
+55507
+Updating ndis with 55501 55501 0
+sent all 2 D values to 55501
+updatedndis
+Updating ndis with 55501 55501 0
+updatedndis
+Updating ndis with 55501 55500 1
+updatedndis
+Updating ndis with 55501 55502 1
+55500 sent 55502 to 55501
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55504 2
+55500 sent 55504 to 55501
+updatedndis
+Updating ndis with 55501 55503 3
+55500 sent 55503 to 55501
+updatedndis
+Updating ndis with 55501 55506 3
+55500 sent 55506 to 55501
+updatedndis
+Updating ndis with 55501 55505 4
+55500 sent 55505 to 55501
+updatedndis
+Updating ndis with 55501 55507 4
+55500 sent 55507 to 55501
+Updating ndis with 55502 55502 0
+55500 sent 55502 to 55501
+sent all 8 D values to 55502
+55500 sent 55502 to 55501
+updatedndis
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55504 1
+55500 sent 55504 to 55501
+55500 sent 55504 to 55502
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55502 55503 2
+55500 sent 55503 to 55501
+55500 sent 55503 to 55502
+updatedndis
+Updating ndis with 55502 55506 2
+55500 sent 55506 to 55501
+55500 sent 55506 to 55502
+updatedndis
+Updating ndis with 55502 55505 3
+55500 sent 55505 to 55501
+55500 sent 55505 to 55502
+updatedndis
+Updating ndis with 55502 55507 3
+55500 sent 55507 to 55501
+55500 sent 55507 to 55502
+updatedndis
+Updating ndis with 55501 55504 1
+updatedndis
+Updating ndis with 55501 55504 1
+updatedndis
+Updating ndis with 55501 55503 2
+updatedndis
+Updating ndis with 55501 55506 2
+updatedndis
+Updating ndis with 55501 55505 3
+updatedndis
+Updating ndis with 55501 55507 3
+Updating ndis with 55503 55503 0
+55500 sent 55503 to 55501
+55500 sent 55503 to 55502
+sent all 8 D values to 55503
+55500 sent 55503 to 55501
+55500 sent 55503 to 55502
+updatedndis
+Updating ndis with 55503 55503 0
+updatedndis
+Updating ndis with 55503 55504 1
+updatedndis
+Updating ndis with 55503 55502 2
+updatedndis
+Updating ndis with 55503 55501 2
+updatedndis
+Updating ndis with 55503 55500 1
+updatedndis
+Updating ndis with 55503 55506 2
+updatedndis
+Updating ndis with 55503 55505 1
+55500 sent 55505 to 55501
+55500 sent 55505 to 55502
+55500 sent 55505 to 55503
+updatedndis
+Updating ndis with 55503 55507 3
+updatedndis
+Updating ndis with 55501 55505 1
+updatedndis
+Updating ndis with 55502 55505 2
+updatedndis
+Updating ndis with 55501 55505 1
+updatedndis
+Updating ndis with 55503 55506 1
+55500 sent 55506 to 55501
+55500 sent 55506 to 55502
+55500 sent 55506 to 55503
+updatedndis
+Updating ndis with 55503 55506 1
+updatedndis
+Updating ndis with 55503 55507 2
+55500 sent 55507 to 55501
+55500 sent 55507 to 55502
+55500 sent 55507 to 55503
+Updating ndis with 55506 55506 0
+55500 sent 55506 to 55501
+55500 sent 55506 to 55502
+55500 sent 55506 to 55503
+sent all 8 D values to 55506
+55500 sent 55506 to 55501
+55500 sent 55506 to 55502
+55500 sent 55506 to 55503
+updatedndis
+Updating ndis with 55506 55506 0
+updatedndis
+Updating ndis with 55506 55505 1
+updatedndis
+Updating ndis with 55506 55504 1
+updatedndis
+Updating ndis with 55506 55502 2
+updatedndis
+Updating ndis with 55506 55501 2
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55506 55503 1
+updatedndis
+Updating ndis with 55506 55507 1
+55500 sent 55507 to 55501
+55500 sent 55507 to 55502
+55500 sent 55507 to 55503
+55500 sent 55507 to 55506
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55501 55507 2
+updatedndis
+Updating ndis with 55503 55508 1
+55500 sent 55508 to 55501
+55500 sent 55508 to 55502
+55500 sent 55508 to 55503
+55500 sent 55508 to 55506
+updatedndis
+Updating ndis with 55503 55508 1
+updatedndis
+Updating ndis with 55501 55508 3
+updatedndis
+Updating ndis with 55506 55508 2
+updatedndis
+Updating ndis with 55502 55508 3
+Updating ndis with 55507 55507 0
+55500 sent 55507 to 55501
+55500 sent 55507 to 55502
+updatedndis
+Updating ndis with 55502 55507 2
+55500 sent 55507 to 55503
+55500 sent 55507 to 55506
+sent all 9 D values to 55507
+55500 sent 55507 to 55501
+55500 sent 55507 to 55502
+55500 sent 55507 to 55503
+55500 sent 55507 to 55506
+updatedndis
+Updating ndis with 55507 55507 0
+updatedndis
+Updating ndis with 55507 55506 1
+updatedndis
+Updating ndis with 55507 55505 2
+updatedndis
+Updating ndis with 55507 55504 2
+updatedndis
+Updating ndis with 55507 55502 2
+updatedndis
+Updating ndis with 55507 55501 2
+updatedndis
+Updating ndis with 55507 55500 1
+updatedndis
+Updating ndis with 55507 55503 2
+updatedndis
+Updating ndis with 55507 55508 3
+> R
+55500 1 localhost
+55500 0 55500
+55501 1 55501
+55502 1 55502
+55503 1 55503
+55504 2 55504
+55505 2 55505
+55506 1 55506
+55507 1 55507
+55508 2 55508
+
+Process 55501:
+55501
+55500
+55502
+55504
+55505
+55506
+Client maakt verbinding: 55500
+Updating ndis with 55500 55500 0
+updatedndis
+Updating ndis with 55500 55500 0
+sent all 2 D values to 55500
+updatedndis
+Updating ndis with 55500 55501 1
+Updating ndis with 55502 55502 0
+55501 sent 55502 to 55500
+sent all 3 D values to 55502
+55501 sent 55502 to 55500
+updatedndis
+Updating ndis with 55500 55502 2
+updatedndis
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55504 1
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+updatedndis
+Updating ndis with 55500 55504 3
+updatedndis
+Updating ndis with 55502 55504 1
+updatedndis
+Updating ndis with 55502 55500 2
+updatedndis
+Updating ndis with 55502 55503 2
+55501 sent 55503 to 55500
+55501 sent 55503 to 55502
+updatedndis
+Updating ndis with 55500 55503 4
+updatedndis
+Updating ndis with 55502 55506 2
+55501 sent 55506 to 55500
+55501 sent 55506 to 55502
+updatedndis
+Updating ndis with 55502 55505 3
+55501 sent 55505 to 55500
+55501 sent 55505 to 55502
+updatedndis
+Updating ndis with 55500 55506 4
+updatedndis
+Updating ndis with 55500 55505 5
+updatedndis
+Updating ndis with 55502 55507 3
+55501 sent 55507 to 55500
+55501 sent 55507 to 55502
+updatedndis
+Updating ndis with 55500 55507 5
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55504 2
+updatedndis
+Updating ndis with 55500 55503 3
+updatedndis
+Updating ndis with 55500 55506 3
+updatedndis
+Updating ndis with 55500 55505 4
+updatedndis
+Updating ndis with 55500 55507 4
+updatedndis
+Updating ndis with 55502 55500 1
+Updating ndis with 55504 55504 0
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+sent all 8 D values to 55504
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+updatedndis
+Updating ndis with 55504 55504 0
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55501 1
+updatedndis
+Updating ndis with 55504 55500 2
+updatedndis
+Updating ndis with 55504 55503 1
+55501 sent 55503 to 55500
+55501 sent 55503 to 55502
+55501 sent 55503 to 55504
+updatedndis
+Updating ndis with 55504 55506 1
+55501 sent 55506 to 55500
+55501 sent 55506 to 55502
+55501 sent 55506 to 55504
+updatedndis
+Updating ndis with 55504 55505 2
+55501 sent 55505 to 55500
+55501 sent 55505 to 55502
+55501 sent 55505 to 55504
+updatedndis
+Updating ndis with 55504 55507 2
+55501 sent 55507 to 55500
+55501 sent 55507 to 55502
+55501 sent 55507 to 55504
+updatedndis
+Updating ndis with 55500 55503 1
+updatedndis
+Updating ndis with 55500 55503 1
+updatedndis
+Updating ndis with 55500 55505 2
+Updating ndis with 55505 55505 0
+55501 sent 55505 to 55500
+55501 sent 55505 to 55502
+updatedndis
+Updating ndis with 55505 55505 0
+updatedndis
+Updating ndis with 55502 55505 2
+55501 sent 55505 to 55504
+sent all 8 D values to 55505
+55501 sent 55505 to 55500
+55501 sent 55505 to 55502
+55501 sent 55505 to 55504
+updatedndis
+Updating ndis with 55505 55506 1
+updatedndis
+Updating ndis with 55505 55504 2
+updatedndis
+Updating ndis with 55505 55502 3
+updatedndis
+Updating ndis with 55505 55501 1
+updatedndis
+Updating ndis with 55505 55500 2
+updatedndis
+Updating ndis with 55505 55503 1
+updatedndis
+Updating ndis with 55505 55507 2
+updatedndis
+Updating ndis with 55505 55502 2
+updatedndis
+Updating ndis with 55500 55506 2
+updatedndis
+Updating ndis with 55500 55507 3
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55500 55507 2
+Updating ndis with 55506 55506 0
+55501 sent 55506 to 55500
+55501 sent 55506 to 55502
+55501 sent 55506 to 55504
+55501 sent 55506 to 55505
+sent all 8 D values to 55506
+55501 sent 55506 to 55500
+55501 sent 55506 to 55502
+55501 sent 55506 to 55504
+55501 sent 55506 to 55505
+updatedndis
+Updating ndis with 55506 55506 0
+updatedndis
+Updating ndis with 55506 55505 1
+updatedndis
+Updating ndis with 55506 55504 1
+updatedndis
+Updating ndis with 55506 55502 2
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55506 55503 1
+updatedndis
+Updating ndis with 55506 55507 1
+55501 sent 55507 to 55500
+55501 sent 55507 to 55502
+55501 sent 55507 to 55504
+55501 sent 55507 to 55505
+55501 sent 55507 to 55506
+updatedndis
+Updating ndis with 55500 55508 2
+55501 sent 55508 to 55500
+updatedndis
+Updating ndis with 55504 55508 2
+55501 sent 55508 to 55502
+55501 sent 55508 to 55504
+55501 sent 55508 to 55505
+55501 sent 55508 to 55506
+updatedndis
+Updating ndis with 55505 55508 2
+updatedndis
+Updating ndis with 55506 55508 2
+updatedndis
+Updating ndis with 55502 55508 3
+updatedndis
+Updating ndis with 55500 55507 1
+updatedndis
+Updating ndis with 55502 55507 2
+updatedndis
+Updating ndis with 55500 55507 1
+> R
+55501 1 localhost
+55500 1 55500
+55501 0 55501
+55502 1 55502
+55503 2 55503
+55504 1 55504
+55505 1 55505
+55506 1 55506
+55507 2 55507
+55508 3 55508
+
+Process 55502:
+55502
+55500
+55501
+55504
+Client maakt verbinding: 55501
+updatedndis
+Updating ndis with 55501 55501 0
+Updating ndis with 55501 55501 0
+55502 sent 55501 to 55504
+sent all 2 D values to 55501
+55502 sent 55501 to 55504
+updatedndis
+Updating ndis with 55504 55504 0
+55502 sent 55504 to 55501
+sent all 3 D values to 55504
+Updating ndis with 55501 55500 1
+55502 sent 55504 to 55501
+55502 sent 55500 to 55501
+55502 sent 55500 to 55504
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55504 2
+updatedndis
+Updating ndis with 55504 55504 0
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55501 2
+updatedndis
+Updating ndis with 55504 55500 3
+updatedndis
+Updating ndis with 55504 55503 1
+55502 sent 55503 to 55501
+55502 sent 55503 to 55504
+updatedndis
+Updating ndis with 55501 55503 3
+updatedndis
+Updating ndis with 55504 55503 1
+updatedndis
+Updating ndis with 55504 55506 1
+55502 sent 55506 to 55501
+55502 sent 55506 to 55504
+updatedndis
+Updating ndis with 55504 55506 1
+updatedndis
+Updating ndis with 55504 55505 2
+55502 sent 55505 to 55501
+55502 sent 55505 to 55504
+updatedndis
+Updating ndis with 55501 55506 3
+updatedndis
+Updating ndis with 55501 55505 4
+updatedndis
+Updating ndis with 55504 55507 2
+55502 sent 55507 to 55501
+55502 sent 55507 to 55504
+updatedndis
+Updating ndis with 55501 55507 4
+Client maakt verbinding: 55500
+updatedndis
+Updating ndis with 55500 55500 0
+55502 sent 55500 to 55501
+55502 sent 55500 to 55504
+updatedndis
+Updating ndis with 55504 55500 2
+updatedndis
+Updating ndis with 55500 55501 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55504 3
+updatedndis
+Updating ndis with 55500 55503 4
+Updating ndis with 55500 55500 0
+sent all 8 D values to 55500
+55502 sent 55500 to 55501
+55502 sent 55500 to 55504
+updatedndis
+Updating ndis with 55500 55506 4
+updatedndis
+Updating ndis with 55500 55505 5
+updatedndis
+Updating ndis with 55500 55507 5
+updatedndis
+Updating ndis with 55500 55504 2
+updatedndis
+Updating ndis with 55500 55503 3
+updatedndis
+Updating ndis with 55500 55506 3
+updatedndis
+Updating ndis with 55500 55505 4
+updatedndis
+Updating ndis with 55500 55507 4
+updatedndis
+Updating ndis with 55501 55504 1
+updatedndis
+Updating ndis with 55504 55501 1
+updatedndis
+Updating ndis with 55501 55504 1
+updatedndis
+Updating ndis with 55501 55503 2
+updatedndis
+Updating ndis with 55501 55506 2
+updatedndis
+Updating ndis with 55501 55505 3
+updatedndis
+Updating ndis with 55501 55507 3
+updatedndis
+Updating ndis with 55504 55501 1
+updatedndis
+Updating ndis with 55500 55503 1
+updatedndis
+Updating ndis with 55500 55503 1
+updatedndis
+Updating ndis with 55500 55505 2
+updatedndis
+Updating ndis with 55501 55505 1
+55502 sent 55505 to 55501
+55502 sent 55505 to 55504
+55502 sent 55505 to 55500
+updatedndis
+Updating ndis with 55501 55505 1
+updatedndis
+Updating ndis with 55500 55506 2
+updatedndis
+Updating ndis with 55500 55507 3
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55500 55507 2
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55501 55507 2
+updatedndis
+Updating ndis with 55500 55508 2
+55502 sent 55508 to 55501
+updatedndis
+Updating ndis with 55504 55508 2
+55502 sent 55508 to 55504
+55502 sent 55508 to 55500
+updatedndis
+Updating ndis with 55501 55508 3
+updatedndis
+Updating ndis with 55500 55507 1
+55502 sent 55507 to 55501
+55502 sent 55507 to 55504
+55502 sent 55507 to 55500
+updatedndis
+Updating ndis with 55500 55507 1
+> R
+55502 1 localhost
+55500 1 55500
+55501 1 55501
+55502 0 55502
+55503 2 55503
+55504 1 55504
+55505 2 55505
+55506 2 55506
+55507 2 55507
+55508 3 55508
+
+Process 55503:
+55503
+55500
+55504
+55505
+55506
+55508
+updatedndis
+Updating ndis with 55504 55504 0
+Updating ndis with 55504 55504 0
+sent all 2 D values to 55504
+updatedndis
+Updating ndis with 55504 55502 1
+55503 sent 55502 to 55504
+updatedndis
+Updating ndis with 55504 55501 2
+55503 sent 55501 to 55504
+updatedndis
+Updating ndis with 55504 55500 3
+55503 sent 55500 to 55504
+updatedndis
+Updating ndis with 55504 55503 1
+updatedndis
+Updating ndis with 55504 55506 1
+55503 sent 55506 to 55504
+updatedndis
+Updating ndis with 55504 55506 1
+updatedndis
+Updating ndis with 55504 55505 2
+55503 sent 55505 to 55504
+updatedndis
+Updating ndis with 55504 55507 2
+55503 sent 55507 to 55504
+updatedndis
+Updating ndis with 55504 55500 2
+55503 sent 55500 to 55504
+updatedndis
+Updating ndis with 55504 55501 1
+55503 sent 55501 to 55504
+updatedndis
+Updating ndis with 55504 55501 1
+Updating ndis with 55505 55505 0
+55503 sent 55505 to 55504
+sent all 8 D values to 55505
+55503 sent 55505 to 55504
+updatedndis
+Updating ndis with 55505 55505 0
+updatedndis
+Updating ndis with 55505 55506 1
+updatedndis
+Updating ndis with 55505 55504 2
+updatedndis
+Updating ndis with 55505 55502 3
+updatedndis
+Updating ndis with 55505 55501 3
+updatedndis
+Updating ndis with 55505 55500 4
+updatedndis
+Updating ndis with 55505 55503 1
+updatedndis
+Updating ndis with 55505 55507 2
+Client maakt verbinding: 55500
+Updating ndis with 55500 55500 0
+55503 sent 55500 to 55504
+55503 sent 55500 to 55505
+updatedndis
+Updating ndis with 55505 55500 2
+sent all 8 D values to 55500
+55503 sent 55500 to 55504
+55503 sent 55500 to 55505
+updatedndis
+Updating ndis with 55500 55500 0
+updatedndis
+Updating ndis with 55500 55501 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55504 2
+updatedndis
+Updating ndis with 55500 55503 1
+updatedndis
+Updating ndis with 55500 55506 3
+updatedndis
+Updating ndis with 55500 55505 4
+updatedndis
+Updating ndis with 55500 55507 4
+updatedndis
+Updating ndis with 55500 55505 2
+updatedndis
+Updating ndis with 55505 55501 1
+updatedndis
+Updating ndis with 55505 55501 1
+updatedndis
+Updating ndis with 55505 55502 2
+Updating ndis with 55506 55506 0
+55503 sent 55506 to 55504
+55503 sent 55506 to 55505
+55503 sent 55506 to 55500
+sent all 8 D values to 55506
+updatedndis
+Updating ndis with 55500 55506 2
+updatedndis
+Updating ndis with 55506 55506 0
+55503 sent 55506 to 55504
+55503 sent 55506 to 55505
+55503 sent 55506 to 55500
+updatedndis
+Updating ndis with 55506 55505 1
+updatedndis
+Updating ndis with 55506 55504 1
+updatedndis
+Updating ndis with 55506 55502 2
+updatedndis
+Updating ndis with 55506 55501 2
+updatedndis
+Updating ndis with 55506 55500 3
+updatedndis
+Updating ndis with 55506 55503 1
+updatedndis
+Updating ndis with 55506 55507 1
+55503 sent 55507 to 55504
+55503 sent 55507 to 55505
+55503 sent 55507 to 55500
+55503 sent 55507 to 55506
+updatedndis
+Updating ndis with 55506 55500 2
+updatedndis
+Updating ndis with 55500 55507 3
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55500 55507 2
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55506 55501 1
+Updating ndis with 55508 55508 0
+55503 sent 55508 to 55504
+55503 sent 55508 to 55505
+55503 sent 55508 to 55500
+55503 sent 55508 to 55506
+sent all 9 D values to 55508
+55503 sent 55508 to 55504
+55503 sent 55508 to 55505
+55503 sent 55508 to 55500
+55503 sent 55508 to 55506
+updatedndis
+Updating ndis with 55504 55508 2
+updatedndis
+Updating ndis with 55505 55508 2
+updatedndis
+Updating ndis with 55500 55508 2
+updatedndis
+Updating ndis with 55506 55508 2
+updatedndis
+Updating ndis with 55508 55508 0
+updatedndis
+Updating ndis with 55508 55503 1
+updatedndis
+Updating ndis with 55508 55504 2
+updatedndis
+Updating ndis with 55508 55502 3
+updatedndis
+Updating ndis with 55508 55501 3
+updatedndis
+Updating ndis with 55508 55500 2
+updatedndis
+Updating ndis with 55508 55506 2
+updatedndis
+Updating ndis with 55508 55505 2
+updatedndis
+Updating ndis with 55508 55507 3
+updatedndis
+Updating ndis with 55500 55507 1
+updatedndis
+Updating ndis with 55500 55507 1
+> R
+55503 1 localhost
+55500 1 55500
+55501 2 55501
+55502 2 55502
+55503 0 55503
+55504 1 55504
+55505 1 55505
+55506 1 55506
+55507 2 55507
+55508 1 55508
+
+Process 55504:
+55504
+55501
+55502
+55503
+55506
+Client maakt verbinding: 55502
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55501 1
+sent all 2 D values to 55502
+55504 sent 55501 to 55502
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55504 1
+updatedndis
+Updating ndis with 55502 55500 2
+55504 sent 55500 to 55502
+Client maakt verbinding: 55503
+Updating ndis with 55503 55503 0
+55504 sent 55503 to 55502
+sent all 5 D values to 55503
+updatedndis
+Updating ndis with 55502 55503 2
+55504 sent 55503 to 55502
+updatedndis
+Updating ndis with 55503 55503 0
+updatedndis
+Updating ndis with 55503 55504 1
+updatedndis
+Updating ndis with 55503 55502 2
+updatedndis
+Updating ndis with 55503 55501 3
+updatedndis
+Updating ndis with 55503 55500 4
+Updating ndis with 55506 55506 0
+55504 sent 55506 to 55502
+55504 sent 55506 to 55503
+sent all 6 D values to 55506
+55504 sent 55506 to 55502
+55504 sent 55506 to 55503
+updatedndis
+Updating ndis with 55506 55506 0
+updatedndis
+Updating ndis with 55506 55505 1
+55504 sent 55505 to 55502
+55504 sent 55505 to 55503
+55504 sent 55505 to 55506
+updatedndis
+Updating ndis with 55506 55504 1
+updatedndis
+Updating ndis with 55506 55502 2
+updatedndis
+Updating ndis with 55503 55506 2
+updatedndis
+Updating ndis with 55502 55506 2
+updatedndis
+Updating ndis with 55506 55501 3
+updatedndis
+Updating ndis with 55503 55505 3
+updatedndis
+Updating ndis with 55506 55500 4
+updatedndis
+Updating ndis with 55506 55503 2
+updatedndis
+Updating ndis with 55502 55505 3
+updatedndis
+Updating ndis with 55506 55507 1
+55504 sent 55507 to 55502
+55504 sent 55507 to 55503
+55504 sent 55507 to 55506
+updatedndis
+Updating ndis with 55503 55507 3
+updatedndis
+Updating ndis with 55502 55507 3
+updatedndis
+Updating ndis with 55506 55507 1
+updatedndis
+Updating ndis with 55502 55500 1
+55504 sent 55500 to 55502
+55504 sent 55500 to 55503
+55504 sent 55500 to 55506
+updatedndis
+Updating ndis with 55503 55500 3
+updatedndis
+Updating ndis with 55506 55500 3
+Client maakt verbinding: 55501
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55501 55501 0
+55504 sent 55501 to 55502
+55504 sent 55501 to 55503
+55504 sent 55501 to 55506
+updatedndis
+Updating ndis with 55501 55500 1
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55504 1
+updatedndis
+Updating ndis with 55503 55501 2
+updatedndis
+Updating ndis with 55506 55501 2
+updatedndis
+Updating ndis with 55501 55503 3
+updatedndis
+Updating ndis with 55501 55506 3
+updatedndis
+Updating ndis with 55501 55505 4
+updatedndis
+Updating ndis with 55501 55507 4
+Updating ndis with 55501 55501 0
+sent all 8 D values to 55501
+updatedndis
+Updating ndis with 55501 55503 2
+55504 sent 55501 to 55502
+55504 sent 55501 to 55503
+55504 sent 55501 to 55506
+updatedndis
+Updating ndis with 55501 55506 2
+updatedndis
+Updating ndis with 55501 55505 3
+updatedndis
+Updating ndis with 55501 55507 3
+updatedndis
+Updating ndis with 55503 55505 1
+updatedndis
+Updating ndis with 55503 55505 1
+updatedndis
+Updating ndis with 55503 55500 1
+updatedndis
+Updating ndis with 55503 55500 1
+updatedndis
+Updating ndis with 55502 55505 2
+updatedndis
+Updating ndis with 55501 55505 1
+updatedndis
+Updating ndis with 55501 55505 1
+updatedndis
+Updating ndis with 55503 55506 1
+updatedndis
+Updating ndis with 55506 55503 1
+updatedndis
+updatedndis
+Updating ndis with 55506 55503 1
+Updating ndis with 55503 55506 1
+updatedndis
+Updating ndis with 55506 55500 2
+updatedndis
+Updating ndis with 55503 55507 2
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55501 55507 2
+updatedndis
+Updating ndis with 55503 55508 1
+55504 sent 55508 to 55502
+55504 sent 55508 to 55503
+55504 sent 55508 to 55506
+55504 sent 55508 to 55501
+updatedndis
+Updating ndis with 55503 55508 1
+updatedndis
+Updating ndis with 55506 55508 2
+updatedndis
+Updating ndis with 55501 55508 3
+updatedndis
+Updating ndis with 55502 55508 3
+updatedndis
+Updating ndis with 55502 55507 2
+> R
+55504 1 localhost
+55500 2 55500
+55501 1 55501
+55502 1 55502
+55503 1 55503
+55504 0 55504
+55505 2 55505
+55506 1 55506
+55507 2 55507
+55508 2 55508
+
+Process 55505:
+55505
+55501
+55503
+55506
+Updating ndis with 55506 55506 0
+sent all 2 D values to 55506
+updatedndis
+Updating ndis with 55506 55506 0
+updatedndis
+Updating ndis with 55506 55505 1
+updatedndis
+Updating ndis with 55506 55504 1
+55505 sent 55504 to 55506
+updatedndis
+Updating ndis with 55506 55504 1
+updatedndis
+Updating ndis with 55506 55502 2
+55505 sent 55502 to 55506
+updatedndis
+Updating ndis with 55506 55501 3
+55505 sent 55501 to 55506
+updatedndis
+Updating ndis with 55506 55500 4
+55505 sent 55500 to 55506
+updatedndis
+Updating ndis with 55506 55503 2
+55505 sent 55503 to 55506
+updatedndis
+Updating ndis with 55506 55507 1
+55505 sent 55507 to 55506
+updatedndis
+Updating ndis with 55506 55507 1
+updatedndis
+Updating ndis with 55506 55500 3
+55505 sent 55500 to 55506
+updatedndis
+Updating ndis with 55506 55501 2
+55505 sent 55501 to 55506
+Client maakt verbinding: 55503
+Updating ndis with 55503 55503 0
+updatedndis
+55505 sent 55503 to 55506
+Updating ndis with 55503 55503 0
+sent all 8 D values to 55503
+55505 sent 55503 to 55506
+updatedndis
+Updating ndis with 55503 55504 1
+updatedndis
+Updating ndis with 55503 55502 2
+updatedndis
+Updating ndis with 55503 55501 2
+updatedndis
+Updating ndis with 55503 55500 3
+updatedndis
+Updating ndis with 55503 55506 2
+updatedndis
+Updating ndis with 55503 55505 1
+updatedndis
+Updating ndis with 55503 55507 3
+updatedndis
+Updating ndis with 55503 55500 1
+55505 sent 55500 to 55506
+55505 sent 55500 to 55503
+updatedndis
+Updating ndis with 55503 55500 1
+Client maakt verbinding: 55501
+Updating ndis with 55501 55501 0
+55505 sent 55501 to 55506
+55505 sent 55501 to 55503
+sent all 8 D values to 55501
+55505 sent 55501 to 55506
+55505 sent 55501 to 55503
+updatedndis
+Updating ndis with 55501 55501 0
+updatedndis
+Updating ndis with 55501 55500 1
+updatedndis
+Updating ndis with 55501 55502 1
+55505 sent 55502 to 55506
+55505 sent 55502 to 55503
+55505 sent 55502 to 55501
+updatedndis
+Updating ndis with 55501 55504 1
+updatedndis
+Updating ndis with 55501 55503 2
+updatedndis
+Updating ndis with 55501 55506 2
+updatedndis
+Updating ndis with 55501 55505 1
+updatedndis
+Updating ndis with 55501 55507 3
+updatedndis
+Updating ndis with 55506 55503 1
+updatedndis
+Updating ndis with 55503 55506 1
+updatedndis
+Updating ndis with 55506 55503 1
+updatedndis
+Updating ndis with 55503 55506 1
+updatedndis
+Updating ndis with 55506 55500 2
+updatedndis
+Updating ndis with 55503 55507 2
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55501 55507 2
+updatedndis
+Updating ndis with 55503 55508 1
+55505 sent 55508 to 55506
+55505 sent 55508 to 55503
+55505 sent 55508 to 55501
+updatedndis
+Updating ndis with 55503 55508 1
+updatedndis
+Updating ndis with 55506 55508 2
+updatedndis
+Updating ndis with 55501 55508 3
+> R
+55505 1 localhost
+55500 2 55500
+55501 1 55501
+55502 2 55502
+55503 1 55503
+55504 2 55504
+55505 0 55505
+55506 1 55506
+55507 2 55507
+55508 2 55508
+
+Process 55506:
+55506
+55500
+55501
+55503
+55504
+55505
+55507
+Client maakt verbinding: 55505
+Updating ndis with 55505 55505 0
+sent all 2 D values to 55505
+updatedndis
+Updating ndis with 55505 55505 0
+updatedndis
+Updating ndis with 55505 55506 1
+Client maakt verbinding: 55504
+Updating ndis with 55504 55504 0
+55506 sent 55504 to 55505
+sent all 3 D values to 55504
+updatedndis
+Updating ndis with 55504 55504 0
+55506 sent 55504 to 55505
+updatedndis
+Updating ndis with 55504 55502 1
+55506 sent 55502 to 55505
+55506 sent 55502 to 55504
+updatedndis
+Updating ndis with 55504 55501 2
+55506 sent 55501 to 55505
+updatedndis
+Updating ndis with 55505 55504 2
+55506 sent 55501 to 55504
+updatedndis
+Updating ndis with 55504 55500 3
+55506 sent 55500 to 55505
+55506 sent 55500 to 55504
+updatedndis
+Updating ndis with 55504 55503 1
+55506 sent 55503 to 55505
+55506 sent 55503 to 55504
+updatedndis
+Updating ndis with 55504 55506 1
+updatedndis
+Updating ndis with 55504 55505 2
+updatedndis
+Updating ndis with 55505 55502 3
+updatedndis
+Updating ndis with 55505 55501 4
+updatedndis
+Updating ndis with 55505 55500 5
+updatedndis
+Updating ndis with 55505 55503 3
+Updating ndis with 55507 55507 0
+55506 sent 55507 to 55505
+55506 sent 55507 to 55504
+updatedndis
+Updating ndis with 55505 55507 2
+updatedndis
+Updating ndis with 55504 55507 2
+sent all 8 D values to 55507
+55506 sent 55507 to 55505
+55506 sent 55507 to 55504
+updatedndis
+Updating ndis with 55507 55507 0
+updatedndis
+Updating ndis with 55507 55506 1
+updatedndis
+Updating ndis with 55507 55505 2
+updatedndis
+Updating ndis with 55507 55504 2
+updatedndis
+Updating ndis with 55507 55502 3
+updatedndis
+Updating ndis with 55507 55501 4
+updatedndis
+Updating ndis with 55507 55500 5
+updatedndis
+Updating ndis with 55507 55503 3
+updatedndis
+Updating ndis with 55504 55500 2
+55506 sent 55500 to 55505
+55506 sent 55500 to 55504
+55506 sent 55500 to 55507
+updatedndis
+Updating ndis with 55507 55500 4
+updatedndis
+Updating ndis with 55505 55500 4
+updatedndis
+Updating ndis with 55504 55501 1
+55506 sent 55501 to 55505
+55506 sent 55501 to 55504
+55506 sent 55501 to 55507
+updatedndis
+Updating ndis with 55505 55501 3
+updatedndis
+Updating ndis with 55507 55501 3
+updatedndis
+Updating ndis with 55504 55501 1
+updatedndis
+Updating ndis with 55505 55503 1
+updatedndis
+Updating ndis with 55505 55503 1
+updatedndis
+Updating ndis with 55505 55500 2
+updatedndis
+Updating ndis with 55505 55501 1
+updatedndis
+Updating ndis with 55505 55501 1
+updatedndis
+Updating ndis with 55505 55502 2
+Client maakt verbinding: 55503
+Updating ndis with 55503 55503 0
+55506 sent 55503 to 55505
+55506 sent 55503 to 55504
+55506 sent 55503 to 55507
+sent all 8 D values to 55503
+updatedndis
+Updating ndis with 55507 55503 2
+updatedndis
+Updating ndis with 55503 55503 0
+55506 sent 55503 to 55505
+55506 sent 55503 to 55504
+55506 sent 55503 to 55507
+updatedndis
+Updating ndis with 55503 55504 1
+updatedndis
+Updating ndis with 55503 55502 2
+updatedndis
+Updating ndis with 55503 55501 2
+updatedndis
+Updating ndis with 55503 55500 1
+55506 sent 55500 to 55505
+55506 sent 55500 to 55504
+55506 sent 55500 to 55507
+55506 sent 55500 to 55503
+updatedndis
+Updating ndis with 55507 55500 3
+updatedndis
+Updating ndis with 55503 55506 1
+updatedndis
+Updating ndis with 55503 55505 1
+updatedndis
+Updating ndis with 55503 55507 3
+updatedndis
+Updating ndis with 55503 55507 2
+Client maakt verbinding: 55500
+Updating ndis with 55500 55500 0
+55506 sent 55500 to 55505
+updatedndis
+Updating ndis with 55500 55500 0
+55506 sent 55500 to 55504
+55506 sent 55500 to 55507
+55506 sent 55500 to 55503
+updatedndis
+Updating ndis with 55507 55500 2
+sent all 8 D values to 55500
+55506 sent 55500 to 55505
+55506 sent 55500 to 55504
+55506 sent 55500 to 55507
+55506 sent 55500 to 55503
+updatedndis
+Updating ndis with 55500 55501 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55504 2
+updatedndis
+Updating ndis with 55500 55503 1
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55500 55505 2
+updatedndis
+Updating ndis with 55500 55507 3
+updatedndis
+Updating ndis with 55500 55507 2
+Client maakt verbinding: 55501
+Updating ndis with 55501 55501 0
+55506 sent 55501 to 55505
+updatedndis
+Updating ndis with 55501 55501 0
+55506 sent 55501 to 55504
+55506 sent 55501 to 55507
+55506 sent 55501 to 55503
+updatedndis
+Updating ndis with 55507 55501 2
+55506 sent 55501 to 55500
+sent all 8 D values to 55501
+55506 sent 55501 to 55505
+55506 sent 55501 to 55504
+55506 sent 55501 to 55507
+55506 sent 55501 to 55503
+55506 sent 55501 to 55500
+updatedndis
+Updating ndis with 55501 55500 1
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55504 1
+updatedndis
+Updating ndis with 55501 55503 2
+updatedndis
+Updating ndis with 55501 55506 1
+updatedndis
+Updating ndis with 55501 55505 1
+updatedndis
+Updating ndis with 55501 55507 3
+updatedndis
+Updating ndis with 55501 55507 2
+updatedndis
+Updating ndis with 55503 55508 1
+55506 sent 55508 to 55505
+55506 sent 55508 to 55504
+55506 sent 55508 to 55507
+55506 sent 55508 to 55503
+55506 sent 55508 to 55500
+55506 sent 55508 to 55501
+updatedndis
+Updating ndis with 55503 55508 1
+updatedndis
+Updating ndis with 55504 55508 2
+updatedndis
+Updating ndis with 55505 55508 2
+updatedndis
+Updating ndis with 55500 55508 2
+updatedndis
+Updating ndis with 55501 55508 3
+updatedndis
+Updating ndis with 55507 55508 3
+updatedndis
+Updating ndis with 55500 55507 1
+updatedndis
+Updating ndis with 55500 55507 1
+updatedndis
+Updating ndis with 55507 55500 1
+updatedndis
+Updating ndis with 55507 55502 2
+updatedndis
+Updating ndis with 55507 55500 1
+> R
+55506 1 localhost
+55500 1 55500
+55501 1 55501
+55502 2 55502
+55503 1 55503
+55504 1 55504
+55505 1 55505
+55506 0 55506
+55507 1 55507
+55508 2 55508
+
+Process 55507:
+55507
+55500
+55506
+Client maakt verbinding: 55506
+updatedndis
+Updating ndis with 55506 55506 0
+Updating ndis with 55506 55506 0
+sent all 2 D values to 55506
+updatedndis
+Updating ndis with 55506 55505 1
+55507 sent 55505 to 55506
+updatedndis
+Updating ndis with 55506 55504 1
+55507 sent 55504 to 55506
+updatedndis
+Updating ndis with 55506 55502 2
+55507 sent 55502 to 55506
+updatedndis
+Updating ndis with 55506 55501 3
+55507 sent 55501 to 55506
+updatedndis
+Updating ndis with 55506 55500 4
+55507 sent 55500 to 55506
+updatedndis
+Updating ndis with 55506 55503 2
+55507 sent 55503 to 55506
+updatedndis
+Updating ndis with 55506 55507 1
+updatedndis
+Updating ndis with 55506 55500 3
+55507 sent 55500 to 55506
+updatedndis
+Updating ndis with 55506 55501 2
+55507 sent 55501 to 55506
+updatedndis
+Updating ndis with 55506 55503 1
+55507 sent 55503 to 55506
+updatedndis
+Updating ndis with 55506 55503 1
+updatedndis
+Updating ndis with 55506 55500 2
+55507 sent 55500 to 55506
+updatedndis
+Updating ndis with 55506 55500 1
+55507 sent 55500 to 55506
+updatedndis
+Updating ndis with 55506 55500 1
+updatedndis
+Updating ndis with 55506 55501 1
+55507 sent 55501 to 55506
+updatedndis
+Updating ndis with 55506 55501 1
+updatedndis
+Updating ndis with 55506 55508 2
+55507 sent 55508 to 55506
+Client maakt verbinding: 55500
+updatedndis
+Updating ndis with 55500 55500 0
+55507 sent 55500 to 55506
+updatedndis
+Updating ndis with 55500 55501 1
+updatedndis
+Updating ndis with 55500 55502 1
+55507 sent 55502 to 55506
+updatedndis
+Updating ndis with 55500 55504 2
+updatedndis
+Updating ndis with 55500 55503 1
+updatedndis
+Updating ndis with 55500 55506 1
+updatedndis
+Updating ndis with 55500 55505 2
+updatedndis
+Updating ndis with 55500 55507 1
+updatedndis
+Updating ndis with 55500 55508 2
+Updating ndis with 55500 55500 0
+sent all 9 D values to 55500
+55507 sent 55500 to 55506
+> R
+55507 1 localhost
+55500 1 55500
+55501 2 55501
+55502 2 55502
+55503 2 55503
+55504 2 55504
+55505 2 55505
+55506 1 55506
+55507 0 55507
+55508 3 55508
+
+Process 55508:
+55508
+55503
+Client maakt verbinding: 55503
+updatedndis
+Updating ndis with 55503 55503 0
+Updating ndis with 55503 55503 0
+sent all 2 D values to 55503
+updatedndis
+Updating ndis with 55503 55504 1
+55508 sent 55504 to 55503
+updatedndis
+Updating ndis with 55503 55502 2
+55508 sent 55502 to 55503
+updatedndis
+Updating ndis with 55503 55501 2
+55508 sent 55501 to 55503
+updatedndis
+Updating ndis with 55503 55500 1
+55508 sent 55500 to 55503
+updatedndis
+Updating ndis with 55503 55506 1
+55508 sent 55506 to 55503
+updatedndis
+Updating ndis with 55503 55505 1
+55508 sent 55505 to 55503
+updatedndis
+Updating ndis with 55503 55507 2
+55508 sent 55507 to 55503
+updatedndis
+Updating ndis with 55503 55508 1
+> R
+55508 1 localhost
+55500 2 55500
+55501 3 55501
+55502 3 55502
+55503 1 55503
+55504 2 55504
+55505 2 55505
+55506 2 55506
+55507 3 55507
+55508 0 55508
+
+------------------------------------
+
+3;2xStandaard;Incorrect;7,12;Opstarten netwerk
+Test 3 - 2xStandaard
+
+Fout bij opzetten netwerk - de routing-tabel is incorrect.
+Het programma ziet de verbinding van 55500 naar 55501 niet.
+Het programma ziet de verbinding van 55500 naar 55502 niet.
+Het programma ziet de verbinding van 55500 naar 55503 niet.
+Het programma ziet de verbinding van 55500 naar 55504 niet.
+Het programma ziet de verbinding van 55500 naar 55505 niet.
+Het programma ziet de verbinding van 55501 naar 55500 niet.
+Het programma ziet de verbinding van 55501 naar 55502 niet.
+Het programma ziet de verbinding van 55501 naar 55503 niet.
+Het programma ziet de verbinding van 55501 naar 55504 niet.
+Het programma ziet de verbinding van 55501 naar 55505 niet.
+Het programma ziet de verbinding van 55502 naar 55500 niet.
+Het programma ziet de verbinding van 55502 naar 55501 niet.
+Het programma ziet de verbinding van 55502 naar 55503 niet.
+Het programma ziet de verbinding van 55502 naar 55504 niet.
+Het programma ziet de verbinding van 55502 naar 55505 niet.
+Het programma ziet de verbinding van 55503 naar 55500 niet.
+Het programma ziet de verbinding van 55503 naar 55501 niet.
+Het programma ziet de verbinding van 55503 naar 55502 niet.
+Het programma ziet de verbinding van 55503 naar 55504 niet.
+Het programma ziet de verbinding van 55503 naar 55505 niet.
+Het programma ziet de verbinding van 55504 naar 55500 niet.
+Het programma ziet de verbinding van 55504 naar 55501 niet.
+Het programma ziet de verbinding van 55504 naar 55502 niet.
+Het programma ziet de verbinding van 55504 naar 55503 niet.
+Het programma ziet de verbinding van 55504 naar 55505 niet.
+Het programma ziet de verbinding van 55505 naar 55500 niet.
+Het programma ziet de verbinding van 55505 naar 55501 niet.
+Het programma ziet de verbinding van 55505 naar 55502 niet.
+Het programma ziet de verbinding van 55505 naar 55503 niet.
+Het programma ziet de verbinding van 55505 naar 55504 niet.
+Het programma ziet de verbinding van 55506 naar 55507 niet.
+Het programma ziet de verbinding van 55506 naar 55508 niet.
+Het programma ziet de verbinding van 55506 naar 55509 niet.
+Het programma ziet de verbinding van 55506 naar 55510 niet.
+Het programma ziet de verbinding van 55506 naar 55511 niet.
+Het programma ziet de verbinding van 55507 naar 55506 niet.
+Het programma ziet de verbinding van 55507 naar 55508 niet.
+Het programma ziet de verbinding van 55507 naar 55509 niet.
+Het programma ziet de verbinding van 55507 naar 55510 niet.
+Het programma ziet de verbinding van 55507 naar 55511 niet.
+Het programma ziet de verbinding van 55508 naar 55506 niet.
+Het programma ziet de verbinding van 55508 naar 55507 niet.
+Het programma ziet de verbinding van 55508 naar 55509 niet.
+Het programma ziet de verbinding van 55508 naar 55510 niet.
+Het programma ziet de verbinding van 55508 naar 55511 niet.
+Het programma ziet de verbinding van 55509 naar 55506 niet.
+Het programma ziet de verbinding van 55509 naar 55507 niet.
+Het programma ziet de verbinding van 55509 naar 55508 niet.
+Het programma ziet de verbinding van 55509 naar 55510 niet.
+Het programma ziet de verbinding van 55509 naar 55511 niet.
+Het programma ziet de verbinding van 55510 naar 55506 niet.
+Het programma ziet de verbinding van 55510 naar 55507 niet.
+Het programma ziet de verbinding van 55510 naar 55508 niet.
+Het programma ziet de verbinding van 55510 naar 55509 niet.
+Het programma ziet de verbinding van 55510 naar 55511 niet.
+Het programma ziet de verbinding van 55511 naar 55506 niet.
+Het programma ziet de verbinding van 55511 naar 55507 niet.
+Het programma ziet de verbinding van 55511 naar 55508 niet.
+Het programma ziet de verbinding van 55511 naar 55509 niet.
+Het programma ziet de verbinding van 55511 naar 55510 niet.
+
+Log
+start NetwProg.exe 55500 55501 55502
+start NetwProg.exe 55501 55500 55502
+start NetwProg.exe 55502 55500 55501 55503 55504
+start NetwProg.exe 55503 55502 55505
+start NetwProg.exe 55504 55502 55505
+start NetwProg.exe 55505 55503 55504
+start NetwProg.exe 55506 55507 55508
+start NetwProg.exe 55507 55506 55508
+start NetwProg.exe 55508 55506 55507 55509 55510
+55501 < 55501
+55501 < 55500
+55501 < 55502
+55500 < 55500
+55500 < 55501
+55500 < 55502
+start NetwProg.exe 55509 55508 55511
+55502 < 55502
+55502 < 55500
+55502 < 55501
+55502 < 55503
+55502 < 55504
+start NetwProg.exe 55510 55508 55511
+55503 < 55503
+55503 < 55502
+55503 < 55505
+start NetwProg.exe 55511 55509 55510
+55504 < 55504
+55504 < 55502
+55504 < 55505
+55505 < 55505
+55505 < 55503
+55505 < 55504
+55506 < 55506
+55506 < 55507
+55506 < 55508
+55507 < 55507
+55507 < 55506
+55507 < 55508
+55508 < 55508
+55508 < 55506
+55508 < 55507
+55508 < 55509
+55508 < 55510
+55510 < 55510
+55510 < 55508
+55510 < 55511
+55509 < 55509
+55509 < 55508
+55509 < 55511
+55511 < 55511
+55511 < 55509
+55511 < 55510
+55503 < Client maakt verbinding: 55502
+55502 < Updating ndis with 55503 55503 0
+55503 < Updating ndis with 55502 55502 0
+55501 < Client maakt verbinding: 55500
+55500 < Updating ndis with 55501 55501 0
+55502 < sent all 2 D values to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55502 55502 0
+55503 < sent all 2 D values to 55502
+55501 < Updating ndis with 55500 55500 0
+55502 < updatedndis
+55502 < Updating ndis with 55503 55503 0
+55502 < updatedndis
+55503 < updatedndis
+55502 < Updating ndis with 55503 55502 1
+55503 < Updating ndis with 55502 55503 1
+55500 < sent all 2 D values to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55500 0
+55501 < sent all 2 D values to 55500
+55502 < Client maakt verbinding: 55501
+55500 < updatedndis
+55500 < Updating ndis with 55501 55501 0
+55500 < updatedndis
+55500 < Updating ndis with 55501 55500 1
+55501 < updatedndis
+55501 < Updating ndis with 55500 55501 1
+55501 < Updating ndis with 55502 55502 0
+55501 < 55501 sent 55502 to 55500
+55501 < updatedndis
+55500 < updatedndis
+55501 < Updating ndis with 55500 55502 2
+55500 < Updating ndis with 55501 55502 1
+55500 < 55500 sent 55502 to 55501
+55501 < sent all 3 D values to 55502
+55501 < 55501 sent 55502 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55501 55501 0
+55502 < Updating ndis with 55501 55501 0
+55502 < 55502 sent 55501 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55502 55501 1
+55503 < 55503 sent 55501 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55503 55501 2
+55502 < sent all 3 D values to 55501
+55502 < 55502 sent 55501 to 55503
+55501 < updatedndis
+55501 < Updating ndis with 55502 55502 0
+55501 < updatedndis
+55501 < Updating ndis with 55502 55503 1
+55501 < 55501 sent 55503 to 55500
+55503 < updatedndis
+55501 < 55501 sent 55503 to 55502
+55503 < Updating ndis with 55502 55501 1
+55500 < updatedndis
+55500 < Updating ndis with 55501 55503 2
+55501 < updatedndis
+55500 < 55500 sent 55503 to 55501
+55501 < Updating ndis with 55502 55501 1
+55501 < updatedndis
+55501 < Updating ndis with 55500 55503 3
+55502 < updatedndis
+55502 < Updating ndis with 55501 55500 1
+55502 < 55502 sent 55500 to 55503
+55502 < 55502 sent 55500 to 55501
+55503 < updatedndis
+55503 < Updating ndis with 55502 55500 2
+55503 < 55503 sent 55500 to 55502
+55501 < updatedndis
+55501 < Updating ndis with 55502 55500 2
+55502 < updatedndis
+55502 < Updating ndis with 55501 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55501 55503 2
+55502 < updatedndis
+55502 < Updating ndis with 55503 55500 3
+55505 < Client maakt verbinding: 55503
+55503 < Updating ndis with 55505 55505 0
+55503 < 55503 sent 55505 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55503 55505 1
+55502 < 55502 sent 55505 to 55503
+55503 < sent all 5 D values to 55505
+55503 < 55503 sent 55505 to 55502
+55502 < 55502 sent 55505 to 55501
+55503 < updatedndis
+55503 < Updating ndis with 55502 55505 2
+55502 < updatedndis
+55501 < updatedndis
+55502 < Updating ndis with 55503 55505 1
+55501 < Updating ndis with 55502 55505 2
+55501 < 55501 sent 55505 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55505 3
+55500 < 55500 sent 55505 to 55501
+55502 < updatedndis
+55501 < 55501 sent 55505 to 55502
+55502 < Updating ndis with 55501 55505 3
+55505 < updatedndis
+55501 < updatedndis
+55501 < Updating ndis with 55500 55505 4
+55505 < Updating ndis with 55503 55503 0
+55505 < Updating ndis with 55503 55503 0
+55505 < sent all 2 D values to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55505 55505 0
+55503 < updatedndis
+55505 < updatedndis
+55503 < Updating ndis with 55505 55503 1
+55503 < updatedndis
+55505 < Updating ndis with 55503 55502 1
+55503 < Updating ndis with 55505 55502 2
+55505 < 55505 sent 55502 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55505 55501 3
+55503 < updatedndis
+55505 < updatedndis
+55503 < Updating ndis with 55505 55500 4
+55505 < Updating ndis with 55503 55501 2
+55505 < 55505 sent 55501 to 55503
+55505 < updatedndis
+55505 < Updating ndis with 55503 55500 3
+55505 < 55505 sent 55500 to 55503
+55505 < updatedndis
+55505 < Updating ndis with 55503 55505 1
+55505 < Client maakt verbinding: 55504
+55505 < Updating ndis with 55504 55504 0
+55503 < updatedndis
+55505 < 55505 sent 55504 to 55503
+55503 < Updating ndis with 55505 55504 1
+55503 < 55503 sent 55504 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55503 55504 2
+55505 < sent all 6 D values to 55504
+55502 < 55502 sent 55504 to 55503
+55503 < 55503 sent 55504 to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55503 55504 2
+55502 < 55502 sent 55504 to 55501
+55503 < updatedndis
+55505 < 55505 sent 55504 to 55503
+55503 < Updating ndis with 55502 55504 3
+55501 < updatedndis
+55501 < Updating ndis with 55502 55504 3
+55501 < 55501 sent 55504 to 55500
+55500 < updatedndis
+55500 < Updating ndis with 55501 55504 4
+55500 < 55500 sent 55504 to 55501
+55501 < 55501 sent 55504 to 55502
+55501 < updatedndis
+55504 < updatedndis
+55501 < Updating ndis with 55500 55504 5
+55502 < updatedndis
+55502 < Updating ndis with 55501 55504 4
+55503 < updatedndis
+55503 < Updating ndis with 55505 55504 1
+55504 < Updating ndis with 55505 55505 0
+55504 < Updating ndis with 55505 55505 0
+55504 < sent all 2 D values to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55504 55504 0
+55505 < updatedndis
+55504 < updatedndis
+55505 < Updating ndis with 55504 55505 1
+55504 < Updating ndis with 55505 55503 1
+55505 < updatedndis
+55504 < 55504 sent 55503 to 55505
+55505 < Updating ndis with 55504 55503 2
+55505 < updatedndis
+55505 < Updating ndis with 55504 55502 3
+55505 < updatedndis
+55504 < updatedndis
+55505 < Updating ndis with 55504 55501 4
+55504 < Updating ndis with 55505 55502 2
+55505 < updatedndis
+55504 < 55504 sent 55502 to 55505
+55505 < Updating ndis with 55504 55500 5
+55504 < updatedndis
+55504 < Updating ndis with 55505 55501 3
+55504 < 55504 sent 55501 to 55505
+55504 < updatedndis
+55504 < Updating ndis with 55505 55500 4
+55504 < 55504 sent 55500 to 55505
+55504 < updatedndis
+55504 < Updating ndis with 55505 55504 1
+55507 < Client maakt verbinding: 55506
+55506 < Updating ndis with 55507 55507 0
+55507 < Updating ndis with 55506 55506 0
+55506 < sent all 2 D values to 55507
+55507 < updatedndis
+55507 < Updating ndis with 55506 55506 0
+55507 < sent all 2 D values to 55506
+55509 < Client maakt verbinding: 55508
+55506 < updatedndis
+55506 < Updating ndis with 55507 55507 0
+55507 < updatedndis
+55506 < updatedndis
+55507 < Updating ndis with 55506 55507 1
+55506 < Updating ndis with 55507 55506 1
+55508 < Updating ndis with 55509 55509 0
+55509 < Updating ndis with 55508 55508 0
+55508 < Client maakt verbinding: 55507
+55507 < Updating ndis with 55508 55508 0
+55506 < updatedndis
+55507 < 55507 sent 55508 to 55506
+55508 < updatedndis
+55506 < Updating ndis with 55507 55508 1
+55508 < Updating ndis with 55507 55507 0
+55506 < 55506 sent 55508 to 55507
+55507 < sent all 3 D values to 55508
+55507 < updatedndis
+55507 < Updating ndis with 55506 55508 2
+55507 < 55507 sent 55508 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55507 55508 1
+55508 < 55508 sent 55509 to 55507
+55507 < updatedndis
+55507 < Updating ndis with 55508 55509 1
+55507 < 55507 sent 55509 to 55506
+55506 < updatedndis
+55507 < 55507 sent 55509 to 55508
+55506 < Updating ndis with 55507 55509 2
+55506 < 55506 sent 55509 to 55507
+55507 < updatedndis
+55508 < sent all 2 D values to 55509
+55507 < Updating ndis with 55506 55509 3
+55508 < 55508 sent 55509 to 55507
+55509 < updatedndis
+55507 < updatedndis
+55509 < Updating ndis with 55508 55508 0
+55507 < Updating ndis with 55508 55509 1
+55508 < Updating ndis with 55507 55507 0
+55508 < 55508 sent 55507 to 55509
+55507 < updatedndis
+55508 < sent all 3 D values to 55507
+55507 < Updating ndis with 55508 55508 0
+55507 < updatedndis
+55507 < Updating ndis with 55508 55509 1
+55507 < updatedndis
+55508 < 55508 sent 55507 to 55509
+55507 < Updating ndis with 55508 55507 1
+55508 < updatedndis
+55507 < updatedndis
+55508 < Updating ndis with 55507 55506 1
+55507 < Updating ndis with 55508 55506 2
+55508 < 55508 sent 55506 to 55509
+55508 < 55508 sent 55506 to 55507
+55509 < sent all 2 D values to 55508
+55508 < updatedndis
+55508 < Updating ndis with 55507 55508 1
+55508 < updatedndis
+55508 < Updating ndis with 55507 55509 2
+55508 < updatedndis
+55508 < Updating ndis with 55509 55509 0
+55509 < updatedndis
+55508 < updatedndis
+55509 < Updating ndis with 55508 55509 1
+55508 < Updating ndis with 55509 55508 1
+55509 < updatedndis
+55508 < updatedndis
+55509 < Updating ndis with 55508 55507 1
+55508 < Updating ndis with 55509 55507 2
+55509 < 55509 sent 55507 to 55508
+55508 < updatedndis
+55508 < Updating ndis with 55509 55506 3
+55509 < updatedndis
+55509 < Updating ndis with 55508 55507 1
+55509 < updatedndis
+55509 < Updating ndis with 55508 55506 2
+55509 < 55509 sent 55506 to 55508
+55511 < Client maakt verbinding: 55510
+55509 < Updating ndis with 55511 55511 0
+55509 < 55509 sent 55511 to 55508
+55508 < updatedndis
+55508 < Updating ndis with 55509 55511 1
+55508 < 55508 sent 55511 to 55509
+55507 < updatedndis
+55509 < updatedndis
+55509 < sent all 5 D values to 55511
+55508 < 55508 sent 55511 to 55507
+55509 < Updating ndis with 55508 55511 2
+55507 < Updating ndis with 55508 55511 2
+55507 < 55507 sent 55511 to 55506
+55506 < updatedndis
+55506 < Updating ndis with 55507 55511 3
+55506 < 55506 sent 55511 to 55507
+55508 < updatedndis
+55507 < 55507 sent 55511 to 55508
+55508 < Updating ndis with 55507 55511 3
+55507 < updatedndis
+55507 < Updating ndis with 55506 55511 4
+55509 < 55509 sent 55511 to 55508
+55510 < Updating ndis with 55511 55511 0
+55508 < updatedndis
+55508 < Updating ndis with 55509 55511 1
+55511 < Updating ndis with 55510 55510 0
+55510 < sent all 2 D values to 55511
+55511 < updatedndis
+55511 < Updating ndis with 55510 55510 0
+55511 < sent all 2 D values to 55510
+55510 < updatedndis
+55510 < Updating ndis with 55511 55511 0
+55511 < updatedndis
+55510 < updatedndis
+55511 < Updating ndis with 55510 55511 1
+55510 < Updating ndis with 55511 55510 1
+55511 < Client maakt verbinding: 55509
+55511 < Updating ndis with 55509 55509 0
+55510 < updatedndis
+55511 < updatedndis
+55510 < Updating ndis with 55511 55509 1
+55511 < 55511 sent 55509 to 55510
+55510 < 55510 sent 55509 to 55511
+55509 < updatedndis
+55509 < Updating ndis with 55511 55511 0
+55510 < updatedndis
+55509 < updatedndis
+55511 < Updating ndis with 55509 55509 0
+55510 < Updating ndis with 55511 55509 1
+55508 < updatedndis
+55511 < sent all 3 D values to 55509
+55509 < Updating ndis with 55511 55510 1
+55508 < Updating ndis with 55509 55510 2
+55511 < 55511 sent 55509 to 55510
+55507 < updatedndis
+55509 < 55509 sent 55510 to 55508
+55510 < updatedndis
+55508 < 55508 sent 55510 to 55509
+55507 < Updating ndis with 55508 55510 3
+55507 < 55507 sent 55510 to 55506
+55510 < Updating ndis with 55511 55508 2
+55511 < updatedndis
+55506 < updatedndis
+55509 < 55509 sent 55510 to 55511
+55508 < 55508 sent 55510 to 55507
+55510 < 55510 sent 55508 to 55511
+55511 < Updating ndis with 55510 55509 2
+55506 < Updating ndis with 55507 55510 4
+55507 < 55507 sent 55510 to 55508
+55511 < updatedndis
+55509 < updatedndis
+55506 < 55506 sent 55510 to 55507
+55511 < Updating ndis with 55509 55508 1
+55509 < Updating ndis with 55511 55509 1
+55510 < updatedndis
+55508 < updatedndis
+55507 < updatedndis
+55511 < 55511 sent 55508 to 55510
+55509 < updatedndis
+55510 < Updating ndis with 55511 55507 3
+55508 < Updating ndis with 55507 55510 4
+55507 < Updating ndis with 55506 55510 5
+55509 < Updating ndis with 55508 55510 3
+55510 < 55510 sent 55507 to 55511
+55509 < updatedndis
+55511 < 55511 sent 55508 to 55509
+55509 < Updating ndis with 55511 55508 2
+55510 < updatedndis
+55509 < updatedndis
+55510 < Updating ndis with 55511 55506 4
+55511 < updatedndis
+55509 < Updating ndis with 55511 55507 3
+55510 < 55510 sent 55506 to 55511
+55511 < Updating ndis with 55510 55508 3
+55509 < updatedndis
+55511 < updatedndis
+55509 < Updating ndis with 55511 55506 4
+55511 < Updating ndis with 55509 55507 2
+55511 < 55511 sent 55507 to 55510
+55511 < 55511 sent 55507 to 55509
+55511 < updatedndis
+55511 < updatedndis
+55511 < Updating ndis with 55510 55507 4
+55511 < Updating ndis with 55509 55506 3
+55511 < 55511 sent 55506 to 55510
+55511 < 55511 sent 55506 to 55509
+55511 < updatedndis
+55511 < Updating ndis with 55509 55511 1
+55511 < updatedndis
+55511 < Updating ndis with 55510 55506 5
+55511 < updatedndis
+55511 < Updating ndis with 55509 55510 2
+55504 < Client maakt verbinding: 55502
+55502 < Updating ndis with 55504 55504 0
+55502 < 55502 sent 55504 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55502 55504 1
+55501 < updatedndis
+55502 < 55502 sent 55504 to 55501
+55501 < Updating ndis with 55502 55504 1
+55501 < 55501 sent 55504 to 55500
+55500 < updatedndis
+55502 < sent all 6 D values to 55504
+55501 < 55501 sent 55504 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55501 55504 2
+55500 < Updating ndis with 55501 55504 2
+55500 < 55500 sent 55504 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55504 3
+55502 < 55502 sent 55504 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55502 55504 1
+55502 < 55502 sent 55504 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55502 55504 1
+55504 < Updating ndis with 55502 55502 0
+55504 < 55504 sent 55502 to 55505
+55505 < updatedndis
+55504 < updatedndis
+55504 < Updating ndis with 55502 55502 0
+55505 < Updating ndis with 55504 55502 1
+55504 < sent all 6 D values to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55504 55504 0
+55502 < updatedndis
+55502 < Updating ndis with 55504 55505 1
+55502 < updatedndis
+55502 < Updating ndis with 55504 55503 2
+55502 < updatedndis
+55504 < 55504 sent 55502 to 55505
+55505 < updatedndis
+55502 < Updating ndis with 55504 55502 1
+55505 < Updating ndis with 55504 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55504 55501 4
+55502 < updatedndis
+55502 < Updating ndis with 55504 55500 5
+55504 < updatedndis
+55505 < updatedndis
+55504 < Updating ndis with 55502 55503 1
+55505 < Updating ndis with 55504 55501 2
+55504 < updatedndis
+55502 < updatedndis
+55504 < Updating ndis with 55502 55501 1
+55502 < Updating ndis with 55504 55501 2
+55504 < 55504 sent 55501 to 55505
+55505 < updatedndis
+55505 < Updating ndis with 55504 55500 3
+55502 < updatedndis
+55504 < 55504 sent 55501 to 55502
+55502 < Updating ndis with 55504 55500 3
+55504 < updatedndis
+55504 < Updating ndis with 55502 55500 2
+55504 < 55504 sent 55500 to 55505
+55504 < 55504 sent 55500 to 55502
+55504 < updatedndis
+55504 < Updating ndis with 55502 55505 2
+55504 < updatedndis
+55504 < Updating ndis with 55502 55504 1
+55502 < Client maakt verbinding: 55500
+55502 < Updating ndis with 55500 55500 0
+55502 < 55502 sent 55500 to 55503
+55503 < updatedndis
+55503 < Updating ndis with 55502 55500 1
+55503 < 55503 sent 55500 to 55502
+55502 < updatedndis
+55505 < updatedndis
+55502 < Updating ndis with 55503 55500 2
+55505 < Updating ndis with 55503 55500 2
+55505 < 55505 sent 55500 to 55503
+55503 < 55503 sent 55500 to 55505
+55505 < 55505 sent 55500 to 55504
+55503 < updatedndis
+55503 < Updating ndis with 55505 55500 3
+55504 < updatedndis
+55504 < Updating ndis with 55505 55500 3
+55502 < 55502 sent 55500 to 55501
+55504 < updatedndis
+55504 < Updating ndis with 55502 55500 1
+55504 < 55504 sent 55500 to 55505
+55501 < updatedndis
+55505 < updatedndis
+55502 < 55502 sent 55500 to 55504
+55505 < Updating ndis with 55504 55500 2
+55501 < Updating ndis with 55502 55500 1
+55504 < 55504 sent 55500 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55504 55500 2
+55502 < sent all 6 D values to 55500
+55502 < 55502 sent 55500 to 55503
+55500 < updatedndis
+55503 < updatedndis
+55503 < Updating ndis with 55502 55500 1
+55502 < 55502 sent 55500 to 55501
+55504 < updatedndis
+55504 < Updating ndis with 55502 55500 1
+55501 < updatedndis
+55501 < Updating ndis with 55502 55500 1
+55502 < 55502 sent 55500 to 55504
+55500 < Updating ndis with 55502 55502 0
+55500 < 55500 sent 55502 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55502 1
+55500 < updatedndis
+55502 < updatedndis
+55500 < Updating ndis with 55502 55503 1
+55500 < Updating ndis with 55502 55502 0
+55502 < Updating ndis with 55500 55500 0
+55500 < sent all 6 D values to 55502
+55500 < 55500 sent 55502 to 55501
+55501 < updatedndis
+55501 < Updating ndis with 55500 55502 1
+55500 < 55500 sent 55503 to 55501
+55500 < 55500 sent 55503 to 55502
+55501 < updatedndis
+55501 < Updating ndis with 55500 55503 2
+55500 < updatedndis
+55500 < Updating ndis with 55502 55501 1
+55500 < updatedndis
+55500 < Updating ndis with 55502 55500 1
+55500 < updatedndis
+55501 < updatedndis
+55500 < Updating ndis with 55502 55505 2
+55500 < 55500 sent 55505 to 55501
+55501 < Updating ndis with 55500 55505 3
+55500 < 55500 sent 55505 to 55502
+55501 < updatedndis
+55500 < updatedndis
+55500 < Updating ndis with 55502 55504 1
+55500 < 55500 sent 55504 to 55501
+55501 < Updating ndis with 55500 55504 2
+55500 < 55500 sent 55504 to 55502
+55502 < updatedndis
+55502 < Updating ndis with 55500 55501 1
+55502 < updatedndis
+55502 < Updating ndis with 55500 55502 1
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 3
+55502 < updatedndis
+55502 < Updating ndis with 55500 55505 4
+55502 < updatedndis
+55502 < Updating ndis with 55500 55504 3
+55502 < updatedndis
+55502 < Updating ndis with 55500 55503 2
+55502 < updatedndis
+55502 < Updating ndis with 55500 55505 3
+55502 < updatedndis
+55502 < Updating ndis with 55500 55504 2
+55508 < Client maakt verbinding: 55506
+55506 < Updating ndis with 55508 55508 0
+55506 < 55506 sent 55508 to 55507
+55508 < Updating ndis with 55506 55506 0
+55507 < updatedndis
+55508 < 55508 sent 55506 to 55509
+55507 < Updating ndis with 55506 55508 1
+55506 < sent all 6 D values to 55508
+55509 < updatedndis
+55509 < Updating ndis with 55508 55506 1
+55507 < updatedndis
+55509 < 55509 sent 55506 to 55508
+55508 < updatedndis
+55507 < Updating ndis with 55508 55506 1
+55508 < Updating ndis with 55506 55506 0
+55508 < 55508 sent 55506 to 55507
+55509 < 55509 sent 55506 to 55511
+55507 < updatedndis
+55507 < Updating ndis with 55508 55506 1
+55508 < sent all 6 D values to 55506
+55506 < 55506 sent 55508 to 55507
+55511 < updatedndis
+55508 < 55508 sent 55506 to 55509
+55511 < Updating ndis with 55509 55506 2
+55509 < updatedndis
+55511 < 55511 sent 55506 to 55510
+55508 < 55508 sent 55506 to 55507
+55509 < Updating ndis with 55508 55506 1
+55511 < 55511 sent 55506 to 55509
+55508 < updatedndis
+55508 < Updating ndis with 55509 55506 2
+55510 < updatedndis
+55510 < Updating ndis with 55511 55506 3
+55509 < updatedndis
+55510 < 55510 sent 55506 to 55511
+55509 < Updating ndis with 55511 55506 3
+55511 < updatedndis
+55506 < updatedndis
+55511 < Updating ndis with 55510 55506 4
+55508 < updatedndis
+55506 < Updating ndis with 55508 55508 0
+55508 < Updating ndis with 55506 55507 1
+55507 < updatedndis
+55508 < updatedndis
+55507 < Updating ndis with 55506 55508 1
+55508 < Updating ndis with 55506 55508 1
+55508 < updatedndis
+55508 < Updating ndis with 55506 55509 3
+55508 < updatedndis
+55508 < Updating ndis with 55506 55511 4
+55506 < updatedndis
+55507 < updatedndis
+55508 < updatedndis
+55506 < Updating ndis with 55508 55509 1
+55508 < Updating ndis with 55506 55510 5
+55507 < Updating ndis with 55506 55509 2
+55506 < 55506 sent 55509 to 55507
+55508 < updatedndis
+55507 < updatedndis
+55508 < Updating ndis with 55506 55509 2
+55507 < Updating ndis with 55506 55511 3
+55508 < updatedndis
+55508 < Updating ndis with 55506 55511 3
+55507 < updatedndis
+55506 < 55506 sent 55509 to 55508
+55508 < updatedndis
+55507 < Updating ndis with 55506 55510 4
+55508 < Updating ndis with 55506 55510 4
+55506 < updatedndis
+55506 < Updating ndis with 55508 55507 1
+55506 < updatedndis
+55506 < Updating ndis with 55508 55506 1
+55506 < updatedndis
+55506 < Updating ndis with 55508 55511 2
+55506 < 55506 sent 55511 to 55507
+55506 < 55506 sent 55511 to 55508
+55506 < updatedndis
+55506 < Updating ndis with 55508 55510 3
+55506 < 55506 sent 55510 to 55507
+55506 < 55506 sent 55510 to 55508
+55510 < Client maakt verbinding: 55508
+55508 < Updating ndis with 55510 55510 0
+55508 < 55508 sent 55510 to 55509
+55509 < updatedndis
+55509 < Updating ndis with 55508 55510 1
+55506 < updatedndis
+55506 < Updating ndis with 55508 55510 1
+55506 < 55506 sent 55510 to 55507
+55508 < 55508 sent 55510 to 55507
+55507 < updatedndis
+55507 < Updating ndis with 55506 55510 2
+55507 < 55507 sent 55510 to 55506
+55506 < 55506 sent 55510 to 55508
+55508 < 55508 sent 55510 to 55506
+55509 < updatedndis
+55506 < updatedndis
+55507 < 55507 sent 55510 to 55508
+55509 < Updating ndis with 55508 55510 1
+55506 < Updating ndis with 55507 55510 3
+55508 < sent all 6 D values to 55510
+55508 < updatedndis
+55508 < Updating ndis with 55506 55510 2
+55507 < updatedndis
+55508 < updatedndis
+55507 < Updating ndis with 55508 55510 1
+55506 < updatedndis
+55508 < Updating ndis with 55507 55510 3
+55506 < Updating ndis with 55508 55510 1
+55507 < 55507 sent 55510 to 55506
+55508 < 55508 sent 55510 to 55509
+55506 < updatedndis
+55508 < 55508 sent 55510 to 55507
+55507 < 55507 sent 55510 to 55508
+55506 < Updating ndis with 55507 55510 2
+55510 < Updating ndis with 55508 55508 0
+55508 < 55508 sent 55510 to 55506
+55510 < 55510 sent 55508 to 55511
+55507 < updatedndis
+55511 < updatedndis
+55507 < Updating ndis with 55508 55510 1
+55511 < Updating ndis with 55510 55508 1
+55508 < updatedndis
+55510 < updatedndis
+55508 < Updating ndis with 55507 55510 2
+55510 < Updating ndis with 55508 55508 0
+55508 < updatedndis
+55510 < sent all 6 D values to 55508
+55508 < Updating ndis with 55510 55510 0
+55508 < updatedndis
+55510 < 55510 sent 55508 to 55511
+55508 < Updating ndis with 55510 55511 1
+55511 < updatedndis
+55508 < updatedndis
+55511 < Updating ndis with 55510 55508 1
+55508 < Updating ndis with 55510 55509 2
+55508 < updatedndis
+55508 < Updating ndis with 55510 55508 1
+55510 < updatedndis
+55508 < updatedndis
+55511 < updatedndis
+55510 < Updating ndis with 55508 55509 1
+55508 < Updating ndis with 55510 55507 4
+55510 < updatedndis
+55511 < Updating ndis with 55510 55507 2
+55510 < Updating ndis with 55508 55507 1
+55508 < updatedndis
+55510 < 55510 sent 55507 to 55511
+55511 < updatedndis
+55511 < Updating ndis with 55510 55506 2
+55508 < Updating ndis with 55510 55506 4
+55508 < updatedndis
+55508 < Updating ndis with 55510 55507 2
+55508 < updatedndis
+55510 < 55510 sent 55507 to 55508
+55508 < Updating ndis with 55510 55506 2
+55510 < updatedndis
+55510 < Updating ndis with 55508 55506 1
+55510 < 55510 sent 55506 to 55511
+55510 < 55510 sent 55506 to 55508
+55510 < updatedndis
+55510 < Updating ndis with 55508 55511 2
+55510 < updatedndis
+55510 < Updating ndis with 55508 55510 1
+55500 > R
+55501 > R
+55502 > R
+55503 > R
+55504 > R
+55505 > R
+55506 > R
+55507 > R
+55508 > R
+55509 > R
+55510 > R
+55511 > R
+
+Process 55500:
+55500
+55501
+55502
+Updating ndis with 55501 55501 0
+sent all 2 D values to 55501
+updatedndis
+Updating ndis with 55501 55501 0
+updatedndis
+Updating ndis with 55501 55500 1
+updatedndis
+Updating ndis with 55501 55502 1
+55500 sent 55502 to 55501
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55503 2
+55500 sent 55503 to 55501
+updatedndis
+Updating ndis with 55501 55505 3
+55500 sent 55505 to 55501
+updatedndis
+Updating ndis with 55501 55504 4
+55500 sent 55504 to 55501
+updatedndis
+Updating ndis with 55501 55504 2
+55500 sent 55504 to 55501
+updatedndis
+Updating ndis with 55502 55502 0
+55500 sent 55502 to 55501
+updatedndis
+Updating ndis with 55502 55503 1
+Updating ndis with 55502 55502 0
+sent all 6 D values to 55502
+55500 sent 55502 to 55501
+55500 sent 55503 to 55501
+55500 sent 55503 to 55502
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55502 55505 2
+55500 sent 55505 to 55501
+55500 sent 55505 to 55502
+updatedndis
+Updating ndis with 55502 55504 1
+55500 sent 55504 to 55501
+55500 sent 55504 to 55502
+> R
+
+Process 55501:
+55501
+55500
+55502
+Client maakt verbinding: 55500
+Updating ndis with 55500 55500 0
+updatedndis
+Updating ndis with 55500 55500 0
+sent all 2 D values to 55500
+updatedndis
+Updating ndis with 55500 55501 1
+Updating ndis with 55502 55502 0
+55501 sent 55502 to 55500
+updatedndis
+Updating ndis with 55500 55502 2
+sent all 3 D values to 55502
+55501 sent 55502 to 55500
+updatedndis
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55503 1
+55501 sent 55503 to 55500
+55501 sent 55503 to 55502
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55500 55503 3
+updatedndis
+Updating ndis with 55502 55500 2
+updatedndis
+Updating ndis with 55502 55505 2
+55501 sent 55505 to 55500
+55501 sent 55505 to 55502
+updatedndis
+Updating ndis with 55500 55505 4
+updatedndis
+Updating ndis with 55502 55504 3
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+updatedndis
+Updating ndis with 55500 55504 5
+updatedndis
+Updating ndis with 55502 55504 1
+55501 sent 55504 to 55500
+55501 sent 55504 to 55502
+updatedndis
+Updating ndis with 55500 55504 3
+updatedndis
+Updating ndis with 55502 55504 1
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55502 55500 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55503 2
+updatedndis
+Updating ndis with 55500 55505 3
+updatedndis
+Updating ndis with 55500 55504 2
+> R
+
+Process 55502:
+55502
+55500
+55501
+55503
+55504
+Updating ndis with 55503 55503 0
+sent all 2 D values to 55503
+updatedndis
+Updating ndis with 55503 55503 0
+updatedndis
+Updating ndis with 55503 55502 1
+Client maakt verbinding: 55501
+updatedndis
+Updating ndis with 55501 55501 0
+Updating ndis with 55501 55501 0
+55502 sent 55501 to 55503
+updatedndis
+Updating ndis with 55503 55501 2
+sent all 3 D values to 55501
+55502 sent 55501 to 55503
+updatedndis
+Updating ndis with 55501 55500 1
+55502 sent 55500 to 55503
+55502 sent 55500 to 55501
+updatedndis
+Updating ndis with 55501 55502 1
+updatedndis
+Updating ndis with 55501 55503 2
+updatedndis
+Updating ndis with 55503 55500 3
+updatedndis
+Updating ndis with 55503 55505 1
+55502 sent 55505 to 55503
+55502 sent 55505 to 55501
+updatedndis
+Updating ndis with 55503 55505 1
+updatedndis
+Updating ndis with 55501 55505 3
+updatedndis
+Updating ndis with 55503 55504 2
+55502 sent 55504 to 55503
+55502 sent 55504 to 55501
+updatedndis
+Updating ndis with 55501 55504 4
+Updating ndis with 55504 55504 0
+55502 sent 55504 to 55503
+55502 sent 55504 to 55501
+sent all 6 D values to 55504
+updatedndis
+Updating ndis with 55501 55504 2
+55502 sent 55504 to 55503
+55502 sent 55504 to 55501
+updatedndis
+Updating ndis with 55504 55504 0
+updatedndis
+Updating ndis with 55504 55505 1
+updatedndis
+Updating ndis with 55504 55503 2
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55501 4
+updatedndis
+Updating ndis with 55504 55500 5
+updatedndis
+Updating ndis with 55504 55501 2
+updatedndis
+Updating ndis with 55504 55500 3
+Client maakt verbinding: 55500
+Updating ndis with 55500 55500 0
+55502 sent 55500 to 55503
+updatedndis
+Updating ndis with 55503 55500 2
+55502 sent 55500 to 55501
+55502 sent 55500 to 55504
+updatedndis
+Updating ndis with 55504 55500 2
+sent all 6 D values to 55500
+55502 sent 55500 to 55503
+55502 sent 55500 to 55501
+55502 sent 55500 to 55504
+updatedndis
+Updating ndis with 55500 55500 0
+updatedndis
+Updating ndis with 55500 55501 1
+updatedndis
+Updating ndis with 55500 55502 1
+updatedndis
+Updating ndis with 55500 55503 3
+updatedndis
+Updating ndis with 55500 55505 4
+updatedndis
+Updating ndis with 55500 55504 3
+updatedndis
+Updating ndis with 55500 55503 2
+updatedndis
+Updating ndis with 55500 55505 3
+updatedndis
+Updating ndis with 55500 55504 2
+> R
+
+Process 55503:
+55503
+55502
+55505
+Client maakt verbinding: 55502
+Updating ndis with 55502 55502 0
+updatedndis
+Updating ndis with 55502 55502 0
+sent all 2 D values to 55502
+updatedndis
+Updating ndis with 55502 55503 1
+updatedndis
+Updating ndis with 55502 55501 1
+55503 sent 55501 to 55502
+updatedndis
+Updating ndis with 55502 55501 1
+updatedndis
+Updating ndis with 55502 55500 2
+55503 sent 55500 to 55502
+Updating ndis with 55505 55505 0
+55503 sent 55505 to 55502
+sent all 5 D values to 55505
+55503 sent 55505 to 55502
+updatedndis
+Updating ndis with 55502 55505 2
+updatedndis
+Updating ndis with 55505 55505 0
+updatedndis
+Updating ndis with 55505 55503 1
+updatedndis
+Updating ndis with 55505 55502 2
+updatedndis
+Updating ndis with 55505 55501 3
+updatedndis
+Updating ndis with 55505 55500 4
+updatedndis
+Updating ndis with 55505 55504 1
+55503 sent 55504 to 55502
+55503 sent 55504 to 55505
+updatedndis
+Updating ndis with 55502 55504 3
+updatedndis
+Updating ndis with 55505 55504 1
+updatedndis
+Updating ndis with 55502 55504 1
+updatedndis
+Updating ndis with 55502 55504 1
+updatedndis
+Updating ndis with 55502 55500 1
+55503 sent 55500 to 55502
+55503 sent 55500 to 55505
+updatedndis
+Updating ndis with 55505 55500 3
+updatedndis
+Updating ndis with 55502 55500 1
+> R
+
+Process 55504:
+55504
+55502
+55505
+updatedndis
+Updating ndis with 55505 55505 0
+Updating ndis with 55505 55505 0
+sent all 2 D values to 55505
+updatedndis
+Updating ndis with 55505 55503 1
+55504 sent 55503 to 55505
+updatedndis
+Updating ndis with 55505 55502 2
+55504 sent 55502 to 55505
+updatedndis
+Updating ndis with 55505 55501 3
+55504 sent 55501 to 55505
+updatedndis
+Updating ndis with 55505 55500 4
+55504 sent 55500 to 55505
+updatedndis
+Updating ndis with 55505 55504 1
+Client maakt verbinding: 55502
+Updating ndis with 55502 55502 0
+55504 sent 55502 to 55505
+updatedndis
+Updating ndis with 55502 55502 0
+sent all 6 D values to 55502
+55504 sent 55502 to 55505
+updatedndis
+Updating ndis with 55502 55503 1
+updatedndis
+Updating ndis with 55502 55501 1
+55504 sent 55501 to 55505
+55504 sent 55501 to 55502
+updatedndis
+Updating ndis with 55502 55500 2
+55504 sent 55500 to 55505
+55504 sent 55500 to 55502
+updatedndis
+Updating ndis with 55502 55505 2
+updatedndis
+Updating ndis with 55502 55504 1
+updatedndis
+Updating ndis with 55505 55500 3
+updatedndis
+Updating ndis with 55502 55500 1
+55504 sent 55500 to 55505
+55504 sent 55500 to 55502
+updatedndis
+Updating ndis with 55502 55500 1
+> R
+
+Process 55505:
+55505
+55503
+55504
+Client maakt verbinding: 55503
+updatedndis
+Updating ndis with 55503 55503 0
+Updating ndis with 55503 55503 0
+sent all 2 D values to 55503
+updatedndis
+Updating ndis with 55503 55502 1
+55505 sent 55502 to 55503
+updatedndis
+Updating ndis with 55503 55501 2
+55505 sent 55501 to 55503
+updatedndis
+Updating ndis with 55503 55500 3
+55505 sent 55500 to 55503
+updatedndis
+Updating ndis with 55503 55505 1
+Client maakt verbinding: 55504
+Updating ndis with 55504 55504 0
+55505 sent 55504 to 55503
+sent all 6 D values to 55504
+updatedndis
+Updating ndis with 55503 55504 2
+55505 sent 55504 to 55503
+updatedndis
+Updating ndis with 55504 55504 0
+updatedndis
+Updating ndis with 55504 55505 1
+updatedndis
+Updating ndis with 55504 55503 2
+updatedndis
+Updating ndis with 55504 55502 3
+updatedndis
+Updating ndis with 55504 55501 4
+updatedndis
+Updating ndis with 55504 55500 5
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55502 1
+updatedndis
+Updating ndis with 55504 55501 2
+updatedndis
+Updating ndis with 55504 55500 3
+updatedndis
+Updating ndis with 55503 55500 2
+55505 sent 55500 to 55503
+55505 sent 55500 to 55504
+updatedndis
+Updating ndis with 55504 55500 2
+> R
+
+Process 55506:
+55506
+55507
+55508
+Updating ndis with 55507 55507 0
+sent all 2 D values to 55507
+updatedndis
+Updating ndis with 55507 55507 0
+updatedndis
+Updating ndis with 55507 55506 1
+updatedndis
+Updating ndis with 55507 55508 1
+55506 sent 55508 to 55507
+updatedndis
+Updating ndis with 55507 55508 1
+updatedndis
+Updating ndis with 55507 55509 2
+55506 sent 55509 to 55507
+updatedndis
+Updating ndis with 55507 55511 3
+55506 sent 55511 to 55507
+updatedndis
+Updating ndis with 55507 55510 4
+55506 sent 55510 to 55507
+Updating ndis with 55508 55508 0
+55506 sent 55508 to 55507
+sent all 6 D values to 55508
+55506 sent 55508 to 55507
+updatedndis
+Updating ndis with 55508 55508 0
+updatedndis
+Updating ndis with 55508 55509 1
+55506 sent 55509 to 55507
+55506 sent 55509 to 55508
+updatedndis
+Updating ndis with 55508 55507 1
+updatedndis
+Updating ndis with 55508 55506 1
+updatedndis
+Updating ndis with 55508 55511 2
+55506 sent 55511 to 55507
+55506 sent 55511 to 55508
+updatedndis
+Updating ndis with 55508 55510 3
+55506 sent 55510 to 55507
+55506 sent 55510 to 55508
+updatedndis
+Updating ndis with 55508 55510 1
+55506 sent 55510 to 55507
+55506 sent 55510 to 55508
+updatedndis
+Updating ndis with 55507 55510 3
+updatedndis
+Updating ndis with 55508 55510 1
+updatedndis
+Updating ndis with 55507 55510 2
+> R
+
+Process 55507:
+55507
+55506
+55508
+Client maakt verbinding: 55506
+Updating ndis with 55506 55506 0
+updatedndis
+Updating ndis with 55506 55506 0
+sent all 2 D values to 55506
+updatedndis
+Updating ndis with 55506 55507 1
+Updating ndis with 55508 55508 0
+55507 sent 55508 to 55506
+sent all 3 D values to 55508
+updatedndis
+Updating ndis with 55506 55508 2
+55507 sent 55508 to 55506
+updatedndis
+Updating ndis with 55508 55509 1
+55507 sent 55509 to 55506
+55507 sent 55509 to 55508
+updatedndis
+Updating ndis with 55506 55509 3
+updatedndis
+Updating ndis with 55508 55509 1
+updatedndis
+Updating ndis with 55508 55508 0
+updatedndis
+Updating ndis with 55508 55509 1
+updatedndis
+Updating ndis with 55508 55507 1
+updatedndis
+Updating ndis with 55508 55506 2
+updatedndis
+Updating ndis with 55508 55511 2
+55507 sent 55511 to 55506
+55507 sent 55511 to 55508
+updatedndis
+Updating ndis with 55506 55511 4
+updatedndis
+Updating ndis with 55508 55510 3
+55507 sent 55510 to 55506
+55507 sent 55510 to 55508
+updatedndis
+Updating ndis with 55506 55510 5
+updatedndis
+Updating ndis with 55506 55508 1
+updatedndis
+Updating ndis with 55508 55506 1
+updatedndis
+Updating ndis with 55508 55506 1
+updatedndis
+Updating ndis with 55506 55508 1
+updatedndis
+Updating ndis with 55506 55509 2
+updatedndis
+Updating ndis with 55506 55511 3
+updatedndis
+Updating ndis with 55506 55510 4
+updatedndis
+Updating ndis with 55506 55510 2
+55507 sent 55510 to 55506
+55507 sent 55510 to 55508
+updatedndis
+Updating ndis with 55508 55510 1
+55507 sent 55510 to 55506
+55507 sent 55510 to 55508
+updatedndis
+Updating ndis with 55508 55510 1
+> R
+
+Process 55508:
+55508
+55506
+55507
+55509
+55510
+Updating ndis with 55509 55509 0
+Client maakt verbinding: 55507
+updatedndis
+Updating ndis with 55507 55507 0
+55508 sent 55509 to 55507
+sent all 2 D values to 55509
+55508 sent 55509 to 55507
+Updating ndis with 55507 55507 0
+55508 sent 55507 to 55509
+sent all 3 D values to 55507
+55508 sent 55507 to 55509
+updatedndis
+Updating ndis with 55507 55506 1
+55508 sent 55506 to 55509
+55508 sent 55506 to 55507
+updatedndis
+Updating ndis with 55507 55508 1
+updatedndis
+Updating ndis with 55507 55509 2
+updatedndis
+Updating ndis with 55509 55509 0
+updatedndis
+Updating ndis with 55509 55508 1
+updatedndis
+Updating ndis with 55509 55507 2
+updatedndis
+Updating ndis with 55509 55506 3
+updatedndis
+Updating ndis with 55509 55511 1
+55508 sent 55511 to 55509
+55508 sent 55511 to 55507
+updatedndis
+Updating ndis with 55507 55511 3
+updatedndis
+Updating ndis with 55509 55511 1
+updatedndis
+Updating ndis with 55509 55510 2
+55508 sent 55510 to 55509
+55508 sent 55510 to 55507
+updatedndis
+Updating ndis with 55507 55510 4
+Client maakt verbinding: 55506
+Updating ndis with 55506 55506 0
+55508 sent 55506 to 55509
+updatedndis
+Updating ndis with 55506 55506 0
+55508 sent 55506 to 55507
+sent all 6 D values to 55506
+55508 sent 55506 to 55509
+55508 sent 55506 to 55507
+updatedndis
+Updating ndis with 55509 55506 2
+updatedndis
+Updating ndis with 55506 55507 1
+updatedndis
+Updating ndis with 55506 55508 1
+updatedndis
+Updating ndis with 55506 55509 3
+updatedndis
+Updating ndis with 55506 55511 4
+updatedndis
+Updating ndis with 55506 55510 5
+updatedndis
+Updating ndis with 55506 55509 2
+updatedndis
+Updating ndis with 55506 55511 3
+updatedndis
+Updating ndis with 55506 55510 4
+Updating ndis with 55510 55510 0
+55508 sent 55510 to 55509
+55508 sent 55510 to 55507
+55508 sent 55510 to 55506
+sent all 6 D values to 55510
+updatedndis
+Updating ndis with 55506 55510 2
+updatedndis
+Updating ndis with 55507 55510 3
+55508 sent 55510 to 55509
+55508 sent 55510 to 55507
+55508 sent 55510 to 55506
+updatedndis
+Updating ndis with 55507 55510 2
+updatedndis
+Updating ndis with 55510 55510 0
+updatedndis
+Updating ndis with 55510 55511 1
+updatedndis
+Updating ndis with 55510 55509 2
+updatedndis
+Updating ndis with 55510 55508 1
+updatedndis
+Updating ndis with 55510 55507 4
+updatedndis
+Updating ndis with 55510 55506 4
+updatedndis
+Updating ndis with 55510 55507 2
+updatedndis
+Updating ndis with 55510 55506 2
+> R
+
+Process 55509:
+55509
+55508
+55511
+Client maakt verbinding: 55508
+Updating ndis with 55508 55508 0
+updatedndis
+Updating ndis with 55508 55508 0
+sent all 2 D values to 55508
+updatedndis
+Updating ndis with 55508 55509 1
+updatedndis
+Updating ndis with 55508 55507 1
+55509 sent 55507 to 55508
+updatedndis
+Updating ndis with 55508 55507 1
+updatedndis
+Updating ndis with 55508 55506 2
+55509 sent 55506 to 55508
+Updating ndis with 55511 55511 0
+55509 sent 55511 to 55508
+updatedndis
+sent all 5 D values to 55511
+Updating ndis with 55508 55511 2
+55509 sent 55511 to 55508
+updatedndis
+Updating ndis with 55511 55511 0
+updatedndis
+Updating ndis with 55511 55510 1
+55509 sent 55510 to 55508
+55509 sent 55510 to 55511
+updatedndis
+Updating ndis with 55511 55509 1
+updatedndis
+Updating ndis with 55508 55510 3
+updatedndis
+Updating ndis with 55511 55508 2
+updatedndis
+Updating ndis with 55511 55507 3
+updatedndis
+Updating ndis with 55511 55506 4
+updatedndis
+Updating ndis with 55508 55506 1
+55509 sent 55506 to 55508
+55509 sent 55506 to 55511
+updatedndis
+Updating ndis with 55508 55506 1
+updatedndis
+Updating ndis with 55511 55506 3
+updatedndis
+Updating ndis with 55508 55510 1
+updatedndis
+Updating ndis with 55508 55510 1
+> R
+
+Process 55510:
+55510
+55508
+55511
+Updating ndis with 55511 55511 0
+sent all 2 D values to 55511
+updatedndis
+Updating ndis with 55511 55511 0
+updatedndis
+Updating ndis with 55511 55510 1
+updatedndis
+Updating ndis with 55511 55509 1
+55510 sent 55509 to 55511
+updatedndis
+Updating ndis with 55511 55509 1
+updatedndis
+Updating ndis with 55511 55508 2
+55510 sent 55508 to 55511
+updatedndis
+Updating ndis with 55511 55507 3
+55510 sent 55507 to 55511
+updatedndis
+Updating ndis with 55511 55506 4
+55510 sent 55506 to 55511
+updatedndis
+Updating ndis with 55511 55506 3
+55510 sent 55506 to 55511
+Client maakt verbinding: 55508
+Updating ndis with 55508 55508 0
+55510 sent 55508 to 55511
+updatedndis
+Updating ndis with 55508 55508 0
+sent all 6 D values to 55508
+55510 sent 55508 to 55511
+updatedndis
+Updating ndis with 55508 55509 1
+updatedndis
+Updating ndis with 55508 55507 1
+55510 sent 55507 to 55511
+55510 sent 55507 to 55508
+updatedndis
+Updating ndis with 55508 55506 1
+55510 sent 55506 to 55511
+55510 sent 55506 to 55508
+updatedndis
+Updating ndis with 55508 55511 2
+updatedndis
+Updating ndis with 55508 55510 1
+> R
+
+Process 55511:
+55511
+55509
+55510
+Client maakt verbinding: 55510
+Updating ndis with 55510 55510 0
+updatedndis
+Updating ndis with 55510 55510 0
+sent all 2 D values to 55510
+updatedndis
+Updating ndis with 55510 55511 1
+Client maakt verbinding: 55509
+Updating ndis with 55509 55509 0
+updatedndis
+55511 sent 55509 to 55510
+Updating ndis with 55509 55509 0
+sent all 3 D values to 55509
+55511 sent 55509 to 55510
+updatedndis
+Updating ndis with 55510 55509 2
+updatedndis
+Updating ndis with 55509 55508 1
+55511 sent 55508 to 55510
+55511 sent 55508 to 55509
+updatedndis
+Updating ndis with 55510 55508 3
+updatedndis
+Updating ndis with 55509 55507 2
+55511 sent 55507 to 55510
+55511 sent 55507 to 55509
+updatedndis
+updatedndis
+Updating ndis with 55510 55507 4
+Updating ndis with 55509 55506 3
+55511 sent 55506 to 55510
+55511 sent 55506 to 55509
+updatedndis
+Updating ndis with 55509 55511 1
+updatedndis
+Updating ndis with 55510 55506 5
+updatedndis
+Updating ndis with 55509 55510 2
+updatedndis
+Updating ndis with 55509 55506 2
+55511 sent 55506 to 55510
+55511 sent 55506 to 55509
+updatedndis
+Updating ndis with 55510 55506 4
+updatedndis
+Updating ndis with 55510 55508 1
+updatedndis
+Updating ndis with 55510 55508 1
+updatedndis
+Updating ndis with 55510 55507 2
+updatedndis
+Updating ndis with 55510 55506 2
+> R
+
+Microsoft Windows NT 6.2.9200.0 (x64)
+.NET version: 4.0.30319.42000
+4 physical core(s), 8 virtual core(s) (hyperthreading), 1 processor(s)

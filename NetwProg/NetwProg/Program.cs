@@ -5,6 +5,37 @@ using System.Text;
 using System.Security.Cryptography;
 namespace NetwProg
 {
+    public class MyEqualityComparer : IEqualityComparer<int[]>
+    {
+        public bool Equals(int[] x, int[] y)
+        {
+            if (x.Length != y.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < x.Length; i++)
+            {
+                if (x[i] != y[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public int GetHashCode(int[] obj)
+        {
+            int result = 17;
+            for (int i = 0; i < obj.Length; i++)
+            {
+                unchecked
+                {
+                    result = result * 23 + obj[i];
+                }
+            }
+            return result;
+        }
+    }
     class Program
     {
         static public int MijnPoort;
@@ -19,7 +50,7 @@ namespace NetwProg
         //Preferred neighbours <v,neighbourport>
         static public Dictionary<int, int> Nbu = new Dictionary<int, int>();
         //Neighbour distances to a port <[neighbourport,v],distance>
-        static public Dictionary<int[], int> ndisu = new Dictionary<int[], int>();
+        static public Dictionary<int[], int> ndisu = new Dictionary<int[], int>(new MyEqualityComparer());
 
         static void Main(string[] args)
         {
@@ -86,7 +117,7 @@ namespace NetwProg
                 }
             }
         }
-
+        
         static public void Recompute(int v)
         {
             if (v == MijnPoort) { setDValue(v, 0); }
@@ -109,7 +140,7 @@ namespace NetwProg
             else Nbu.Add(v, preferredNeighbour);
         }
 
-        static void setDValue(int v, int newDistance)
+        static public void setDValue(int v, int newDistance)
         {
             if (!D.ContainsKey(v))
             {
@@ -150,17 +181,21 @@ namespace NetwProg
         {
             return (ndisuKey[1] == v);
         }
+        // Check if the 2nd value of the key equals v
+        static bool firstPortEqualsV(int[] ndisuKey, int v)
+        {
+            return (ndisuKey[0] == v);
+        }
 
         // After a change of distance value to V, send <mydist,V,D> to all connected ports so they can update their ndisu value for this port
-        static void SendDValueToNeighbours(int v, int d)
+        static public void SendDValueToNeighbours(int v, int d)
         {
             foreach (KeyValuePair<int, Connection> neighbour in Buren)
             {
-                if (neighbour.Key != v)
-                {
+
                     //Console.WriteLine("{0} sent {1} to {2}", MijnPoort, v, neighbour.Key);
                     sendUD(neighbour.Key, v, d);
-                }
+                
             }
         }
         // Send all distance values to a port, used when new link is made 
@@ -241,7 +276,7 @@ namespace NetwProg
         static void printRoutingTable()
         {
             // Make a list to sort it by port number
-            var list = D.Keys.ToList();
+            var list = Nbu.Keys.ToList();
             list.Sort();
 
             foreach (var key in list)
@@ -295,18 +330,46 @@ namespace NetwProg
         // D - case
         static void cutConnection(string inputPort)
         {
-            try
+            // try
+            // {
+            int portnr = int.Parse(inputPort);
+            printNdisu();
+            Buren[portnr].Write.WriteLine("DISCONNECT {0}", MijnPoort);
+            Buren.Remove(portnr);
+            Nbu.Remove(portnr);
+            //remove all occurences of 1102 from ndisu
+            removeFromNdisu(portnr);
+            SendDValueToNeighbours(portnr, 20);
+            Recompute(portnr);
+            RecomputeAll();
+            Console.WriteLine("Verbroken: {0}", portnr);
+            //  }
+            //catch { Console.WriteLine("Poort {0} is niet bekend", inputPort); }
+        }
+        static public void removeFromNdisu(int port)
+        {
+            List<int[]> temp = new List<int[]>();
+            foreach (KeyValuePair<int[], int> kvp in ndisu)
             {
-                int portnr = int.Parse(inputPort);
-                Buren[portnr].Write.WriteLine("DISCONNECT {0}", MijnPoort);
-
-                Buren.Remove(portnr);
-
-                //TODO : Update distances
-
-                Console.WriteLine("Verbroken: {0}", portnr);
+                if (firstPortEqualsV(kvp.Key, port))
+                {
+                    temp.Add(kvp.Key);
+                }
             }
-            catch { Console.WriteLine("Poort {0} is niet bekend", inputPort); }
+            foreach (int[] key in temp)
+            {
+                ndisu.Remove(key);
+            }
+        }
+        static public void RecomputeAll()
+        {
+            List<int> temp = new List<int>();
+            foreach (KeyValuePair<int, int> kvp in Nbu)
+            {
+                temp.Add(kvp.Key);
+            }
+            foreach (int k in temp)
+                Recompute(k);
         }
 
 
